@@ -1,32 +1,19 @@
-// import React from "react";
-// import Image from "next/image";
-
-// interface LeftDetailsProps {
-//   title: string;
-//   logo?: string;
-// }
-
-// export const LeftDetails: React.FC<LeftDetailsProps> = ({ title, logo }) => {
-//   return (
-//     <div className="space-y-4">
-//       <div className="flex gap-2 items-center bg-[#D32D44] p-2 rounded-md">
-//         <Image src={logo} alt={title} />
-//         <p>{title}</p>
-//       </div>
-//     </div>
-//   );
-// };
-
 import React from "react";
 import Image from "next/image";
 
-export const LeftDetails = () => {
+export const LeftDetails = ({
+  title,
+  icon,
+  isActive,
+}: {
+  title: string;
+  icon: string;
+  isActive?: boolean;
+}) => {
   return (
-    <div className="space-y-4">
-      <div className="flex gap-2 items-center bg-[#D32D44] p-2 px-4 rounded-md">
-        <Image src={require("../../../assets/class.svg")} alt="" />
-        <p>Class</p>
-      </div>
+    <div className="text-white flex gap-3 items-center bg-[#D32D44] p-2 px-4 rounded-md">
+      <Image src={icon} alt="" height={18} width={18} />
+      <p>{title}</p>
     </div>
   );
 };
