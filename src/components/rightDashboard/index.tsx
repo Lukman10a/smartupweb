@@ -4,10 +4,11 @@ import { IoNotificationsCircleOutline } from "react-icons/io5";
 import { CgProfile } from "react-icons/cg";
 import { TfiCrown } from "react-icons/tfi";
 import CardContainer from "./cardContainer";
+import TableContainer from "../table";
 
 export default function RightDashboard() {
   return (
-    <section className="flex-1 p-5">
+    <section className="flex-1 p-7">
       <div className="flex justify-between items-center">
         <p className="font-medium text-xl">Dashboard</p>
         <div className="flex items-center gap-2">
@@ -19,7 +20,7 @@ export default function RightDashboard() {
         </div>
       </div>
 
-      <div className="flex items-center justify-between p-3 bg-white rounded-md my-4">
+      <div className="flex items-center justify-between p-4 bg-white rounded-md my-4">
         <div className="flex items-center gap-3">
           <CgProfile size={30} />
           <p>Adeleke William</p>
@@ -33,7 +34,11 @@ export default function RightDashboard() {
         </div>
       </div>
 
-      <CardContainer />
+      <div className="space-y-4">
+        <CardContainer />
+        <CardContainer />
+      </div>
+      <TableContainer />
     </section>
   );
 }

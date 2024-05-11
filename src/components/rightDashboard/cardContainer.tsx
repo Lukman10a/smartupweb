@@ -3,7 +3,7 @@ import Card from "./card";
 
 export default function CardContainer() {
   return (
-    <div className="bg-white p-3 rounded-md">
+    <div className="bg-white p-4 rounded-md">
       <div className="flex justify-between items-center">
         <p>Progress report</p>
         <p className="text-[#D32D44]">Take a test</p>
