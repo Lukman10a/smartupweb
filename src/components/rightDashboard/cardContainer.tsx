@@ -1,19 +1,23 @@
-import React from "react";
-import Card from "./card";
+import React, { ReactNode } from "react";
 
-export default function CardContainer() {
+const SummaryContainer = ({
+  children,
+  sectionTitle,
+  summaryAction,
+}: {
+  children: ReactNode;
+  sectionTitle: string;
+  summaryAction: string;
+}) => {
   return (
-    <div className="bg-white p-4 rounded-md">
+    <article className="bg-white p-4 rounded-md">
       <div className="flex justify-between items-center">
-        <p className="font-medium text-lg">Progress report</p>
-        <p className="text-[#D32D44]">Take a test</p>
+        <p className="font-bold">{sectionTitle}</p>
+        <button className="text-[#D32D44]">{summaryAction}</button>
       </div>
-      <div className="flex justify-between gap-4">
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-      </div>
-    </div>
+      {children}
+    </article>
   );
-}
+};
+
+export default SummaryContainer;

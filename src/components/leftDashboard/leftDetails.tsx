@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import { cn } from "@/lib/utils";
 
 export const LeftDetails = ({
   title,
@@ -11,9 +12,14 @@ export const LeftDetails = ({
   isActive?: boolean;
 }) => {
   return (
-    <div className="text-white flex gap-3 items-center bg-[#D32D44] p-2 px-4 rounded-md">
+    <button
+      className={cn(
+        "text-black flex gap-3 items-center  p-2 px-4 rounded-md w-full",
+        isActive && "bg-[#D32D44] text-white"
+      )}
+    >
       <Image src={icon} alt="" height={18} width={18} />
       <p>{title}</p>
-    </div>
+    </button>
   );
 };
