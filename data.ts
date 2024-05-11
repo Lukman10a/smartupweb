@@ -6,6 +6,7 @@ interface LeftDataItem {
 }
 
 export const LEFT_DATA: LeftDataItem[] = [
+  { title: "Dashboard", logo: "/assets/dashboard.svg" },
   { title: "Profile", logo: "/assets/profile.svg" },
   { title: "Classes", logo: "/assets/class.svg" },
   { title: "Mock", logo: "/assets/mock.svg" },
