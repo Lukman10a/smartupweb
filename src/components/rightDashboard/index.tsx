@@ -8,6 +8,7 @@ import { useQuery } from "@tanstack/react-query";
 import Card from "./card";
 import SummaryContainer from "./cardContainer";
 import { fetchClassesData, fetchData } from "./utils";
+import Image from "next/image";
 
 export default function RightDashboard() {
   const { isPending, error, data } = useQuery({
@@ -45,23 +46,24 @@ export default function RightDashboard() {
 
       <div className="flex items-center justify-between p-4 bg-white rounded-md my-4">
         <div className="flex items-center gap-3">
+          {/* <Image src={require("../../../public/assets/class.svg")} alt="" /> */}
           <CgProfile size={30} />
-          <p className="text-[18px] text-[#0F0204] font-medium">
+          <p className="text-[18px] font-['Mulish'] text-[#0F0204] font-bold">
             {data.full_name}
           </p>
         </div>
-        <p className="text-[18px] text-[#0F0204] font-medium capitalize">
+        <p className="text-[18px] font-['Mulish'] text-[#0F0204] font-bold capitalize">
           {data.sex}
         </p>
-        <p className="text-[18px] text-[#0F0204] font-medium uppercase">
+        <p className="text-[18px] font-['Mulish'] text-[#0F0204] font-bold uppercase">
           {data.level}
         </p>
-        <p className="text-[18px] text-[#0F0204] font-medium">
+        <p className="text-[18px] font-['Mulish'] text-[#0F0204] font-bold">
           Science department
         </p>
         <div className="flex items-center p-2 px-6 rounded-md gap-3 bg-[#00A37D26]">
           <TfiCrown color="#00A37D" />
-          <p className="text-[#00A37D] text-sm font-medium">
+          <p className="text-[#00A37D] text-sm font-medium font-['Mulish']">
             No current pending payment
           </p>
         </div>
