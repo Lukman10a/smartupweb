@@ -7,34 +7,26 @@ import TableContainer from "../table";
 import { useQuery } from "@tanstack/react-query";
 import Card from "./card";
 import SummaryContainer from "./cardContainer";
-
-const fetchData = async () => {
-  try {
-    const response = await fetch(
-      "https://smartup-api.herokuapp.com/api/v2/show_user_info?user_id=3d99c36c-3775-49b6-9fd2-4c789bcf0980"
-    );
-
-    if (!response.ok) {
-      console.log({ response });
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-
-    const data = await response.json();
-    return data;
-  } catch (error: any) {
-    throw new Error(`Fetch error: ${error.message}`);
-  }
-};
+import { fetchClassesData, fetchData } from "./utils";
 
 export default function RightDashboard() {
-  // const { isPending, error, data } = useQuery({
-  //   queryKey: ["userData"],
-  //   queryFn: fetchData,
-  // });
+  const { isPending, error, data } = useQuery({
+    queryKey: ["userData"],
+    queryFn: fetchData,
+  });
+  const {
+    isPending: classesPending,
+    error: classesError,
+    data: classesData,
+  } = useQuery({
+    queryKey: ["classesData"],
+    queryFn: fetchClassesData,
+  });
 
-  // if (isPending) return "Loading...";
+  if (isPending || classesPending) return "Loading...";
 
-  // if (error) return "An error has occurred: " + error.message;
+  if (error) return "An error has occurred: " + error?.message;
+  if (classesError) return "An error has occurred: " + classesError?.message;
 
   return (
     <section className="flex-1 p-7 bg-[#F8F9FB]">
@@ -55,11 +47,15 @@ export default function RightDashboard() {
         <div className="flex items-center gap-3">
           <CgProfile size={30} />
           <p className="text-[18px] text-[#0F0204] font-medium">
-            Adeleke William
+            {data.full_name}
           </p>
         </div>
-        <p className="text-[18px] text-[#0F0204] font-medium">Male</p>
-        <p className="text-[18px] text-[#0F0204] font-medium">S.S.S 2</p>
+        <p className="text-[18px] text-[#0F0204] font-medium capitalize">
+          {data.sex}
+        </p>
+        <p className="text-[18px] text-[#0F0204] font-medium uppercase">
+          {data.level}
+        </p>
         <p className="text-[18px] text-[#0F0204] font-medium">
           Science department
         </p>
@@ -78,25 +74,25 @@ export default function RightDashboard() {
         >
           <div className="grid grid-cols-4 justify-between gap-4">
             <Card
-              titlePoints="3,924"
+              titlePoints={data.best_score}
               subtitle="Best score"
               subTitleIcon={<TfiCup />}
               subscript="Points"
             />
             <Card
-              titlePoints="800"
+              titlePoints={data.average_score}
               subtitle="Average score"
               subTitleIcon={<TfiCup />}
               subscript="Points"
             />
             <Card
-              titlePoints="72"
+              titlePoints={data.videos_watched}
               subTitleIcon={<TfiCup />}
               subscript="Videos"
-              subtitle="Average score"
+              subtitle="Videos Watched"
             />
             <Card
-              titlePoints="53"
+              titlePoints={data.tests_taken}
               subtitle="Test Taken"
               subTitleIcon={<TfiCup />}
               subscript="Tests"
@@ -109,10 +105,13 @@ export default function RightDashboard() {
           summaryAction="See all classes"
         >
           <div className="grid grid-cols-4 justify-between gap-4">
-            <Card titlePoints="Mathematics" subtitle="24 attendants" />
-            <Card titlePoints="English" subtitle="14 attendants" />
-            <Card titlePoints="Physics" subtitle="12 attendants" />
-            <Card titlePoints="Chemistry" subtitle="12 attendants" />
+            {classesData.map((classData: any) => (
+              <Card
+                key={classData.id}
+                titlePoints={classData.name}
+                subtitle={`${classData.students_list_count} attendants`}
+              />
+            ))}
           </div>
         </SummaryContainer>
       </div>
