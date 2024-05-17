@@ -9,6 +9,7 @@ import Card from "./card";
 import SummaryContainer from "./cardContainer";
 import { fetchClassesData, fetchData } from "./utils";
 import Image from "next/image";
+import Loading from "../loading";
 
 export default function RightDashboard() {
   const { isPending, error, data } = useQuery({
@@ -24,7 +25,7 @@ export default function RightDashboard() {
     queryFn: fetchClassesData,
   });
 
-  if (isPending || classesPending) return "Loading...";
+  if (isPending || classesPending) return <Loading />;
 
   if (error) return "An error has occurred: " + error?.message;
   if (classesError) return "An error has occurred: " + classesError?.message;
