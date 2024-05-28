@@ -1,4 +1,4 @@
-import Layout from "@/components/layout";
+import Layout from "@/components/Layout";
 import RightDashboard from "@/components/rightDashboard";
 
 export default function Home() {
