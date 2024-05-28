@@ -1,11 +1,10 @@
-import LeftDashboard from "@/components/leftDashboard";
+import Layout from "@/components/layout";
 import RightDashboard from "@/components/rightDashboard";
 
 export default function Home() {
   return (
-    <main className="flex">
-      <LeftDashboard />
+    <Layout>
       <RightDashboard />
-    </main>
+    </Layout>
   );
 }

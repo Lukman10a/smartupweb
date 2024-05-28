@@ -8,7 +8,6 @@ import { useQuery } from "@tanstack/react-query";
 import Card from "./card";
 import SummaryContainer from "./cardContainer";
 import { fetchClassesData, fetchData } from "./utils";
-import Image from "next/image";
 import Loading from "../loading";
 
 export default function RightDashboard() {
@@ -31,7 +30,7 @@ export default function RightDashboard() {
   if (classesError) return "An error has occurred: " + classesError?.message;
 
   return (
-    <section className="flex-1 p-7 bg-[#F8F9FB]">
+    <section>
       <div className="flex justify-between items-center">
         <p className="font-medium text-2xl">Dashboard</p>
         <div className="flex items-center gap-2">
@@ -47,24 +46,23 @@ export default function RightDashboard() {
 
       <div className="flex items-center justify-between p-4 bg-white rounded-md my-4">
         <div className="flex items-center gap-3">
-          {/* <Image src={require("../../../public/assets/class.svg")} alt="" /> */}
           <CgProfile size={30} />
-          <p className="text-[18px] font-['Mulish'] text-[#0F0204] font-bold">
+          <p className="text-[18px] text-[#0F0204] font-medium">
             {data.full_name}
           </p>
         </div>
-        <p className="text-[18px] font-['Mulish'] text-[#0F0204] font-bold capitalize">
+        <p className="text-[18px] text-[#0F0204] font-medium capitalize">
           {data.sex}
         </p>
-        <p className="text-[18px] font-['Mulish'] text-[#0F0204] font-bold uppercase">
+        <p className="text-[18px] text-[#0F0204] font-medium uppercase">
           {data.level}
         </p>
-        <p className="text-[18px] font-['Mulish'] text-[#0F0204] font-bold">
+        <p className="text-[18px] text-[#0F0204] font-medium">
           Science department
         </p>
         <div className="flex items-center p-2 px-6 rounded-md gap-3 bg-[#00A37D26]">
           <TfiCrown color="#00A37D" />
-          <p className="text-[#00A37D] text-sm font-medium font-['Mulish']">
+          <p className="text-[#00A37D] text-sm font-medium">
             No current pending payment
           </p>
         </div>

@@ -1,4 +1,4 @@
-import Layout from "@/components/Layout";
+import Layout from "@/components/layout";
 import Card from "@/components/rightDashboard/card";
 import SummaryContainer from "@/components/rightDashboard/cardContainer";
 import TableContainer from "@/components/table";
