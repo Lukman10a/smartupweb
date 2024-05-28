@@ -116,7 +116,7 @@ export default function RightDashboard() {
           </div>
         </SummaryContainer>
       </div>
-      <TableContainer />
+      {/* <TableContainer /> */}
     </section>
   );
 }
