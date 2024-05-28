@@ -1,6 +1,8 @@
-const base_url = "https://smartup-api.herokuapp.com/api/v2";
+// const base_url = "https://smartup-api.herokuapp.com/api/v2/";
+// const base_url = "https://smartup-api.herokuapp.com/api/v2/session?email=info_stu@smartuptech.com&password=1234567890";
+const base_url = "https://smartup-api.herokuapp.com/api/v2/";
 const smartup_institution_id = "715ddce7-48b1-4243-a329-1140195b06b8";
-const user_id = "3d99c36c-3775-49b6-9fd2-4c789bcf0980";
+const user_id = "54486a85-cd9f-400d-ab4f-f097ca905903";
 
 export const fetchData = async () => {
   try {
@@ -9,7 +11,7 @@ export const fetchData = async () => {
       {
         method: "POST", // *GET, POST, PUT, DELETE, etc.
         headers: {
-          authorization_key: "teqcYUap3VSx5eCwy8cw",
+          "authorization": "cstbyCEJGczwxwRAomLy",
           "Content-Type": "application/json",
         },
       }
@@ -35,7 +37,8 @@ export const fetchClassesData = async () => {
       {
         method: "POST",
         headers: {
-          authorization_key: "teqcYUap3VSx5eCwy8cw",
+          // authorization_key: "teqcYUap3VSx5eCwy8cw",
+          "authorization": "cstbyCEJGczwxwRAomLy",
           "Content-Type": "application/json",
         },
       }
