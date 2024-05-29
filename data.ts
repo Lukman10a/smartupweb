@@ -14,7 +14,7 @@ export const LEFT_DATA: LeftDataItem[] = [
   {
     title: "Practice questions",
     logo: "/assets/practice.svg",
-    slug: "/classes",
+    slug: "/practiceQuestion",
   },
   {
     title: "Exam practice questions",

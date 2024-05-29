@@ -14,7 +14,6 @@ export const LeftDetails = ({
   slug: string;
   isActive?: boolean;
 }) => {
-  console.log("Slug in parent component:", slug);
   return (
     <Link
       href={slug}
