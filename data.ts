@@ -22,3 +22,68 @@ export const LEFT_DATA: LeftDataItem[] = [
     slug: "/classes",
   },
 ];
+
+interface PracticeDataItem {
+  title: string;
+  id: number;
+  question: String[];
+}
+
+export const PRACTICE_DATA: PracticeDataItem[] = [
+  {
+    title: "Mathematics",
+    id: 1,
+    question: [
+      "General mathematics",
+      "Algebra",
+      "Quadratic equations",
+      "Circle geometry",
+      "Points, lines and planes",
+      "Numeric methods",
+      "Calculus",
+      "Linear programming",
+    ],
+  },
+  {
+    title: "English",
+    id: 2,
+    question: [
+      "new topic 1",
+      "new topic 1",
+      "new topic 1",
+      "new topic 1",
+      "new topic 2",
+      "new topic 3",
+      "new topic 4",
+      "new topic 5",
+    ],
+  },
+  {
+    title: "Physics",
+    id: 3,
+    question: [
+      "new topic 1",
+      "new topic 1",
+      "new topic 1",
+      "new topic 1",
+      "new topic 2",
+      "new topic 3",
+      "new topic 4",
+      "new topic 5",
+    ],
+  },
+  {
+    title: "Chemistry",
+    id: 4,
+    question: [
+      "new topic 1",
+      "new topic 1",
+      "new topic 1",
+      "new topic 1",
+      "new topic 2",
+      "new topic 3",
+      "new topic 4",
+      "new topic 5",
+    ],
+  },
+];

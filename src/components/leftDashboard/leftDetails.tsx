@@ -6,8 +6,8 @@ import Link from "next/link";
 export const LeftDetails = ({
   title,
   icon,
-  isActive,
   slug,
+  isActive,
 }: {
   title: string;
   icon: string;

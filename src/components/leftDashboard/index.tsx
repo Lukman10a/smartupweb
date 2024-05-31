@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 
 export default function LeftDashboard() {
   const router = useRouter();
+
   return (
     <section className="bg-white p-6 px-10 space-y-6">
       <Image src={"/assets/logo.png"} alt="" width={200} height={200} />
