@@ -7,8 +7,24 @@ import { CgProfile } from "react-icons/cg";
 import { IoNotificationsCircleOutline } from "react-icons/io5";
 import { TfiCup } from "react-icons/tfi";
 import { PRACTICE_DATA } from "../../../data";
+import { fetchSubjectData } from "@/components/rightDashboard/utils";
+import Loading from "@/components/loading";
+import { useQuery } from "@tanstack/react-query";
 
 export default function PracticeQuestion() {
+  const {
+    isPending: subjectPending,
+    error: subjectError,
+    data: subjectData,
+  } = useQuery({
+    queryKey: ["classesData"],
+    queryFn: fetchSubjectData,
+  });
+
+  if (subjectPending) return <Loading />;
+
+  if (subjectError) return "An error has occurred: " + subjectError?.message;
+
   return (
     <section>
       <div className="flex justify-between items-center mb-3">
@@ -38,25 +54,23 @@ export default function PracticeQuestion() {
       <section>
         <div className="grid grid-rows-3 justify-between space-y-4">
           <div className="bg-white grid grid-cols-4 p-3 px-5 gap-12 rounded-md">
-            {PRACTICE_DATA.map((item) => (
-              <Link href={`/practiceQuestion/${item.title}`} key={item.id}>
-                <Card titlePoints={item.title} subtitle="24 tests available" />
-              </Link>
-            ))}
-          </div>
-
-          <div className="bg-white grid grid-cols-4 p-3 px-5 gap-12 rounded-md">
-            <Card titlePoints={"Mathematics"} subtitle="24 tests available" />
-            <Card titlePoints={"English"} subtitle="24 tests available" />
-            <Card titlePoints={"Physics"} subtitle="24 tests available" />
-            <Card titlePoints={"Chemistry"} subtitle="24 tests available" />
-          </div>
-
-          <div className="bg-white grid grid-cols-4 p-3 px-5 gap-12 rounded-md">
-            <Card titlePoints={"Mathematics"} subtitle="24 tests available" />
-            <Card titlePoints={"English"} subtitle="24 tests available" />
-            <Card titlePoints={"Physics"} subtitle="24 tests available" />
-            <Card titlePoints={"Chemistry"} subtitle="24 tests available" />
+            {subjectData.map(
+              (item: {
+                slug: any;
+                name: string;
+                id: React.Key | null | undefined;
+                category: string;
+                description: string;
+              }) => (
+                <Link
+                  href={`/practiceQuestion/${item.slug}?subject=${item.name}`}
+                  key={item.id}
+                  as={`/practiceQuestion/${item.slug}`}
+                >
+                  <Card titlePoints={item.name} subtitle={item.description} />
+                </Link>
+              )
+            )}
           </div>
         </div>
       </section>

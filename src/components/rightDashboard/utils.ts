@@ -11,7 +11,7 @@ export const fetchData = async () => {
       {
         method: "POST", // *GET, POST, PUT, DELETE, etc.
         headers: {
-          "authorization": "cstbyCEJGczwxwRAomLy",
+          authorization: "cstbyCEJGczwxwRAomLy",
           "Content-Type": "application/json",
         },
       }
@@ -38,7 +38,7 @@ export const fetchClassesData = async () => {
         method: "POST",
         headers: {
           // authorization_key: "teqcYUap3VSx5eCwy8cw",
-          "authorization": "cstbyCEJGczwxwRAomLy",
+          authorization: "cstbyCEJGczwxwRAomLy",
           "Content-Type": "application/json",
         },
       }
@@ -46,6 +46,57 @@ export const fetchClassesData = async () => {
 
     if (!response.ok) {
       console.log({ response });
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    const data = await response.json();
+
+    return data;
+  } catch (error: any) {
+    throw new Error(`Fetch error: ${error.message}`);
+  }
+};
+
+export const fetchSubjectData = async () => {
+  try {
+    const response = await fetch(
+      `${base_url}/exam_body_courses?institution_id=${smartup_institution_id}`,
+      {
+        method: "POST",
+        headers: {
+          // authorization_key: "teqcYUap3VSx5eCwy8cw",
+          authorization: "cstbyCEJGczwxwRAomLy",
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    if (!response.ok) {
+      console.log({ response });
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    const data = await response.json();
+
+    return data;
+  } catch (error: any) {
+    throw new Error(`Fetch error: ${error.message}`);
+  }
+};
+
+export const fetchTopic = async (course_slug: string) => {
+  try {
+    const response = await fetch(`${base_url}courses/${course_slug}/topics`, {
+      method: "GET",
+      headers: {
+        // authorization_key: "teqcYUap3VSx5eCwy8cw",
+        authorization: "cstbyCEJGczwxwRAomLy",
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (!response.ok) {
+      // console.log({ response });
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
 

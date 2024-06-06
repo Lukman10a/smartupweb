@@ -16,7 +16,7 @@ export default function LeftDashboard() {
             title={item.title}
             icon={item.logo}
             slug={item.slug}
-            isActive={item.slug === router.pathname}
+            isActive={ router.pathname.includes(item.slug)}
           />
         </div>
       ))}
