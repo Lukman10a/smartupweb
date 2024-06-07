@@ -107,3 +107,30 @@ export const fetchTopic = async (course_slug: string) => {
     throw new Error(`Fetch error: ${error.message}`);
   }
 };
+
+export const fetchQuizByTopic = async (topic_id: string) => {
+  try {
+    const response = await fetch(
+      `${base_url}topic_questions?topic_id=${topic_id}`,
+      {
+        method: "POST",
+        headers: {
+          // authorization_key: "teqcYUap3VSx5eCwy8cw",
+          authorization: "cstbyCEJGczwxwRAomLy",
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    if (!response.ok) {
+      // console.log({ response });
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    const data = await response.json();
+
+    return data;
+  } catch (error: any) {
+    throw new Error(`Fetch error: ${error.message}`);
+  }
+};
