@@ -150,6 +150,7 @@ export default function PracticeQuestion() {
                   description: string;
                 }) => (
                   <Card
+                    key={item.id}
                     titlePoints={item.name}
                     subtitle={item.description}
                     onClick={() =>

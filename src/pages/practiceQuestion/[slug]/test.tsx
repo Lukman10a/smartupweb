@@ -39,7 +39,7 @@ export default function Test() {
           </p>
           <div className="mt-8">
             {ANSWER.map((answer) => (
-              <div className="flex gap-4 items-center rounded-md p-2 bg-[#F8F9FB] my-2">
+              <div key={answer.id} className="flex gap-4 items-center rounded-md p-2 bg-[#F8F9FB] my-2">
                 {/* <IoCheckmarkCircleSharp /> */}
                 <IoCheckmarkCircleOutline size={20} />
                 <p>Points, lines and planes</p>
