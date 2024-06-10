@@ -1,9 +1,9 @@
-import AnswerReviewPage from "@/components/answerReviewPage";
+import ResultReviewPage from "@/components/resultReviewPage";
 import { useRouter } from "next/router";
 import React from "react";
 import { IoNotificationsCircleOutline } from "react-icons/io5";
 
-export default function ReviewPage() {
+export default function ResultPage() {
   return (
     <div>
       <div className="flex justify-between items-center mb-3">
@@ -21,13 +21,16 @@ export default function ReviewPage() {
         </div>
       </div>
 
-      <section className="bg-white mt-5 rounded-md p-4 text-[#74595D]">
-        <div className="">
-          <p>Review answers</p>
-          <AnswerReviewPage />
-          <AnswerReviewPage />
-          <AnswerReviewPage />
-          <AnswerReviewPage />
+      <section className="bg-white mt-5 rounded-md p-4">
+        <h2>Results</h2>
+        <div className="p-2 flex gap-2">
+          <div className="bg-[#F8F9FB] rounded-md p-2 ">
+            <p>Performance accuracy</p>
+          </div>
+          <div className="bg-[#F8F9FB] rounded-md flex-grow p-2">
+            <p>Review your answers</p>
+            <ResultReviewPage />
+          </div>
         </div>
       </section>
     </div>

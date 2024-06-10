@@ -1,15 +1,14 @@
+import AnswerReviewPage from "@/components/answerReviewPage";
 import { useRouter } from "next/router";
 import React from "react";
 import { IoNotificationsCircleOutline } from "react-icons/io5";
 
-export default function ReviewPage() {
+export default function ReviewAnswerPage() {
   return (
     <div>
       <div className="flex justify-between items-center mb-3">
         <p className="font-medium text-2xl font-dm_sans">Mathematics</p>
-        <div className="flex items-center gap-2">
-          <IoNotificationsCircleOutline size={40} />
-        </div>
+        <IoNotificationsCircleOutline size={40} />
       </div>
       <div className="flex bg-white items-center justify-between rounded-md mx-auto p-3">
         <p>General mathematics</p>
@@ -19,6 +18,13 @@ export default function ReviewPage() {
           </p>
         </div>
       </div>
+
+      <section className="bg-white mt-5 rounded-md p-4 text-[#74595D]">
+        <div className="">
+          <p>Review answers</p>
+          <AnswerReviewPage />
+        </div>
+      </section>
     </div>
   );
 }

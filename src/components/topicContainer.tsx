@@ -6,12 +6,14 @@ interface TopicContainerProps {
   topic: string;
   subject: string;
   path: string;
+  topicId: string;
 }
 
 export default function TopicContainer({
   topic,
   subject,
   path,
+  topicId,
 }: TopicContainerProps) {
   return (
     <div className="flex justify-between p-2 my-2 items-center bg-[#F8F9FB] rounded-md">
@@ -19,7 +21,7 @@ export default function TopicContainer({
       <Link
         href={{
           pathname: `${path}/test`,
-          query: { topic: topic, subject: subject },
+          query: { topic: topic, subject: subject, topicId: topicId },
         }}
         as={`${path}/test?topic=${topic}`}
       >

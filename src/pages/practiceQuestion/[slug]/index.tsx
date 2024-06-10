@@ -61,10 +61,14 @@ export default function Practice() {
 
       <div className="bg-white mt-5 rounded-md p-3">
         {subjectData.map(
-          (item: { id: React.Key | null | undefined; name: string }) => (
+          (item: {
+            id: React.Key | null | undefined | string;
+            name: string;
+          }) => (
             <TopicContainer
               key={item.id}
               topic={item.name}
+              topicId={item.id as string}
               subject={subjectString}
               path={asPath}
             />
