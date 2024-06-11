@@ -171,6 +171,12 @@ const Test: React.FC = () => {
               </li>
             ))}
           </ul>
+          <button
+            className="flex items-center gap-2 bg-[#D32D4426] p-2 rounded-md"
+            onClick={() => null}
+          >
+            <p>All set, submit</p>
+          </button>
         </div>
       )}
 
