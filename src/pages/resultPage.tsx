@@ -16,7 +16,7 @@ export default function ResultPage() {
         <p>General mathematics</p>
         <div className="flex gap-2">
           <p className="bg-[#D32D4426] text-[#D32D44] p-2 rounded-md">
-            Cancel Test
+            Take another test
           </p>
         </div>
       </div>
@@ -24,12 +24,20 @@ export default function ResultPage() {
       <section className="bg-white mt-5 rounded-md p-4">
         <h2>Results</h2>
         <div className="p-2 flex gap-2">
-          <div className="bg-[#F8F9FB] rounded-md p-2 ">
+          <div className="bg-[#F8F9FB] rounded-md p-2">
             <p>Performance accuracy</p>
           </div>
           <div className="bg-[#F8F9FB] rounded-md flex-grow p-2">
             <p>Review your answers</p>
             <ResultReviewPage />
+            <div className="flex justify-between items-center p-3">
+              <button className="bg-[#D32D4426] text-[#D32D44] p-2 rounded-md">
+                <p>View course video</p>
+              </button>
+              <button className="bg-[#D32D44] text-white p-2 rounded-md">
+                <p>Take another test</p>
+              </button>
+            </div>
           </div>
         </div>
       </section>

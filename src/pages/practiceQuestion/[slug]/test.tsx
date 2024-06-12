@@ -16,13 +16,13 @@ import {
   IoNotificationsCircleOutline,
   IoCheckmarkCircleOutline,
 } from "react-icons/io5";
+import { FaCheckCircle } from "react-icons/fa";
 import { GrFormPrevious } from "react-icons/gr";
 import { MdNavigateNext } from "react-icons/md";
 import { fetchQuizByTopic } from "@/components/rightDashboard/utils";
 import { Question } from "@/type/quiz";
 import Loading from "@/components/loading";
 import { cn } from "@/lib/utils";
-import AnswerReviewPage from "@/components/answerReviewPage";
 
 const Test: React.FC = () => {
   const { query } = useRouter();
@@ -117,6 +117,7 @@ const Test: React.FC = () => {
           <IoNotificationsCircleOutline size={40} />
         </div>
       </div>
+
       <div className="flex bg-white items-center justify-between rounded-md mx-auto p-3">
         <p>{query.topic}</p>
         <div className="flex gap-2">
@@ -126,9 +127,11 @@ const Test: React.FC = () => {
         </div>
       </div>
 
-      <div className="w-full bg-gray-200 rounded-full text-center mb-4 mt-6">
+      {/* PROGRESS BAR */}
+
+      <div className="w-full bg-[#D32D4426] rounded-full text-center mb-4 mt-6">
         <div
-          className="bg-blue-600  rounded-full text-sm"
+          className="bg-[#D32D44] rounded-full text-sm"
           style={{
             width: `${
               ((currentQuestionIndex + 1) / (quizData?.length || 1)) * 100
@@ -139,46 +142,48 @@ const Test: React.FC = () => {
         </div>
       </div>
 
+      {/* ANSWER SUMMARY PAGE */}
+
       {currentQuestionIndex >= (quizData?.length || 0) - 1 && showSummary && (
         <div>
-          <h2>Summary</h2>
           <section className="bg-white mt-5 rounded-md p-4 text-[#74595D]">
-            <div className="">
-              <p>Review answers</p>
-            </div>
+            <p>Review Answers</p>
+
+            <ul>
+              {selectedAnswers.map((answer) => (
+                <li
+                  className="bg-[#F8F9FB] rounded-md py-2 m-2 "
+                  key={answer.questionId}
+                >
+                  <div className="border-b-2 p-6 space-y-2">
+                    <p>{answer.questionName}</p>
+                    <p className="font-normal text-lg">
+                      {answer.chosenQuestion}
+                    </p>
+                  </div>
+                  <div className="flex justify-between p-6">
+                    <p>{`Your answer : ${answer.chosenAnswer}`}</p>
+                    <button
+                      className="text-[#D32D44]"
+                      onClick={() => setSelectedAnswerForChange(answer)}
+                    >
+                      Change answer
+                    </button>
+                  </div>
+                </li>
+              ))}
+            </ul>
+            <button
+              className="text-white text-center p-2 gap-2 bg-[#D32D44] mt-4 rounded-md"
+              onClick={() => null}
+            >
+              <p>All set, submit</p>
+            </button>
           </section>
-          <ul>
-            {selectedAnswers.map((answer) => (
-              <li
-                className="bg-[#F8F9FB] rounded-md p-2 m-2 "
-                key={answer.questionId}
-              >
-                <div className="border-b-2 p-6">
-                  <p>{answer.questionName}</p>
-                  <p className="font-normal text-base">
-                    {answer.chosenQuestion}
-                  </p>
-                </div>
-                <div className="flex justify-between p-6">
-                  <p>{`Your answer : ${answer.chosenAnswer}`}</p>
-                  <button
-                    className="text-[#D32D44]"
-                    onClick={() => setSelectedAnswerForChange(answer)}
-                  >
-                    Change answer
-                  </button>
-                </div>
-              </li>
-            ))}
-          </ul>
-          <button
-            className="flex items-center gap-2 bg-[#D32D4426] p-2 rounded-md"
-            onClick={() => null}
-          >
-            <p>All set, submit</p>
-          </button>
         </div>
       )}
+
+      {/* QUIZ QUESTION PAGE */}
 
       {currentQuestion && !showSummary && (
         <section className="bg-white mt-5 rounded-md p-3 text-[#74595D]">
@@ -194,7 +199,7 @@ const Test: React.FC = () => {
                   className={cn(
                     "flex gap-4 items-center rounded-md p-2 bg-[#F8F9FB] my-2 w-full",
                     getSelectedAnswer(currentQuestion.id) === answer.id
-                      ? "bg-blue-200"
+                      ? "border-2 border-[#D32D44]"
                       : "bg-[#F8F9FB]"
                   )}
                   onClick={() =>
@@ -207,12 +212,18 @@ const Test: React.FC = () => {
                     )
                   }
                 >
-                  <IoCheckmarkCircleOutline size={20} />
+                  {getSelectedAnswer(currentQuestion.id) === answer.id ? (
+                    <FaCheckCircle size={20} color="#D32D44" />
+                  ) : (
+                    <IoCheckmarkCircleOutline size={20} />
+                  )}
                   <p>{answer.content}</p>
                 </button>
               ))}
             </div>
           </div>
+
+          {/* NAVIGATION BUTTON PAGE */}
 
           <div className="flex justify-between items-center mt-8 my-4 text-white">
             <button
@@ -230,15 +241,14 @@ const Test: React.FC = () => {
             <button
               className={cn(
                 "flex gap-2 p-2 rounded-md bg-[#D32D44] items-center px-6",
-                currentQuestionIndex + 1 === quizData?.length &&
-                  "bg-[#D32D4426]"
+                currentQuestionIndex + 1 === quizData?.length && "bg-[#D32D44]"
               )}
               onClick={handleNextClick}
               // disabled={quizData?.length === currentQuestionIndex + 1}
             >
               <p>
                 {currentQuestionIndex >= (quizData?.length || 0) - 1
-                  ? "Show Summary"
+                  ? "Review answers"
                   : "Next"}
               </p>
               <MdNavigateNext />
@@ -246,6 +256,8 @@ const Test: React.FC = () => {
           </div>
         </section>
       )}
+
+      {/* ANSWER CHANGING PAGE */}
 
       {selectedAnswerForChange && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
