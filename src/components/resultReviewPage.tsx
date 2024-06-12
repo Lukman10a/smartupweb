@@ -34,7 +34,7 @@ export default function ResultReviewPage() {
   return (
     <div>
       {RESULT_DATA.map((item) => (
-        <div className="bg-[#F8F9FB] rounded-md">
+        <div className="bg-[#F8F9FB] rounded-md" key={item.question}>
           <div
             className="bg-white p-2 m-4 flex items-center justify-between rounded-md cursor-pointer"
             onClick={toggleDropdown}
