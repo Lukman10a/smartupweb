@@ -23,6 +23,7 @@ import { fetchQuizByTopic } from "@/components/rightDashboard/utils";
 import { Question } from "@/type/quiz";
 import Loading from "@/components/loading";
 import { cn } from "@/lib/utils";
+import CancelModal from "@/components/modal/cancelModal";
 
 const Test: React.FC = () => {
   const { query } = useRouter();
@@ -120,11 +121,13 @@ const Test: React.FC = () => {
 
       <div className="flex bg-white items-center justify-between rounded-md mx-auto p-3">
         <p>{query.topic}</p>
-        <div className="flex gap-2">
-          <p className="bg-[#D32D4426] text-[#D32D44] p-2 rounded-md">
-            Cancel Test
-          </p>
-        </div>
+        <CancelModal name={""} slug={""}>
+          <button className="flex gap-2">
+            <p className="bg-[#D32D4426] text-[#D32D44] p-2 rounded-md">
+              Cancel Test
+            </p>
+          </button>
+        </CancelModal>
       </div>
 
       {/* PROGRESS BAR */}

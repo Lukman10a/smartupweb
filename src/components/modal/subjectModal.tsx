@@ -30,9 +30,9 @@ const SubjectCard: React.FC<DialogDemoProps> = ({
 
         <div className="mt-[25px] flex justify-between">
           <Dialog.Close asChild>
-            <div className="bg-[#D32D4426] p-2 rounded-md flex flex-col items-center text-[#D32D44]">
+            <div className="bg-[#D32D4426] p-2 rounded-md flex flex-col gap-2 items-center text-[#D32D44]">
               <Image
-                src={require("../../public/assets/random.svg")}
+                src={require("../../../public/assets/topic.svg")}
                 alt="topicsvg"
               />
               <button>Take tests at random</button>
@@ -43,9 +43,9 @@ const SubjectCard: React.FC<DialogDemoProps> = ({
               href={`/practiceQuestion/${slug}?subject=${name}`}
               as={`/practiceQuestion/${slug}`}
             >
-              <div className="bg-[#D32D44] p-2 rounded-md flex flex-col items-center text-white">
+              <div className="bg-[#D32D44] p-2 rounded-md flex flex-col gap-2 items-center text-white">
                 <Image
-                  src={require("../../public/assets/topic.svg")}
+                  src={require("../../../public/assets/topic.svg")}
                   alt="topicsvg"
                 />
                 <button>Take tests by topics</button>
