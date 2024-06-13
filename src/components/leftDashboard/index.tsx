@@ -9,14 +9,20 @@ export default function LeftDashboard() {
 
   return (
     <section className="bg-white p-6 px-10 space-y-6">
-      <Image src={"/assets/logo.png"} alt="" width={200} height={200} />
+      <Image
+        src={"/assets/logo.png"}
+        priority
+        alt=""
+        width={200}
+        height={200}
+      />
       {LEFT_DATA.map((item, index) => (
         <div key={item.title}>
           <LeftDetails
             title={item.title}
             icon={item.logo}
             slug={item.slug}
-            isActive={ router.pathname.includes(item.slug)}
+            isActive={router.pathname.includes(item.slug)}
           />
         </div>
       ))}

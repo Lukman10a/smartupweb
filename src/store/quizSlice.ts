@@ -11,6 +11,7 @@ export interface SelectedAnswer {
   questionName: string;
 }
 
+
 interface QuizState {
   quizData: Question[] | null;
   currentQuestionIndex: number;

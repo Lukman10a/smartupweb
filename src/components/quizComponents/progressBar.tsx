@@ -1,26 +1,48 @@
-// import React from 'react'
-// import {
-//     setQuizData,
-//     nextQuestion,
-//     previousQuestion,
-//     selectAnswer,
-//     updateAnswer,
-//     SelectedAnswer,
-//   } from "@/store/quizSlice";
+// src/components/CircularProgressBar.jsx
+import React from "react";
 
-// export default function ProgressBar() {
-//   return (
-//     <div className="w-full bg-[#D32D4426] rounded-full text-center mb-4 mt-6">
-//     <div
-//       className="bg-[#D32D44] rounded-full text-sm"
-//       style={{
-//         width: `${
-//           ((currentQuestionIndex + 1) / (quizData?.length || 1)) * 100
-//         }%`,
-//       }}
-//     >
-//       {currentQuestionIndex + 1}/{quizData?.length}
-//     </div>
-//   </div>
-//   )
-// }
+const CircularProgressBar = ({ percentage }: { percentage: number }) => {
+  const radius = 70;
+  const stroke = 10;
+  const normalizedRadius = radius - stroke;
+  const circumference = normalizedRadius * 2 * Math.PI;
+  const strokeDashoffset = circumference - (percentage / 100) * circumference;
+
+  return (
+    <div className="relative flex h-28 w-28 items-center justify-center">
+      <svg
+        height={radius * 2}
+        width={radius * 2}
+        className="absolute -rotate-90 transform"
+      >
+        <circle
+          stroke="currentColor"
+          fill="transparent"
+          strokeWidth={stroke}
+          r={normalizedRadius}
+          cx={radius}
+          cy={radius}
+          className="text-gray-300"
+        />
+        <circle
+          stroke="currentColor"
+          fill="transparent"
+          strokeWidth={stroke}
+          strokeDasharray={`${circumference} ${circumference}`}
+          style={{ strokeDashoffset }}
+          strokeLinecap="round"
+          r={normalizedRadius}
+          cx={radius}
+          cy={radius}
+          className="text-blue-500"
+        />
+      </svg>
+      <div className="absolute flex flex-col items-center justify-center gap-3">
+        <span className="text-xl font-semibold">{percentage}%</span>
+        <p>Accuracy</p>
+      </div>
+    </div>
+  );
+};
+
+export default CircularProgressBar;

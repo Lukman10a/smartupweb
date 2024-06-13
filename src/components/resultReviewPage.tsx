@@ -1,54 +1,51 @@
+// src/components/ResultReviewPage.jsx
 import React, { useState } from "react";
 import { IoCheckmarkCircleSharp } from "react-icons/io5";
+import { MdCancel } from "react-icons/md";
 import { RiArrowDropDownLine } from "react-icons/ri";
+import { useSelector } from "react-redux";
+import { selectedAnswersSelector } from "@/store/selector";
 
 export default function ResultReviewPage() {
-  const RESULT_DATA = [
-    {
-      question: "Under what conditions are cathode rays produced?",
-      answer:
-        "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
-    },
-    {
-      question: "what are the conditions of cathode rays ?",
-      answer:
-        " established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
-    },
-    {
-      question: "Under what conditions are cathode rays produced?",
-      answer:
-        "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
-    },
-    {
-      question: "Under what conditions are cathode rays produced?",
-      answer:
-        "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
-    },
-  ];
-  const [showDropdown, setShowDropdown] = useState(false); // State to track dropdown visibility
+  const selectedAnswers = useSelector(selectedAnswersSelector);
 
-  const toggleDropdown = () => {
-    setShowDropdown(!showDropdown); // Toggle the dropdown visibility
+  const [visibleAnswers, setVisibleAnswers] = useState<boolean[]>(
+    new Array(selectedAnswers.length).fill(false),
+  );
+
+  const toggleDropdown = (index: number) => {
+    setVisibleAnswers((prevVisibleAnswers) =>
+      prevVisibleAnswers.map((visible, i) =>
+        i === index ? !visible : visible,
+      ),
+    );
   };
 
   return (
     <div>
-      {RESULT_DATA.map((item) => (
-        <div className="bg-[#F8F9FB] rounded-md" key={item.question}>
+      {selectedAnswers.map((item, index) => (
+        <div className="mb-4 rounded-md bg-[#F8F9FB]" key={item.questionId}>
           <div
-            className="bg-white p-2 m-4 flex items-center justify-between rounded-md cursor-pointer"
-            onClick={toggleDropdown}
+            className="m-4 flex cursor-pointer items-center justify-between rounded-md bg-white p-2"
+            onClick={() => toggleDropdown(index)}
           >
             <div className="flex items-center gap-4">
-              <IoCheckmarkCircleSharp color="#00A37D" />
-              <p>{item.question}</p>
+              {item.isCorrect ? (
+                <IoCheckmarkCircleSharp color={"#00A37D"} />
+              ) : (
+                <MdCancel color={"#D32D44"} />
+              )}
+              <p>{item.chosenQuestion}</p>
             </div>
             <RiArrowDropDownLine />
           </div>
-          {showDropdown && ( // Conditionally render the dropdown content
-            <div className="bg-white p-2 mt-2 rounded-md shadow-lg">
-              <h3>Answer</h3>
-              <p>{item.answer}</p>
+          {visibleAnswers[index] && (
+            <div className="m-4 rounded-md bg-white p-2 shadow-lg">
+              <h3 className="text-[#AEAAABE5]">Answer</h3>
+              <p className="text-[#74595D]">{item.chosenAnswer}</p>
+              <p className={item.isCorrect ? "text-green-500" : "text-red-500"}>
+                {item.isCorrect ? "Correct" : "Incorrect"}
+              </p>
             </div>
           )}
         </div>

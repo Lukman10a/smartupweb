@@ -16,16 +16,16 @@ export default function TopicContainer({
   topicId,
 }: TopicContainerProps) {
   return (
-    <div className="flex justify-between p-2 my-2 items-center bg-[#F8F9FB] rounded-md">
+    <div className="my-2 flex items-center justify-between rounded-md bg-[#F8F9FB] p-2">
       <p className="text-[#74595D]">{topic}</p>
       <Link
         href={{
-          pathname: `${path}/test`,
+          pathname: `${path}/${topic}`,
           query: { topic: topic, subject: subject, topicId: topicId },
         }}
-        as={`${path}/test?topic=${topic}`}
+        as={`${path}/${topic}`}
       >
-        <button className="bg-[#D32D44] rounded-md text-white p-2">
+        <button className="rounded-md bg-[#D32D44] p-2 text-white">
           Take Test
         </button>
       </Link>
