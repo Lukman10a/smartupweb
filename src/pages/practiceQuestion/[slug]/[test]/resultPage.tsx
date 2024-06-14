@@ -1,6 +1,7 @@
 import CircularProgressBar from "@/components/quizComponents/progressBar";
 import ResultReviewPage from "@/components/resultReviewPage";
 import { selectTotalScore } from "@/store/selector";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
 import { IoNotificationsCircleOutline } from "react-icons/io5";
@@ -45,9 +46,11 @@ export default function ResultPage() {
               <button className="rounded-md bg-[#D32D4426] p-2 text-[#D32D44]">
                 <p>View course video</p>
               </button>
-              <button className="rounded-md bg-[#D32D44] p-2 text-white">
-                <p>Take another test</p>
-              </button>
+              <Link href={`/practiceQuestion`}>
+                <button className="rounded-md bg-[#D32D44] p-2 text-white">
+                  <p>Take another test</p>
+                </button>
+              </Link>
             </div>
           </div>
         </div>

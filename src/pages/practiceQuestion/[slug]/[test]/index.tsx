@@ -53,7 +53,7 @@ const Test: React.FC = () => {
   useEffect(() => {
     dispatch(setQuizData(data as Question[]));
     console.log({ data, query, asPath });
-  }, [data, query.topicId]);
+  }, [dispatch, query.topicId]);
 
   const handleNextClick = () => {
     if (currentQuestionIndex >= (quizData?.length || 0) - 1) {
@@ -157,13 +157,13 @@ const Test: React.FC = () => {
             <p>Review Answers</p>
 
             <ul>
-              {selectedAnswers.map((answer) => (
+              {selectedAnswers.map((answer, index) => (
                 <li
                   className="m-2 rounded-md bg-[#F8F9FB] py-2"
                   key={answer.questionId}
                 >
                   <div className="space-y-2 border-b-2 p-6">
-                    <p>{answer.questionName}</p>
+                    <p>Question {index + 1}</p>
                     <p className="text-lg font-normal">
                       {answer.chosenQuestion}
                     </p>

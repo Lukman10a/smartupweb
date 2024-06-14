@@ -22,7 +22,7 @@ const CircularProgressBar = ({ percentage }: { percentage: number }) => {
           r={normalizedRadius}
           cx={radius}
           cy={radius}
-          className="text-gray-300"
+          className="text-[#D32D4426]"
         />
         <circle
           stroke="currentColor"
@@ -34,7 +34,7 @@ const CircularProgressBar = ({ percentage }: { percentage: number }) => {
           r={normalizedRadius}
           cx={radius}
           cy={radius}
-          className="text-blue-500"
+          className="text-[#D32D44]"
         />
       </svg>
       <div className="absolute flex flex-col items-center justify-center gap-3">

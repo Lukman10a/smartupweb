@@ -42,7 +42,7 @@ export default function ResultReviewPage() {
           {visibleAnswers[index] && (
             <div className="m-4 rounded-md bg-white p-2 shadow-lg">
               <h3 className="text-[#AEAAABE5]">Answer</h3>
-              <p className="text-[#74595D]">{item.chosenAnswer}</p>
+              <p className="py-4 text-[#74595D]">{item.chosenAnswer}</p>
               <p className={item.isCorrect ? "text-green-500" : "text-red-500"}>
                 {item.isCorrect ? "Correct" : "Incorrect"}
               </p>

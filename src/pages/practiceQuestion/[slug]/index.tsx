@@ -34,32 +34,32 @@ export default function Practice() {
 
   return (
     <div>
-      <div className="flex justify-between items-center mb-3">
-        <p className="font-medium text-2xl font-dm_sans">{query.subject}</p>
+      <div className="mb-3 flex items-center justify-between">
+        <p className="font-dm_sans text-2xl font-medium">{query.subject}</p>
         <div className="flex items-center gap-2">
           <IoNotificationsCircleOutline size={40} />
         </div>
       </div>
 
-      <div className="flex bg-white items-center justify-between rounded-md mx-auto p-3">
+      <div className="mx-auto flex items-center justify-between rounded-md bg-white p-3">
         <input
           type="text"
           placeholder="Search for topics"
-          className="bg-[#F8F9FB] p-2 rounded-md"
+          className="rounded-md bg-[#F8F9FB] p-2"
         />
         <div className="flex gap-2">
-          <div className="flex gap-2 bg-[#D32D4426] p-2 rounded-md">
+          <div className="flex gap-2 rounded-md bg-[#D32D4426] p-2">
             <p className="text-[#D32D44]">Tab view</p>
             <RiArrowDropDownLine />
           </div>
 
-          <p className="bg-[#D32D4426] text-[#D32D44] p-2 rounded-md">
+          <p className="rounded-md bg-[#D32D4426] p-2 text-[#D32D44]">
             View analysis
           </p>
         </div>
       </div>
 
-      <div className="bg-white mt-5 rounded-md p-3">
+      <div className="mt-5 rounded-md bg-white p-3">
         {subjectData.map(
           (item: {
             id: React.Key | null | undefined | string;
@@ -72,7 +72,7 @@ export default function Practice() {
               subject={subjectString}
               path={asPath}
             />
-          )
+          ),
         )}
       </div>
     </div>
