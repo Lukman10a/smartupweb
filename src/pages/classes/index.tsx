@@ -14,18 +14,18 @@ export default function Classes() {
     slug: "",
   });
 
-  const {
-    isPending: subjectPending,
-    error: subjectError,
-    data: subjectData,
-  } = useQuery({
-    queryKey: ["classesData"],
-    queryFn: fetchSubjectData,
-  });
+  // const {
+  //   isPending: subjectPending,
+  //   error: subjectError,
+  //   data: subjectData,
+  // } = useQuery({
+  //   queryKey: ["classesData"],
+  //   queryFn: fetchSubjectData,
+  // });
 
-  if (subjectPending) return <Loading />;
+  // if (subjectPending) return <Loading />;
 
-  if (subjectError) return "An error has occurred: " + subjectError?.message;
+  // if (subjectError) return "An error has occurred: " + subjectError?.message;
 
   return (
     <section>
@@ -58,11 +58,21 @@ export default function Classes() {
         <div className="grid grid-rows-3 justify-between space-y-4">
           <div className="grid cursor-pointer grid-cols-4 gap-12 rounded-md bg-white p-3 px-5">
             {CLASS.map((item) => (
-              <Link href={`/classes/[classActivities]`}>
+              <Link
+                href={{
+                  pathname: `/classes/[classActivities]`,
+                  query: {
+                    classActivities: item.title,
+                    class: item.title,
+                    title: "title",
+                  },
+                }}
+                as={`/classes/${item.title}`}
+              >
                 <Card
                   key={item.id}
-                  titlePoints={item.title}
                   subtitle={item.subTitle}
+                  titlePoints={item.title}
                   onClick={() =>
                     setCurrentCard({ name: item.title, slug: item.title })
                   }

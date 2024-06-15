@@ -3,14 +3,20 @@ import React from "react";
 import Image from "next/image";
 import { IoNotificationsCircleOutline } from "react-icons/io5";
 import { IoChevronBackCircleOutline } from "react-icons/io5";
+import { useRouter } from "next/router";
 
 export default function ClassActivity() {
+  const { query, asPath } = useRouter();
+  console.log({ query, asPath });
+
   return (
     <section>
       <div className="mb-3 flex items-center justify-between">
         <div className="flex items-center gap-2">
           <IoChevronBackCircleOutline size={35} />
-          <p className="font-dm_sans text-2xl font-medium">English - JSS1</p>
+          <p className="font-dm_sans text-2xl font-medium">
+            {query.classActivities}
+          </p>
         </div>
         <div className="flex items-center gap-2">
           <IoNotificationsCircleOutline size={40} />
@@ -31,7 +37,7 @@ export default function ClassActivity() {
 
       <div className="my-4 rounded-md bg-white p-3">
         <h3>Class activities</h3>
-        <ClassActivityCard />
+        <ClassActivityCard path={asPath} />
       </div>
     </section>
   );
