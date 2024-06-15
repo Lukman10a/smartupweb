@@ -24,10 +24,10 @@ export default function answerReviewPage() {
   return (
     <div>
       {ANSWER_DETAILS.map((item) => (
-        <div className="bg-[#F8F9FB] rounded-md p-2 m-2 ">
+        <div className="m-2 rounded-md bg-[#F8F9FB] p-2" key={item.answer}>
           <div className="border-b-2 p-6">
             <p>{item.qustion}</p>
-            <p className="font-normal text-base">{item.answer}</p>
+            <p className="text-base font-normal">{item.answer}</p>
           </div>
           <div className="flex justify-between p-6">
             <p>{`Your answer : ${item.option}`}</p>
