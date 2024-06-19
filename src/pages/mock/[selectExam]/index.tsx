@@ -5,7 +5,7 @@ import {
   IoChevronBackCircleOutline,
   IoNotificationsCircleOutline,
 } from "react-icons/io5";
-export default function index() {
+export default function SelectExam() {
   const { query } = useRouter();
 
   return (

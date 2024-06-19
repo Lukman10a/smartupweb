@@ -65,7 +65,7 @@ export default function Classes() {
                     exam: item.subject,
                   },
                 }}
-                as={`/classes/${item.subject}`}
+                as={`/mock/${item.subject}`}
               >
                 <Card
                   key={item.id}

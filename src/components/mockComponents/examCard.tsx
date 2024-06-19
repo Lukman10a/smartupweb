@@ -83,10 +83,10 @@ export default function ExamCard({ path }: { path: string }) {
           className="my-3 grid grid-cols-3 items-center rounded-md bg-[#F8F9FB] p-3"
           key={item.id}
         >
-          <p>{item.title}</p>
-          <p>45 minutes</p>
+          <p className="text-md font-bold">{item.title}</p>
+          <p className="text-[#D32D44]">45 minutes</p>
           <button className="rounded-md bg-[#D32D441A] p-2 px-4">
-            <p>Deadline: 10-29-2024</p>
+            <p className="text-[#D32D44]">Deadline: 10-29-2024</p>
           </button>
         </div>
       ))}
