@@ -66,6 +66,7 @@ export default function Classes() {
                   },
                 }}
                 as={`/mock/${item.subject}`}
+                key={item.id}
               >
                 <Card
                   key={item.id}
