@@ -88,7 +88,7 @@ export default function ExamCard({ path }: { path: string }) {
           key={item.id}
           href={{
             pathname: `${path}${item.slug}`,
-            query: { type: item.title },
+            query: { type: item.title, title: item.title },
           }}
         >
           <div className="my-3 grid cursor-pointer grid-cols-3 items-center rounded-md bg-[#F8F9FB] p-3">
