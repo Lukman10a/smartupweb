@@ -129,3 +129,32 @@ export const fetchQuizByTopic = async (
 
   return response.json();
 };
+
+// FETCH DATA FOR THE CLASS SIDE BAR
+
+export const fetchClasstData = async () => {
+  try {
+    const response = await fetch(
+      `${base_url}student_classes_index?institution_id=${smartup_institution_id}&user_id=${user_id}`,
+      {
+        method: "POST",
+        headers: {
+          // authorization_key: "teqcYUap3VSx5eCwy8cw",
+          authorization: "cstbyCEJGczwxwRAomLy",
+          "Content-Type": "application/json",
+        },
+      },
+    );
+
+    if (!response.ok) {
+      console.log({ response });
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    const data = await response.json();
+
+    return data;
+  } catch (error: any) {
+    throw new Error(`Fetch error: ${error.message}`);
+  }
+};

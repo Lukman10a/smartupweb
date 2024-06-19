@@ -24,8 +24,6 @@ import { Question } from "@/type/quiz";
 import Loading from "@/components/loading";
 import { cn } from "@/lib/utils";
 import CancelModal from "@/components/modal/cancelModal";
-import { selectTotalScore } from "@/store/selector";
-import CircularProgressBar from "@/components/quizComponents/progressBar";
 import Link from "next/link";
 
 const Test: React.FC = () => {

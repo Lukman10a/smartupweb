@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 
 export default function ClassActivity() {
   const { query, asPath } = useRouter();
-  console.log({ query, asPath });
+  // console.log({ query, asPath });
 
   return (
     <section>
