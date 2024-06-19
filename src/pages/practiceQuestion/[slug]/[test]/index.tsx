@@ -51,7 +51,7 @@ const Test: React.FC = () => {
   useEffect(() => {
     dispatch(setQuizData(data as Question[]));
     console.log({ data, query, asPath });
-  }, [dispatch, query.topicId]);
+  }, [dispatch, query.topicId, asPath, data, query]);
 
   const handleNextClick = () => {
     if (currentQuestionIndex >= (quizData?.length || 0) - 1) {

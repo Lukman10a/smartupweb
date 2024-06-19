@@ -6,7 +6,7 @@ import {
   IoNotificationsCircleOutline,
 } from "react-icons/io5";
 export default function SelectExam() {
-  const { query } = useRouter();
+  const { query, asPath } = useRouter();
 
   return (
     <section>
@@ -40,7 +40,7 @@ export default function SelectExam() {
         <p className="py-4">Select an exam for {query.selectExam}.</p>
       </div>
       <div className="my-4 rounded-md bg-white p-3">
-        <ExamCard path={""} />
+        <ExamCard path={asPath} />
       </div>
     </section>
   );
