@@ -68,6 +68,7 @@ export default function Classes() {
                   },
                 }}
                 as={`/classes/${item.title}`}
+                key={item.id}
               >
                 <Card
                   key={item.id}
