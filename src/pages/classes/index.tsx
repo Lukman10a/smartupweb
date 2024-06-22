@@ -7,6 +7,7 @@ import { useQuery } from "@tanstack/react-query";
 import SubjectCard from "@/components/modal/subjectModal";
 import Link from "next/link";
 import { CLASS } from "../../../data";
+import Header from "@/components/header";
 
 export default function Classes() {
   const [currentCard, setCurrentCard] = useState({
@@ -29,12 +30,7 @@ export default function Classes() {
 
   return (
     <section>
-      <div className="mb-3 flex items-center justify-between">
-        <p className="font-dm_sans text-2xl font-medium">Classes</p>
-        <div className="flex items-center gap-2">
-          <IoNotificationsCircleOutline size={40} />
-        </div>
-      </div>
+      <Header title={"Classes"} />
       <div className="mx-auto flex items-center justify-between rounded-md bg-white p-3">
         <input
           type="text"

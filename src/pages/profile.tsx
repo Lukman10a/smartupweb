@@ -1,3 +1,4 @@
+import Header from "@/components/header";
 import Card from "@/components/rightDashboard/card";
 import SummaryContainer from "@/components/rightDashboard/cardContainer";
 import TableContainer from "@/components/table";
@@ -9,42 +10,37 @@ import { TfiCup } from "react-icons/tfi";
 const Profile = () => {
   return (
     <section>
-      <div className="flex justify-between items-center mb-3">
-        <p className="font-medium text-2xl font-dm_sans">Profile</p>
-        <div className="flex items-center gap-2">
-          <IoNotificationsCircleOutline size={40} />
-        </div>
-      </div>
-      <div className="flex bg-white items-center justify-between rounded-md mx-auto p-3">
+      <Header title="Profile" />
+      <div className="mx-auto flex items-center justify-between rounded-md bg-white p-3">
         <div className="flex items-center gap-3">
           <CgProfile size={30} />
-          <p className="text-[18px] text-[#0F0204] font-medium">
+          <p className="text-[18px] font-medium text-[#0F0204]">
             Adeleke William
           </p>
         </div>
 
-        <div className="flex items-center p-2 px-6 rounded-md gap-3 bg-[#D32D4426]">
-          <p className="text-[#D32D44] text-sm font-medium">Reset password</p>
+        <div className="flex items-center gap-3 rounded-md bg-[#D32D4426] p-2 px-6">
+          <p className="text-sm font-medium text-[#D32D44]">Reset password</p>
         </div>
       </div>
-      <section className="grid grid-cols-2 my-3 gap-5">
-        <div className="bg-white p-4 rounded-md ">
-          <p className="font-bold mb-3">Personal information</p>
+      <section className="my-3 grid grid-cols-2 gap-5">
+        <div className="rounded-md bg-white p-4">
+          <p className="mb-3 font-bold">Personal information</p>
           <ul className="space-y-4">
-            <li className="bg-[#F8F9FB] text-[#0F0204]  p-3 rounded-sm flex items-center justify-between">
+            <li className="flex items-center justify-between rounded-sm bg-[#F8F9FB] p-3 text-[#0F0204]">
               <p className="text-[#0F0204]">Username</p>
-              <p className="text-[#0F0204] font-medium">davidthomas142</p>
+              <p className="font-medium text-[#0F0204]">davidthomas142</p>
             </li>
-            <li className="bg-[#F8F9FB] text-[#0F0204]  p-3 rounded-sm flex items-center justify-between">
+            <li className="flex items-center justify-between rounded-sm bg-[#F8F9FB] p-3 text-[#0F0204]">
               <p className="">Level</p>
               <p className="font-medium">S.S.S 2</p>
             </li>
-            <li className="bg-[#F8F9FB] text-[#0F0204]  p-3 rounded-sm flex items-center justify-between">
+            <li className="flex items-center justify-between rounded-sm bg-[#F8F9FB] p-3 text-[#0F0204]">
               <p className="">Sex</p>
-              <p className=" font-medium">Male</p>
+              <p className="font-medium">Male</p>
             </li>
 
-            <li className="bg-[#F8F9FB] text-[#0F0204]  p-3 rounded-sm flex items-center justify-between">
+            <li className="flex items-center justify-between rounded-sm bg-[#F8F9FB] p-3 text-[#0F0204]">
               <p className="">Class</p>
               <p className="font-medium">Science department</p>
             </li>
