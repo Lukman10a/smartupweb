@@ -8,7 +8,11 @@ import Link from "next/link";
 import { MOCK } from "../../../data";
 import Header from "@/components/header";
 
-export default function Classes() {
+type ClassesProps = {
+  titleFromQuery: boolean;
+};
+
+export default function Classes({ titleFromQuery }: ClassesProps) {
   const [currentCard, setCurrentCard] = useState({
     name: "",
     slug: "",
@@ -29,7 +33,7 @@ export default function Classes() {
 
   return (
     <section>
-      <Header title="Mock" />
+      <Header title="Mock" fromQuery={false} />
       <div className="mx-auto flex items-center justify-between rounded-md bg-white p-3">
         <input
           type="text"

@@ -1,3 +1,4 @@
+import Header from "@/components/header";
 import ExamCard from "@/components/mockComponents/examCard";
 import { useRouter } from "next/router";
 import React from "react";
@@ -7,10 +8,11 @@ import {
 } from "react-icons/io5";
 export default function SelectExam() {
   const { query, asPath } = useRouter();
+  const titleFromQuery = query.selectExam as string | undefined;
 
   return (
     <section>
-      <div className="mb-3 flex items-center justify-between">
+      {/* <div className="mb-3 flex items-center justify-between">
         <div className="flex items-center gap-2">
           <IoChevronBackCircleOutline size={35} />
           <p className="font-dm_sans text-2xl font-medium">
@@ -20,7 +22,8 @@ export default function SelectExam() {
         <div className="flex items-center gap-2">
           <IoNotificationsCircleOutline size={40} />
         </div>
-      </div>
+      </div> */}
+      <Header title={titleFromQuery} fromQuery={true} />
       <div className="mx-auto flex items-center justify-between rounded-md bg-white p-3">
         <input
           type="text"

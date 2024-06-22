@@ -9,7 +9,11 @@ import Link from "next/link";
 import { CLASS } from "../../../data";
 import Header from "@/components/header";
 
-export default function Classes() {
+type ClassActivitiesProps = {
+  titleFromQuery?: boolean;
+};
+
+export default function Classes({ titleFromQuery }: ClassActivitiesProps) {
   const [currentCard, setCurrentCard] = useState({
     name: "",
     slug: "",
@@ -30,7 +34,7 @@ export default function Classes() {
 
   return (
     <section>
-      <Header title={"Classes"} />
+      <Header title={"Classes"} fromQuery={Boolean(titleFromQuery)} />
       <div className="mx-auto flex items-center justify-between rounded-md bg-white p-3">
         <input
           type="text"

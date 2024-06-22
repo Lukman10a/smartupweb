@@ -4,14 +4,17 @@ import Image from "next/image";
 import { IoNotificationsCircleOutline } from "react-icons/io5";
 import { IoChevronBackCircleOutline } from "react-icons/io5";
 import { useRouter } from "next/router";
+import Header from "@/components/header";
 
 export default function ClassActivity() {
   const { query, asPath } = useRouter();
+  const titleFromQuery = query.classActivities as string | undefined;
+
   // console.log({ query, asPath });
 
   return (
     <section>
-      <div className="mb-3 flex items-center justify-between">
+      {/* <div className="mb-3 flex items-center justify-between">
         <div className="flex items-center gap-2">
           <IoChevronBackCircleOutline size={35} />
           <p className="font-dm_sans text-2xl font-medium">
@@ -21,7 +24,9 @@ export default function ClassActivity() {
         <div className="flex items-center gap-2">
           <IoNotificationsCircleOutline size={40} />
         </div>
-      </div>
+      </div> */}
+
+      <Header title={titleFromQuery} fromQuery={Boolean(titleFromQuery)} />
       <div className="mx-auto flex items-center justify-between rounded-md bg-white p-3">
         <p>Mustapha Ibrahim</p>
         <div>
