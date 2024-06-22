@@ -29,7 +29,7 @@ export default function Classes() {
 
   return (
     <section>
-      <Header title="Lesson videos" />
+      <Header title="Lesson videos" fromQuery={false} />
       <div className="mx-auto flex items-center justify-between rounded-md bg-white p-3">
         <input
           type="text"

@@ -12,17 +12,6 @@ export default function SelectExam() {
 
   return (
     <section>
-      {/* <div className="mb-3 flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <IoChevronBackCircleOutline size={35} />
-          <p className="font-dm_sans text-2xl font-medium">
-            {query.selectExam}
-          </p>
-        </div>
-        <div className="flex items-center gap-2">
-          <IoNotificationsCircleOutline size={40} />
-        </div>
-      </div> */}
       <Header title={titleFromQuery} fromQuery={true} />
       <div className="mx-auto flex items-center justify-between rounded-md bg-white p-3">
         <input
