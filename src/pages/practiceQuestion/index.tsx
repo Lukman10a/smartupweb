@@ -28,7 +28,7 @@ export default function PracticeQuestion() {
 
   return (
     <section>
-      <Header title="Practice questions" />
+      <Header title="Practice questions" fromQuery={false} />
       <div className="mx-auto flex items-center justify-between rounded-md bg-white p-3">
         <input
           type="text"
