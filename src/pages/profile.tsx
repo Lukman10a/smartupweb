@@ -10,7 +10,7 @@ import { TfiCup } from "react-icons/tfi";
 const Profile = () => {
   return (
     <section>
-      <Header title="Profile" />
+      <Header title="Profile" fromQuery={false} />
       <div className="mx-auto flex items-center justify-between rounded-md bg-white p-3">
         <div className="flex items-center gap-3">
           <CgProfile size={30} />
