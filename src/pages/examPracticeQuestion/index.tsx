@@ -27,8 +27,6 @@ export default function ExamPracticeQuestion({
     },
   ];
 
-  console.log(titleFromQuery, name);
-
   return (
     <section>
       <Header
