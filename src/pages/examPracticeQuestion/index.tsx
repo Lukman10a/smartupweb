@@ -46,11 +46,18 @@ export default function ExamPracticeQuestion({
               <Image src={item.img} alt="" />
               <p>{item.title}</p>
             </div>
-            <Link
+            {/* <Link
               href={{
                 pathname: "/examPracticeQuestion/[courseSelect]",
                 query: { courseSelect: item.title },
               }}
+            > */}
+            <Link
+              href={{
+                pathname: `/examPracticeQuestion/${item.title}`,
+                query: { title: item.title },
+              }}
+              as={`/examPracticeQuestion/${item.title}`}
             >
               <button className="rounded-md bg-[#D32D44] p-2 px-6 text-white">
                 <p>Start Examination </p>
