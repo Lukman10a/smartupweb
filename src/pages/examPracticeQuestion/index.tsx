@@ -14,14 +14,19 @@ export default function ExamPracticeQuestion({
 }: ExamPracticeQuestionProps) {
   const EXAMS = [
     {
+      id: 1,
       title: "A Levels",
       img: alevel,
     },
     {
+      id: 2,
+
       title: "W.A.E.C",
       img: alevel,
     },
     {
+      id: 3,
+
       title: "J.A.M.B",
       img: waec,
     },
@@ -46,18 +51,11 @@ export default function ExamPracticeQuestion({
               <Image src={item.img} alt="" />
               <p>{item.title}</p>
             </div>
-            {/* <Link
-              href={{
-                pathname: "/examPracticeQuestion/[courseSelect]",
-                query: { courseSelect: item.title },
-              }}
-            > */}
             <Link
               href={{
                 pathname: `/examPracticeQuestion/${item.title}`,
-                query: { title: item.title },
+                // query: { title: item.title },
               }}
-              as={`/examPracticeQuestion/${item.title}`}
             >
               <button className="rounded-md bg-[#D32D44] p-2 px-6 text-white">
                 <p>Start Examination </p>

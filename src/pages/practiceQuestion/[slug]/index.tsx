@@ -62,6 +62,7 @@ export default function Practice() {
           (item: {
             id: React.Key | null | undefined | string;
             name: string;
+            course_id: string;
           }) => (
             <TopicContainer
               key={item.id}
@@ -69,6 +70,7 @@ export default function Practice() {
               topicId={item.id as string}
               subject={subjectString}
               path={asPath}
+              subjectId={item.course_id}
             />
           ),
         )}

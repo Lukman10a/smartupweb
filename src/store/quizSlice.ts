@@ -11,7 +11,6 @@ export interface SelectedAnswer {
   questionName: string;
 }
 
-
 interface QuizState {
   quizData: Question[] | null;
   currentQuestionIndex: number;
@@ -55,7 +54,7 @@ const quizSlice = createSlice({
         chosenAnswer: string;
         chosenQuestion: string;
         questionName: string;
-      }>
+      }>,
     ) => {
       const {
         questionId,
@@ -66,7 +65,7 @@ const quizSlice = createSlice({
         questionName,
       } = action.payload;
       const existingAnswerIndex = state.selectedAnswers.findIndex(
-        (answer) => answer.questionId === questionId
+        (answer) => answer.questionId === questionId,
       );
 
       if (existingAnswerIndex >= 0) {
@@ -96,11 +95,11 @@ const quizSlice = createSlice({
         answerId: string;
         isCorrect: boolean;
         chosenAnswer: string;
-      }>
+      }>,
     ) => {
       const { questionId, answerId, isCorrect, chosenAnswer } = action.payload;
       const existingAnswerIndex = state.selectedAnswers.findIndex(
-        (answer) => answer.questionId === questionId
+        (answer) => answer.questionId === questionId,
       );
 
       if (existingAnswerIndex >= 0) {

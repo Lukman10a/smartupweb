@@ -22,9 +22,21 @@ export default function ResultPage() {
       <div className="mx-auto flex items-center justify-between rounded-md bg-white p-3">
         <p>{query.topic}</p>
         <div className="flex gap-2">
-          <p className="rounded-md bg-[#D32D4426] p-2 text-[#D32D44]">
-            Take another test
-          </p>
+          <Link
+            href={{
+              pathname: `${asPath}/resultPage/performanceAnalysis`,
+              query: {
+                topic: query.topic,
+                subject: query.subject,
+                topicId: query.topicId,
+              },
+            }}
+            as={`${asPath}/resultPage/performanceAnalysis`}
+          >
+            <p className="rounded-md bg-[#D32D4426] p-2 text-[#D32D44]">
+              Performance analysis
+            </p>
+          </Link>
         </div>
       </div>
 

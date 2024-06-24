@@ -114,7 +114,11 @@ export default function CourseSelect() {
           Select a course to take the examination.
         </p>
 
-        <ExamPracticeModal name={currentCard.title} slug={currentCard.slug}>
+        <ExamPracticeModal
+          name={currentCard.title}
+          slug={currentCard.slug}
+          path={query.courseSelect}
+        >
           <div className="grid grid-cols-4 gap-6 rounded-md bg-white p-3">
             {COURSE_DATA.map((item) => (
               <button

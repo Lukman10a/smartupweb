@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { RootState, AppDispatch } from "@/store";
 import {
   setQuizData,
@@ -19,15 +19,21 @@ import {
 import { FaCheckCircle } from "react-icons/fa";
 import { GrFormPrevious } from "react-icons/gr";
 import { MdNavigateNext } from "react-icons/md";
-import { fetchQuizByTopic } from "@/components/rightDashboard/utils";
+import {
+  fetchQuizByTopic,
+  SubmitQuizData,
+  SubmitQuizDataParams,
+  user_id,
+} from "@/components/rightDashboard/utils";
 import { Question } from "@/type/quiz";
 import Loading from "@/components/loading";
 import { cn } from "@/lib/utils";
 import CancelModal from "@/components/modal/cancelModal";
 import Link from "next/link";
+import { log } from "console";
 
 const Test: React.FC = () => {
-  const { query, asPath } = useRouter();
+  const { query, asPath, push } = useRouter();
   const dispatch = useDispatch<AppDispatch>();
   const quizData = useSelector((state: RootState) => state.quiz.quizData);
   const currentQuestionIndex = useSelector(
@@ -51,6 +57,7 @@ const Test: React.FC = () => {
   useEffect(() => {
     dispatch(setQuizData(data as Question[]));
     console.log({ data, query, asPath });
+    // console.log({ QUIZ: quizData[0].institution_id });
   }, [dispatch, query.topicId, asPath, data, query]);
 
   const handleNextClick = () => {
@@ -60,6 +67,54 @@ const Test: React.FC = () => {
       dispatch(nextQuestion());
     }
   };
+
+  const mutation = useMutation({
+    mutationFn: (data: SubmitQuizDataParams) => {
+      return SubmitQuizData(data);
+    },
+  });
+
+  const handleSubmitQuiz = async () => {
+    const score = selectedAnswers.filter((answer) => answer.isCorrect).length;
+
+    const submissionData = {
+      topic_id: query.topicId as string,
+      course_id: query.subjectId as string,
+      institution_id: quizData![0].institution_id as string,
+      user_id: user_id,
+      question_and_options: selectedAnswers.map((answer) => {
+        const currentQuestion = quizData!.find(
+          (question) => question.id === answer.questionId,
+        );
+
+        const correctAnswerOptionId = currentQuestion?.answer_options.find(
+          (option) => option.correct,
+        )?.id;
+
+        return {
+          question_id: answer.questionId,
+          answer_option_id: answer.answerId,
+          correct_answer_option_id: correctAnswerOptionId || "",
+        };
+      }),
+      score,
+    };
+
+    console.log({ submitdata: submissionData });
+
+    try {
+      mutation.mutate(submissionData);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    mutation.isSuccess &&
+      push(
+        `${asPath}/resultPage?topic=${query.topic}&subject=${query.subject}&topicId=${query.topicId}`,
+      );
+  }, [mutation.data]);
 
   if (isLoading) return <Loading />;
   if (error) return <div>An error has occurred: {error.message}</div>;
@@ -132,6 +187,12 @@ const Test: React.FC = () => {
         </CancelModal>
       </div>
 
+      {/* filter question  */}
+
+      <div>
+        {quizData?.length === 0 ? <div>no question available</div> : null}
+      </div>
+
       {/* PROGRESS BAR */}
 
       <div className="mb-4 mt-6 w-full rounded-full bg-[#D32D4426] text-center">
@@ -180,9 +241,10 @@ const Test: React.FC = () => {
             </ul>
             <button
               className="mt-4 gap-2 rounded-md bg-[#D32D44] p-2 text-center text-white"
-              onClick={() => null}
+              onClick={() => handleSubmitQuiz()}
+              disabled={mutation.isPending}
             >
-              <Link
+              {/* <Link
                 href={{
                   pathname: `${asPath}/resultPage`,
                   query: {
@@ -192,9 +254,9 @@ const Test: React.FC = () => {
                   },
                 }}
                 as={`${asPath}/resultPage`}
-              >
-                <p>All set, submit</p>
-              </Link>
+              > */}
+              <p> {mutation.isPending ? "Submitting" : "All set, submit"} </p>
+              {/* </Link> */}
             </button>
           </section>
         </div>

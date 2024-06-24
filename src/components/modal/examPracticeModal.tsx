@@ -7,17 +7,15 @@ import Image from "next/image";
 interface DialogDemoProps {
   children: ReactNode;
   name: string;
-  //   subscript?: string;
   slug: string;
-  //   subTitleIcon?: ReactNode;
+  path: string | string[] | undefined;
 }
 
 const ExamPracticeModal: React.FC<DialogDemoProps> = ({
   children,
   name,
-  //   subscript,
   slug,
-  //   subTitleIcon,
+  path,
 }) => (
   <Dialog.Root>
     <Dialog.Trigger asChild>{children}</Dialog.Trigger>
@@ -41,9 +39,11 @@ const ExamPracticeModal: React.FC<DialogDemoProps> = ({
           <Dialog.Close asChild>
             <Link
               href={{
-                pathname: `/examPracticeQuestion${slug}`,
-                query: { title: slug },
+                pathname: `/examPracticeQuestion/${path}${slug}`,
+                query: { title: name, id: 100 },
               }}
+              // in case i want the id to show in the url
+              as={`/examPracticeQuestion/${path}${slug}?id=${100}`}
             >
               <div className="flex flex-col items-center gap-2 rounded-md bg-[#D32D44] p-2 text-white">
                 <Image
