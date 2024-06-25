@@ -8,7 +8,7 @@ export default function LeftDashboard() {
   const router = useRouter();
 
   return (
-    <section className="bg-white p-6 px-10 space-y-6">
+    <section className="space-y-6 bg-white p-6 px-10">
       <Image
         src={"/assets/logo.png"}
         priority
@@ -26,7 +26,9 @@ export default function LeftDashboard() {
           />
         </div>
       ))}
-      <LogoutButton />
+      <div className="py-20">
+        <LogoutButton />
+      </div>
     </section>
   );
 }

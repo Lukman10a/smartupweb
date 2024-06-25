@@ -30,7 +30,8 @@ import Loading from "@/components/loading";
 import { cn } from "@/lib/utils";
 import CancelModal from "@/components/modal/cancelModal";
 import Link from "next/link";
-import { log } from "console";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Test: React.FC = () => {
   const { query, asPath, push } = useRouter();
@@ -53,6 +54,10 @@ const Test: React.FC = () => {
   const selectedAnswers = useSelector(
     (state: RootState) => state.quiz.selectedAnswers,
   );
+
+  // TOAST POP UP FOR SUBMITTING
+
+  const notify = () => toast("Submitting");
 
   useEffect(() => {
     dispatch(setQuizData(data as Question[]));
@@ -100,6 +105,7 @@ const Test: React.FC = () => {
       score,
     };
 
+    notify();
     console.log({ submitdata: submissionData });
 
     try {
@@ -197,7 +203,7 @@ const Test: React.FC = () => {
 
       <div className="mb-4 mt-6 w-full rounded-full bg-[#D32D4426] text-center">
         <div
-          className="rounded-full bg-[#D32D44] text-sm"
+          className="rounded-full bg-[#D32D44] text-sm text-white"
           style={{
             width: `${
               ((currentQuestionIndex + 1) / (quizData?.length || 1)) * 100
@@ -258,6 +264,7 @@ const Test: React.FC = () => {
               <p> {mutation.isPending ? "Submitting" : "All set, submit"} </p>
               {/* </Link> */}
             </button>
+            <ToastContainer />
           </section>
         </div>
       )}

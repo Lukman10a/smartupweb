@@ -20,13 +20,11 @@ export default function ExamPracticeQuestion({
     },
     {
       id: 2,
-
       title: "W.A.E.C",
       img: alevel,
     },
     {
       id: 3,
-
       title: "J.A.M.B",
       img: waec,
     },

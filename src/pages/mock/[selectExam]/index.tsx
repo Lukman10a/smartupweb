@@ -1,14 +1,45 @@
 import Header from "@/components/header";
 import ExamCard from "@/components/mockComponents/examCard";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
 import {
   IoChevronBackCircleOutline,
   IoNotificationsCircleOutline,
 } from "react-icons/io5";
+
+interface Exam {
+  id: number;
+  title: string;
+  slug: string;
+}
+
 export default function SelectExam() {
   const { query, asPath } = useRouter();
   const titleFromQuery = query.selectExam as string | undefined;
+
+  const EXAM: Exam[] = [
+    {
+      id: 1,
+      title: "Quantum Mathematics",
+      slug: "/assessment",
+    },
+    {
+      id: 2,
+      title: "Chemical Engineering",
+      slug: "/syllabus",
+    },
+    {
+      id: 3,
+      title: "Engineering",
+      slug: "/virtual-lectures",
+    },
+    {
+      id: 4,
+      title: "Agric Science",
+      slug: "/lecture-quizzes",
+    },
+  ];
 
   return (
     <section>
@@ -32,7 +63,17 @@ export default function SelectExam() {
         <p className="py-4">Select an exam for {query.selectExam}.</p>
       </div>
       <div className="my-4 rounded-md bg-white p-3">
-        <ExamCard path={asPath} />
+        {EXAM.map((item) => (
+          <Link
+            key={item.id}
+            href={{
+              pathname: `/mock/[selectExam]${item.slug}`,
+              query: { type: item.title, title: item.title },
+            }}
+          >
+            <ExamCard title={item.title} />
+          </Link>
+        ))}
       </div>
     </section>
   );

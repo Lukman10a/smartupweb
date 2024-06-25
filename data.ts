@@ -40,7 +40,7 @@ export const CLASS: ClassDataItem[] = [
   { title: "B-Tech", subTitle: "20 participants", id: 3 },
   { title: "Chemistry", subTitle: "20 participants", id: 4 },
   { title: "Economics", subTitle: "20 participants", id: 5 },
-  { title: "Agic", subTitle: "20 participants", id: 6 },
+  { title: "Agric", subTitle: "20 participants", id: 6 },
   { title: "Engineering", subTitle: "20 participants", id: 7 },
   { title: "Health Science", subTitle: "20 participants", id: 8 },
 ];
