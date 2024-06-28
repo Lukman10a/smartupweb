@@ -235,3 +235,30 @@ export const SubmitQuizData = async ({
 // SubmitQuizData({ topic_id, course_id, institution_id, user_id, question_and_options, score })
 //   .then((data) => console.log(data))
 //   .catch((error) => console.error(error));
+
+export const fetchSyllabusData = async () => {
+  try {
+    const response = await fetch(
+      `${base_url}class_syllable_info?study_group_id=a260380e-a6b1-4916-b01b-043a2ae57350`,
+      {
+        method: "POST",
+        headers: {
+          // authorization_key: "teqcYUap3VSx5eCwy8cw",
+          authorization: "cstbyCEJGczwxwRAomLy",
+          "Content-Type": "application/json",
+        },
+      },
+    );
+
+    if (!response.ok) {
+      console.log({ response });
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    const data = await response.json();
+
+    return data;
+  } catch (error: any) {
+    throw new Error(`Fetch error: ${error.message}`);
+  }
+};

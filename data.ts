@@ -77,23 +77,6 @@ export const CLASSSYLLABUS_DATA: ClassSyllabusItem[] = [
   },
 ];
 
-interface LessonVideoDataItem {
-  subject: string;
-  id: number;
-  noOfTopics: string;
-}
-
-export const LESSON_VIDEO: LessonVideoDataItem[] = [
-  { subject: "Math's - JSS1", noOfTopics: "25 topics", id: 1 },
-  { subject: "English - JSS1", noOfTopics: "17 topics", id: 2 },
-  { subject: "B. Tech - JSS1", noOfTopics: "20 topics", id: 3 },
-  { subject: "Chemistry", noOfTopics: "20 participants", id: 4 },
-  { subject: "Economics", noOfTopics: "20 participants", id: 5 },
-  { subject: "Agic", noOfTopics: "20 participants", id: 6 },
-  { subject: "Engineering", noOfTopics: "20 participants", id: 7 },
-  { subject: "Health Science", noOfTopics: "20 participants", id: 8 },
-];
-
 interface MockDataItem {
   subject: string;
   id: number;

@@ -5,14 +5,30 @@ import { fetchSubjectData } from "@/components/rightDashboard/utils";
 import Loading from "@/components/loading";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
-import { LESSON_VIDEO } from "../../../data";
 import Header from "@/components/header";
+
+interface LessonVideoDataItem {
+  subject: string;
+  id: number;
+  noOfTopics: string;
+}
 
 export default function Classes() {
   const [currentCard, setCurrentCard] = useState({
     name: "",
     slug: "",
   });
+
+  const LESSON_VIDEO: LessonVideoDataItem[] = [
+    { subject: "Math's - JSS1", noOfTopics: "25 topics", id: 1 },
+    { subject: "English - JSS1", noOfTopics: "17 topics", id: 2 },
+    { subject: "B. Tech - JSS1", noOfTopics: "20 topics", id: 3 },
+    { subject: "Chemistry", noOfTopics: "20 participants", id: 4 },
+    { subject: "Economics", noOfTopics: "20 participants", id: 5 },
+    { subject: "Agic", noOfTopics: "20 participants", id: 6 },
+    { subject: "Engineering", noOfTopics: "20 participants", id: 7 },
+    { subject: "Health Science", noOfTopics: "20 participants", id: 8 },
+  ];
 
   // const {
   //   isPending: subjectPending,
@@ -53,26 +69,21 @@ export default function Classes() {
         <div className="grid grid-rows-3 justify-between space-y-4">
           <div className="grid cursor-pointer grid-cols-4 gap-12 rounded-md bg-white p-3 px-5">
             {LESSON_VIDEO.map((item) => (
-              // <Link
-              //   href={{
-              //     pathname: `/classes/[classActivities]`,
-              //     query: {
-              //       classActivities: item.subject,
-              //       class: item.subject,
-              //       subject: "subject",
-              //     },
-              //   }}
-              //   as={`/classes/${item.subject}`}
-              // >
-              <Card
-                key={item.id}
-                subtitle={item.noOfTopics}
-                titlePoints={item.subject}
-                onClick={() =>
-                  setCurrentCard({ name: item.subject, slug: item.subject })
-                }
-              />
-              // </Link>
+              <Link
+                href={{
+                  pathname: `/lessonVideos/${item.id}`,
+                  query: { subject: item.subject },
+                }}
+              >
+                <Card
+                  key={item.id}
+                  subtitle={item.noOfTopics}
+                  titlePoints={item.subject}
+                  onClick={() =>
+                    setCurrentCard({ name: item.subject, slug: item.subject })
+                  }
+                />
+              </Link>
             ))}
           </div>
         </div>
