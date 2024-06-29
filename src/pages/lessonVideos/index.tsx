@@ -74,6 +74,7 @@ export default function Classes() {
                   pathname: `/lessonVideos/${item.id}`,
                   query: { subject: item.subject },
                 }}
+                key={item.id}
               >
                 <Card
                   key={item.id}
