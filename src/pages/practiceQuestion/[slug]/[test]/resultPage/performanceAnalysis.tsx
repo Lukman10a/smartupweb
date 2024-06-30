@@ -38,7 +38,7 @@ export default function PerformanceAnalysis() {
         label: "Scores",
         backgroundColor: "#D32D44",
         borderRadius: 5,
-        data: [65, 59, 80, 81, 56, 55].slice(
+        data: [65, 59, 80, 81, 56, 55, 30, 60].slice(
           dateOptions.indexOf(startDate),
           dateOptions.indexOf(endDate) + 1,
         ),
@@ -117,9 +117,9 @@ export default function PerformanceAnalysis() {
           </div>
 
           <div>
-            <p className="rounded-md bg-[#D32D44] p-2 text-white">
+            <button className="button-2 rounded-md bg-[#D32D44] p-2 text-white">
               Download Analysis
-            </p>
+            </button>
           </div>
         </div>
 
