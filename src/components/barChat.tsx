@@ -1,44 +1,86 @@
-// // components/BarChart.js
-// import React from 'react';
-// import { Bar } from 'react-chartjs-2';
+// components/BarChart.tsx
 
-// interface Dataset {
-//     label: string;
-//     backgroundColor: string;
-//     borderColor: string;
-//     borderWidth: number;
-//     hoverBackgroundColor: string;
-//     hoverBorderColor: string;
-//     data: number[];
-//   }
-  
-//   interface ChartData {
-//     labels: string[];
-//     datasets: Dataset[];
-//   }
+import React from "react";
+import { Bar } from "react-chartjs-2";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
 
-// const BarChart = ({ data }: { data: ChartData }) => {
-//     const options = {
-//         scales: {
-//           x: {
-//             beginAtZero: true,
-//             ticks: {
-//               callback: function(value: number, index: any, values: any) {
-//                 // Convert numeric value to month name
-//                 return new Date(value * 1000).toLocaleString('default', { month: 'short' });
-//               }
-//             }
-//           },
-//           y: {
-//             beginAtZero: true
-//           }
-//         }
-//       };
-//   return (
-//     <div>
-//       <Bar data={data} />
-//     </div>
-//   );
-// };
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+);
 
-// export default BarChart;
+interface BarChartProps {
+  data: {
+    labels: string[];
+    datasets: { label: string; data: number[]; backgroundColor: string }[];
+  };
+  backgroundColor: string;
+}
+
+const BarChart: React.FC<BarChartProps> = ({ data, backgroundColor }) => {
+  const options = {
+    responsive: true,
+    scales: {
+      x: {
+        title: {
+          display: true,
+          text: "Dates",
+        },
+      },
+      y: {
+        beginAtZero: true,
+        title: {
+          display: true,
+          text: "Scores",
+        },
+        ticks: {
+          stepSize: 25,
+        },
+      },
+    },
+    plugins: {
+      legend: {
+        labels: {
+          color: "black",
+        },
+      },
+      tooltip: {
+        backgroundColor: backgroundColor,
+      },
+    },
+    layout: {
+      padding: {
+        top: 20,
+        right: 20,
+        bottom: 20,
+        left: 20,
+      },
+    },
+  };
+
+  return (
+    <div
+      style={{
+        backgroundColor: backgroundColor,
+        padding: "20px",
+        borderRadius: "10px",
+      }}
+    >
+      <Bar data={data} options={options} />
+    </div>
+  );
+};
+
+export default BarChart;

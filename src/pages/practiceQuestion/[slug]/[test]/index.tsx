@@ -1,6 +1,6 @@
 // pages/test.tsx
 import React, { useEffect, useState } from "react";
-import { useRouter } from "next/router";
+import router, { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { RootState, AppDispatch } from "@/store";
@@ -115,12 +115,33 @@ const Test: React.FC = () => {
     }
   };
 
+  // useEffect(() => {
+  //   mutation.isSuccess &&
+  //     push(
+  //       `${asPath}/resultPage?topic=${query.topic}&subject=${query.subject}&topicId=${query.topicId}`,
+  //     );
+  // }, [mutation.data]);
+
   useEffect(() => {
-    mutation.isSuccess &&
-      push(
-        `${asPath}/resultPage?topic=${query.topic}&subject=${query.subject}&topicId=${query.topicId}`,
-      );
-  }, [mutation.data]);
+    const handleNavigation = () => {
+      if (mutation.isSuccess) {
+        const cleanPath = `${asPath.split("?")[0]}`; // Get the path without query parameters
+        router.push(
+          {
+            pathname: `${cleanPath}/resultPage`,
+            query: {
+              topic: query.topic,
+              subject: query.subject,
+              topicId: query.topicId,
+            },
+          },
+          `${cleanPath}/resultPage`,
+        ); // Optional: set the clean path in the browser's address bar
+      }
+    };
+
+    handleNavigation();
+  }, [mutation.isSuccess]);
 
   if (isLoading) return <Loading />;
   if (error) return <div>An error has occurred: {error.message}</div>;

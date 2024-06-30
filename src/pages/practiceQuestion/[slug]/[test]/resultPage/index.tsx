@@ -9,6 +9,8 @@ import { useSelector } from "react-redux";
 
 export default function ResultPage() {
   const { query, asPath } = useRouter();
+
+  console.log({ resultPath: asPath, resultquery: query });
   const { totalQuestions, correctAnswers, scorePercentage } =
     useSelector(selectTotalScore);
   return (
@@ -24,14 +26,14 @@ export default function ResultPage() {
         <div className="flex gap-2">
           <Link
             href={{
-              pathname: `${asPath}/resultPage/performanceAnalysis`,
+              pathname: `${asPath}/performanceAnalysis`,
               query: {
                 topic: query.topic,
                 subject: query.subject,
                 topicId: query.topicId,
               },
             }}
-            as={`${asPath}/resultPage/performanceAnalysis`}
+            as={`${asPath}/performanceAnalysis`}
           >
             <p className="rounded-md bg-[#D32D4426] p-2 text-[#D32D44]">
               Performance analysis
