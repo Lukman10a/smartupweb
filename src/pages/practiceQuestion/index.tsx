@@ -6,6 +6,7 @@ import Loading from "@/components/loading";
 import { useQuery } from "@tanstack/react-query";
 import SubjectCard from "@/components/modal/subjectModal";
 import Header from "@/components/header";
+import ResultButton from "@/components/resultButton";
 
 export default function PracticeQuestion() {
   const [currentCard, setCurrentCard] = useState({
@@ -35,14 +36,7 @@ export default function PracticeQuestion() {
           placeholder="Search for courses"
           className="rounded-md bg-[#F8F9FB] p-2"
         />
-        <div className="flex">
-          <div className="flex gap-2 rounded-l-md bg-[#D32D4426] p-2">
-            <p className="text-[#D32D44]">Total tests taken:</p>
-            <p>53</p>
-          </div>
-
-          <p className="rounded-md bg-[#D32D44] p-2 text-white">View results</p>
-        </div>
+        <ResultButton test={40} />
       </div>
       <div>
         <p className="py-4">Select a course to take the test.</p>

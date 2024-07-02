@@ -4,17 +4,14 @@ import { IoNotificationsCircleOutline } from "react-icons/io5";
 import { CgProfile } from "react-icons/cg";
 import { TfiCrown, TfiCup } from "react-icons/tfi";
 import { BsPlayBtn } from "react-icons/bs";
-
-// import TableContainer from "../table";
 import { useQuery } from "@tanstack/react-query";
 import Card from "@/components/rightDashboard/card";
 import SummaryContainer from "@/components/rightDashboard/cardContainer";
 import {
   fetchClassesData,
   fetchData,
-} from "../../components/rightDashboard/utils";
+} from "../../../components/rightDashboard/utils";
 import Loading from "@/components/loading";
-import play from "../../../public/assets/play.svg";
 import Image from "next/image";
 import LessonVideos from "@/components/lessonVideos";
 import Link from "next/link";
@@ -41,19 +38,19 @@ export default function Dashboard() {
   return (
     <section>
       <div className="flex items-center justify-between">
-        <Link
-          href={{
-            pathname: `dashboard/dashboardPending`,
-          }}
-        >
-          <p className="text-2xl font-medium">Dashboard</p>
-        </Link>
+        <p className="text-2xl font-medium">Dashboard</p>
         <div className="flex items-center gap-2">
-          <div className="flex items-center gap-2 rounded-md bg-[#D32D4426] p-2">
-            <FiRefreshCw color="#D32D44" />
-            <p className="text-sm font-medium text-[#D32D44]">
-              Switch Institution
-            </p>
+          <div className="rounded-md bg-[#D32D4426] p-2 px-4 text-[#D32D44]">
+            <Link
+              // href="dashboard/dashboardPending/switchInstitution"
+              href={{
+                pathname: `/dashboard/dashboardPending/switchInstitution`,
+              }}
+              className="flex items-center gap-2"
+            >
+              <FiRefreshCw />
+              <p className="text-sm font-medium">Switch Institution</p>
+            </Link>
           </div>
           <IoNotificationsCircleOutline size={40} />
         </div>
@@ -75,11 +72,13 @@ export default function Dashboard() {
         <p className="text-[18px] font-medium text-[#0F0204]">
           Science department
         </p>
-        <div className="flex items-center gap-3 rounded-md bg-[#00A37D26] p-2 px-6">
-          <TfiCrown color="#00A37D" />
-          <p className="text-sm font-medium text-[#00A37D]">
-            No current pending payment
+        <div className="flex items-center gap-3 rounded-md bg-[#D32D4426] pl-4">
+          <p className="text-sm font-medium text-[#D32D44]">
+            Pending fee: ₦40,000.00{" "}
           </p>
+          <button className="rounded-md bg-[#D32D44] p-2 px-6 text-white">
+            Pay now
+          </button>
         </div>
       </div>
 

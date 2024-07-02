@@ -8,6 +8,7 @@ import SubjectCard from "@/components/modal/subjectModal";
 import Link from "next/link";
 import { CLASS } from "../../../data";
 import Header from "@/components/header";
+import ResultButton from "@/components/resultButton";
 
 type ClassActivitiesProps = {
   titleFromQuery?: boolean;
@@ -28,14 +29,7 @@ export default function Classes({ titleFromQuery }: ClassActivitiesProps) {
           placeholder="Search for courses"
           className="rounded-md bg-[#F8F9FB] p-2"
         />
-        <div className="flex">
-          <div className="flex gap-2 rounded-l-md bg-[#D32D4426] p-2">
-            <p className="text-[#D32D44]">Total tests taken:</p>
-            <p>53</p>
-          </div>
-
-          <p className="rounded-md bg-[#D32D44] p-2 text-white">View results</p>
-        </div>
+        <ResultButton test={50} />
       </div>
 
       <div>

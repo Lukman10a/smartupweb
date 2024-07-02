@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import React from "react";
 import play from "../../../../../public/assets/play.svg";
 import Image from "next/image";
+import LessonVideos from "@/components/lessonVideos";
 
 export default function Video() {
   const { query, asPath } = useRouter();
@@ -28,13 +29,7 @@ export default function Video() {
         <p className="py-4 font-semibold">{query.title}</p>
 
         <div className="flex rounded-lg bg-white p-4">
-          <div className="flex flex-col items-center justify-center rounded-md border-2 p-4">
-            <Image src={play} alt="" />
-            <div className="flex w-full items-center justify-between">
-              <p>{query.title}</p>
-              <p>{query.episode}</p>
-            </div>
-          </div>
+          <LessonVideos title={query.title} episode={query.episode} />
 
           <div></div>
         </div>
