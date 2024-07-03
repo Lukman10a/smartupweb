@@ -1,19 +1,20 @@
-import BarChart from "@/components/barChat";
+import { useQueries, useQuery } from "@tanstack/react-query";
+import { useRouter } from "next/router";
+import { useState, useEffect } from "react";
+import BarChart from "@/components/barChat"; // Assuming correct component name
 import Loading from "@/components/loading";
 import {
   fetchStudentTests,
   fetchTestResult,
 } from "@/components/rightDashboard/utils";
-import { useQueries, useQuery } from "@tanstack/react-query";
-import { useRouter } from "next/router";
-import { useState, useEffect } from "react";
 import { IoNotificationsCircleOutline } from "react-icons/io5";
+import { TestResult } from "@/type/testResult";
 
 export default function PerformanceAnalysis() {
   const { query } = useRouter();
   const [selectedTestId, setSelectedTestId] = useState<string | null>(null);
-  const [startDate, setStartDate] = useState<string>("2020-03-01");
-  const [endDate, setEndDate] = useState<string>("2020-07-30");
+  const [startDate, setStartDate] = useState<string>("");
+  const [endDate, setEndDate] = useState<string>("");
   const [backgroundColor, setBackgroundColor] = useState<string>("#D32D441A");
 
   const {
@@ -22,38 +23,54 @@ export default function PerformanceAnalysis() {
     error: testsError,
   } = useQuery({
     queryKey: ["studentTests"],
-    queryFn: () => fetchStudentTests(),
-    select: (tests) =>
-      tests.slice(0, 10).map((test: { id: string }) => test.id),
+    queryFn: fetchStudentTests,
+    select: (tests: TestResult[]) => tests.slice(0, 20),
   });
-  console.log({ test: studentTests });
+
+  useEffect(() => {
+    if (studentTests && studentTests.length > 0) {
+      const sortedTests = [...studentTests].sort((a, b) => {
+        return (
+          new Date(a.created_at).getTime() - new Date(b.created_at).getTime()
+        );
+      });
+
+      setStartDate(
+        new Date(sortedTests[0].created_at).toISOString().slice(0, 10),
+      );
+      setEndDate(
+        new Date(sortedTests[sortedTests.length - 1].created_at)
+          .toISOString()
+          .slice(0, 10),
+      );
+    }
+  }, [studentTests]);
 
   const testResults = useQueries({
     queries: studentTests
-      ? studentTests.map((id: string) => {
-          return {
-            queryKey: ["studentResult", id],
-            queryFn: () => fetchTestResult(id),
-          };
-        })
+      ? studentTests.map((test: TestResult) => ({
+          queryKey: ["studentResult", test.id],
+          queryFn: () => fetchTestResult(test.id),
+        }))
       : [],
   });
 
-  console.log({ results: testResults.flatMap((item) => item.data) });
+  const flattenedTests: TestResult[] = testResults
+    .flatMap((result) => result.data)
+    .filter(Boolean);
 
-  const flattendTest = testResults?.flatMap((item) => item.data);
-
+  console.log({ flat: flattenedTests });
   const chartData = {
-    labels: flattendTest?.map((item) =>
-      new Date(item?.created_at).toLocaleDateString(),
-    ), // x-axis labels (dates)
+    labels: flattenedTests.map((item) =>
+      new Date(item.created_at).toLocaleDateString(),
+    ),
     datasets: [
       {
         label: "Test Scores (%)",
-        data: flattendTest?.map(
+        data: flattenedTests.map(
           (item) =>
-            parseFloat(item?.score / item?.test?.question_ids.length) * 100,
-        ), // y-axis data (scores converted to percentage)
+            (parseFloat(item?.score) / item?.test?.question_ids?.length) * 100,
+        ),
         backgroundColor: "rgba(54, 162, 235, 0.6)",
         borderColor: "rgba(54, 162, 235, 1)",
         borderWidth: 1,
@@ -67,8 +84,8 @@ export default function PerformanceAnalysis() {
         beginAtZero: true,
         max: 100,
         ticks: {
-          callback: function (value) {
-            return value + "%"; // Display as percentage
+          callback: function (value: number) {
+            return value + "%";
           },
         },
       },
@@ -80,12 +97,12 @@ export default function PerformanceAnalysis() {
   };
 
   const handleStartDateChange = (
-    event: React.ChangeEvent<HTMLSelectElement>,
+    event: React.ChangeEvent<HTMLInputElement>,
   ) => {
     setStartDate(event.target.value);
   };
 
-  const handleEndDateChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleEndDateChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEndDate(event.target.value);
   };
 
@@ -114,40 +131,28 @@ export default function PerformanceAnalysis() {
               className="flex items-center justify-between gap-12 rounded-md border-2 p-2 px-6"
             >
               <option value="">Select Test</option>
-              {flattendTest.map((test) => (
+              {flattenedTests.map((test) => (
                 <option key={test?.id} value={test?.test?.name}>
                   {test?.test?.name}
                 </option>
               ))}
             </select>
-            <select
+            <input
+              type="date"
               value={startDate}
+              min={startDate}
+              max={endDate}
               onChange={handleStartDateChange}
               className="flex items-center justify-between gap-12 rounded-md border-2 p-2 px-6"
-            >
-              {flattendTest.map((test) => (
-                <option
-                  key={test?.id}
-                  value={new Date(test?.created_at).toLocaleDateString()}
-                >
-                  {new Date(test?.created_at).toLocaleDateString()}
-                </option>
-              ))}
-            </select>
-            <select
+            />
+            <input
+              type="date"
               value={endDate}
+              min={startDate}
+              max={endDate}
               onChange={handleEndDateChange}
               className="flex items-center justify-between gap-12 rounded-md border-2 p-2 px-6"
-            >
-              {flattendTest?.map((test) => (
-                <option
-                  key={test?.id}
-                  value={new Date(test?.created_at).toLocaleDateString()}
-                >
-                  {new Date(test?.created_at).toLocaleDateString()}
-                </option>
-              ))}
-            </select>
+            />
           </div>
 
           <div>
@@ -157,7 +162,7 @@ export default function PerformanceAnalysis() {
           </div>
         </div>
 
-        {testResults && flattendTest && (
+        {testResults && flattenedTests && (
           <BarChart
             data={chartData}
             backgroundColor={backgroundColor}
