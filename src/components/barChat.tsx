@@ -27,48 +27,53 @@ interface BarChartProps {
     datasets: { label: string; data: number[]; backgroundColor: string }[];
   };
   backgroundColor: string;
+  options: any;
 }
 
-const BarChart: React.FC<BarChartProps> = ({ data, backgroundColor }) => {
-  const options = {
-    responsive: true,
-    scales: {
-      x: {
-        title: {
-          display: true,
-          text: "Dates",
-        },
-      },
-      y: {
-        beginAtZero: true,
-        title: {
-          display: true,
-          text: "Scores",
-        },
-        ticks: {
-          stepSize: 25,
-        },
-      },
-    },
-    plugins: {
-      legend: {
-        labels: {
-          color: "black",
-        },
-      },
-      tooltip: {
-        backgroundColor: backgroundColor,
-      },
-    },
-    layout: {
-      padding: {
-        top: 20,
-        right: 20,
-        bottom: 20,
-        left: 20,
-      },
-    },
-  };
+const BarChart: React.FC<BarChartProps> = ({
+  data,
+  backgroundColor,
+  options,
+}) => {
+  // const options = {
+  //   responsive: true,
+  //   scales: {
+  //     x: {
+  //       title: {
+  //         display: true,
+  //         text: "Dates",
+  //       },
+  //     },
+  //     y: {
+  //       beginAtZero: true,
+  //       title: {
+  //         display: true,
+  //         text: "Scores",
+  //       },
+  //       ticks: {
+  //         stepSize: 25,
+  //       },
+  //     },
+  //   },
+  //   plugins: {
+  //     legend: {
+  //       labels: {
+  //         color: "black",
+  //       },
+  //     },
+  //     tooltip: {
+  //       backgroundColor: backgroundColor,
+  //     },
+  //   },
+  //   layout: {
+  //     padding: {
+  //       top: 20,
+  //       right: 20,
+  //       bottom: 20,
+  //       left: 20,
+  //     },
+  //   },
+  // };
 
   return (
     <div

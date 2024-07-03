@@ -218,24 +218,6 @@ export const SubmitQuizData = async ({
   }
 };
 
-// Usage example:
-// const topic_id = "example_topic_id";
-// const course_id = "example_course_id";
-// const institution_id = "example_institution_id";
-// const user_id = "example_user_id";
-// const question_and_options: QuestionAndOption[] = [
-//   {
-//     question_id: "example_question_id",
-//     answer_option_id: "example_answer_option_id",
-//     correct_answer_option_id: "example_correct_answer_option_id",
-//   },
-// ];
-// const score = 5;
-
-// SubmitQuizData({ topic_id, course_id, institution_id, user_id, question_and_options, score })
-//   .then((data) => console.log(data))
-//   .catch((error) => console.error(error));
-
 export const fetchSyllabusData = async () => {
   try {
     const response = await fetch(
@@ -263,15 +245,17 @@ export const fetchSyllabusData = async () => {
   }
 };
 
-export const fetchStudentTests = async (base_url: string, user_id: string) => {
-  const response = await fetch(`${base_url}student_all_tests_taken`, {
-    method: "POST",
-    headers: {
-      authorization: "cstbyCEJGczwxwRAomLy",
-      "Content-Type": "application/json",
+export const fetchStudentTests = async () => {
+  const response = await fetch(
+    `${base_url}student_all_tests_taken?user_id=${user_id}`,
+    {
+      method: "POST",
+      headers: {
+        authorization: "cstbyCEJGczwxwRAomLy",
+        "Content-Type": "application/json",
+      },
     },
-    body: JSON.stringify({ user_id }),
-  });
+  );
 
   if (!response.ok) {
     throw new Error(`HTTP error! Status: ${response.status}`);
@@ -280,15 +264,17 @@ export const fetchStudentTests = async (base_url: string, user_id: string) => {
   return response.json();
 };
 
-export const fetchTestResult = async (base_url: string, test_id: string) => {
-  const response = await fetch(`${base_url}get_test_result`, {
-    method: "POST",
-    headers: {
-      authorization: "cstbyCEJGczwxwRAomLy",
-      "Content-Type": "application/json",
+export const fetchTestResult = async (test_id: string) => {
+  const response = await fetch(
+    `${base_url}get_test_result?test_id=${test_id}`,
+    {
+      method: "POST",
+      headers: {
+        authorization: "cstbyCEJGczwxwRAomLy",
+        "Content-Type": "application/json",
+      },
     },
-    body: JSON.stringify({ test_id }),
-  });
+  );
 
   if (!response.ok) {
     throw new Error(`HTTP error! Status: ${response.status}`);
@@ -296,56 +282,6 @@ export const fetchTestResult = async (base_url: string, test_id: string) => {
 
   return response.json();
 };
-
-// export const fetchStudentTests = async (base_url: string, user_id: string) => {
-//   try {
-//     const response = await fetch(
-//       `${base_url}student_all_tests_taken?user_id=${user_id}`,
-//       {
-//         method: "POST",
-//         headers: {
-//           authorization: "cstbyCEJGczwxwRAomLy",
-//           "Content-Type": "application/json",
-//         },
-//       },
-//     );
-
-//     if (!response.ok) {
-//       throw new Error(`HTTP error Status: ${response.status}`);
-//     }
-
-//     const data = await response.json();
-//     return data;
-//   } catch (error) {
-//     console.error("Error fetching student tests:", error);
-//     throw error;
-//   }
-// };
-
-// export const fetchTestResult = async (base_url: string, test_id: string) => {
-//   try {
-//     const response = await fetch(
-//       `${base_url}get_test_result?test_id=${test_id}`,
-//       // `${base_url}get_test_result?test_id=3d1a5b1b-46a7-4de2-b249-e6e386810393`,
-//       {
-//         method: "POST",
-//         headers: {
-//           authorization: "cstbyCEJGczwxwRAomLy",
-//           "Content-Type": "application/json",
-//         },
-//       },
-//     );
-
-//     if (!response.ok) {
-//       throw new Error(`HTTP error! Status: ${response.status}`);
-//     }
-
-//     return response.json();
-//   } catch (error) {
-//     console.error(`Error fetching test result for test ID ${test_id}:`, error);
-//     throw error; // Rethrow the error to propagate it up for better handling
-//   }
-// };
 
 // [
 //   {
