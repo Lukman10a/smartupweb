@@ -15,6 +15,9 @@ import { Test, TestResult } from "@/type/testResult";
 export default function PerformanceAnalysis() {
   const { query } = useRouter();
   const [selectedTestId, setSelectedTestId] = useState<string | null>(null);
+  const [selectedTopicName, setSelectedTopicName] = useState<string | null>(
+    null,
+  );
   const [latestDate, setLatestDate] = useState<string>("");
   const [recentDate, setRecentDate] = useState<string>("");
   const [startDate, setStartDate] = useState<string>("");
@@ -39,7 +42,7 @@ export default function PerformanceAnalysis() {
         ),
   });
 
-  console.log({ STUDAENT: studentTests });
+  console.log({ STUDENT: studentTests });
   console.log({ FILTER: filteredChartData });
 
   useEffect(() => {
@@ -110,7 +113,9 @@ export default function PerformanceAnalysis() {
   };
 
   const handleTestIdChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedTestId(event.target.value);
+    const selectedName = event.target.value;
+    setSelectedTestId(selectedName);
+    setSelectedTopicName(selectedName); // Set the selected topic name
   };
 
   const handleLatestDateChange = (
@@ -158,6 +163,41 @@ export default function PerformanceAnalysis() {
     }
   }, [startDate, endDate, flattenedTests, filteredChartData]);
 
+  useEffect(() => {
+    if (selectedTopicName) {
+      const filteredTests = flattenedTests.filter((test) => {
+        console.log({ test });
+        return test.test.topic_id === selectedTopicName;
+      });
+
+      console.log({ selectedTopicName, filteredTests, flattenedTests });
+
+      const filteredChartData = {
+        labels: filteredTests.map((item) =>
+          new Date(item.created_at).toLocaleDateString(),
+        ),
+        datasets: [
+          {
+            label: "Test Scores (%)",
+            data: filteredTests.map(
+              (item) =>
+                (parseFloat(item?.score) / item?.test?.question_ids?.length) *
+                100,
+            ),
+            backgroundColor: "#D32D44",
+            borderColor: "rgba(54, 162, 235, 1)",
+            borderWidth: 1,
+          },
+        ],
+      };
+
+      setFilteredChartData(filteredChartData);
+    } else {
+      // Reset filteredChartData when no topic is selected
+      setFilteredChartData(null);
+    }
+  }, [selectedTopicName]);
+
   if (isLoadingTests) return <Loading />;
   if (testsError) return <p>An error has occurred: {testsError.message}</p>;
 
@@ -182,9 +222,9 @@ export default function PerformanceAnalysis() {
               onChange={handleTestIdChange}
               className="flex items-center justify-between gap-12 rounded-md border-2 p-2 px-6"
             >
-              <option value="">Select Test</option>
+              <option value="">Select Topic</option>
               {topicNames.map((name, index) => (
-                <option key={index} value={name.name}>
+                <option key={index} value={name.id}>
                   {name.name}
                 </option>
               ))}
