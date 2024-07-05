@@ -1,4 +1,5 @@
 export interface Test {
+  topic_name: string;
   topic: string;
   id: string;
   course_id: string;
