@@ -1,21 +1,28 @@
 import { useQueries, useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
-import BarChart from "@/components/barChat"; // Assuming correct component name
+import { useSelector } from "react-redux";
+import { RootState } from "@/store";
+import BarChart from "@/components/barChat";
 import Loading from "@/components/loading";
 import {
   fetchStudentTests,
   fetchTestResult,
 } from "@/components/rightDashboard/utils";
 import { IoNotificationsCircleOutline } from "react-icons/io5";
-import { TestResult } from "@/type/testResult";
+import { Test, TestResult } from "@/type/testResult";
 
 export default function PerformanceAnalysis() {
   const { query } = useRouter();
   const [selectedTestId, setSelectedTestId] = useState<string | null>(null);
+  const [latestDate, setLatestDate] = useState<string>("");
+  const [recentDate, setRecentDate] = useState<string>("");
   const [startDate, setStartDate] = useState<string>("");
   const [endDate, setEndDate] = useState<string>("");
   const [backgroundColor, setBackgroundColor] = useState<string>("#D32D441A");
+  const [filteredChartData, setFilteredChartData] = useState<any>(null); // State to hold filtered chart data
+
+  const topicNames = useSelector((state: RootState) => state.quiz.topicNames);
 
   const {
     data: studentTests,
@@ -24,8 +31,16 @@ export default function PerformanceAnalysis() {
   } = useQuery({
     queryKey: ["studentTests"],
     queryFn: fetchStudentTests,
-    select: (tests: TestResult[]) => tests.slice(0, 20),
+    select: (tests: Test[]) =>
+      tests
+        .slice(0, 20)
+        .filter((item) =>
+          topicNames.some((topic) => topic.name === item.topic_name),
+        ),
   });
+
+  console.log({ STUDAENT: studentTests });
+  console.log({ FILTER: filteredChartData });
 
   useEffect(() => {
     if (studentTests && studentTests.length > 0) {
@@ -35,11 +50,13 @@ export default function PerformanceAnalysis() {
         );
       });
 
-      setStartDate(
-        new Date(sortedTests[0].created_at).toISOString().slice(0, 10),
-      );
-      setEndDate(
+      setLatestDate(
         new Date(sortedTests[sortedTests.length - 1].created_at)
+          .toISOString()
+          .slice(0, 10),
+      );
+      setRecentDate(
+        new Date(sortedTests[sortedTests.length - 2].created_at)
           .toISOString()
           .slice(0, 10),
       );
@@ -48,7 +65,7 @@ export default function PerformanceAnalysis() {
 
   const testResults = useQueries({
     queries: studentTests
-      ? studentTests.map((test: TestResult) => ({
+      ? studentTests.map((test: Test) => ({
           queryKey: ["studentResult", test.id],
           queryFn: () => fetchTestResult(test.id),
         }))
@@ -59,7 +76,6 @@ export default function PerformanceAnalysis() {
     .flatMap((result) => result.data)
     .filter(Boolean);
 
-  console.log({ flat: flattenedTests });
   const chartData = {
     labels: flattenedTests.map((item) =>
       new Date(item.created_at).toLocaleDateString(),
@@ -71,9 +87,10 @@ export default function PerformanceAnalysis() {
           (item) =>
             (parseFloat(item?.score) / item?.test?.question_ids?.length) * 100,
         ),
-        backgroundColor: "rgba(54, 162, 235, 0.6)",
+        backgroundColor: "#D32D44",
         borderColor: "rgba(54, 162, 235, 1)",
         borderWidth: 1,
+        borderRadius: 10,
       },
     ],
   };
@@ -96,15 +113,50 @@ export default function PerformanceAnalysis() {
     setSelectedTestId(event.target.value);
   };
 
-  const handleStartDateChange = (
-    event: React.ChangeEvent<HTMLInputElement>,
+  const handleLatestDateChange = (
+    event: React.ChangeEvent<HTMLSelectElement>,
+  ) => {
+    setEndDate(event.target.value);
+  };
+
+  const handleRecentDateChange = (
+    event: React.ChangeEvent<HTMLSelectElement>,
   ) => {
     setStartDate(event.target.value);
   };
 
-  const handleEndDateChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setEndDate(event.target.value);
-  };
+  useEffect(() => {
+    if (startDate && endDate) {
+      const filteredTests = flattenedTests.filter(
+        (item) =>
+          new Date(item.created_at) >= new Date(startDate) &&
+          new Date(item.created_at) <= new Date(endDate),
+      );
+
+      console.log({ filteredTests });
+
+      const filteredChartData = {
+        labels: filteredTests.map((item) =>
+          new Date(item.created_at).toLocaleDateString(),
+        ),
+        datasets: [
+          {
+            label: "Test Scores (%)",
+            data: filteredTests.map(
+              (item) =>
+                (parseFloat(item?.score) / item?.test?.question_ids?.length) *
+                100,
+            ),
+            backgroundColor: "#D32D44",
+            borderColor: "rgba(54, 162, 235, 1)",
+            borderWidth: 1,
+          },
+        ],
+      };
+
+      setFilteredChartData(filteredChartData);
+    }
+  }, [startDate, endDate, flattenedTests, filteredChartData]);
 
   if (isLoadingTests) return <Loading />;
   if (testsError) return <p>An error has occurred: {testsError.message}</p>;
@@ -131,28 +183,28 @@ export default function PerformanceAnalysis() {
               className="flex items-center justify-between gap-12 rounded-md border-2 p-2 px-6"
             >
               <option value="">Select Test</option>
-              {flattenedTests.map((test) => (
-                <option key={test?.id} value={test?.test?.name}>
-                  {test?.test?.name}
+              {topicNames.map((name, index) => (
+                <option key={index} value={name.name}>
+                  {name.name}
                 </option>
               ))}
             </select>
-            <input
-              type="date"
-              value={startDate}
-              min={startDate}
-              max={endDate}
-              onChange={handleStartDateChange}
-              className="flex items-center justify-between gap-12 rounded-md border-2 p-2 px-6"
-            />
-            <input
-              type="date"
+            <select
               value={endDate}
-              min={startDate}
-              max={endDate}
-              onChange={handleEndDateChange}
+              onChange={handleLatestDateChange}
               className="flex items-center justify-between gap-12 rounded-md border-2 p-2 px-6"
-            />
+            >
+              <option value="">{latestDate}</option>
+              <option value="">{recentDate}</option>
+            </select>
+            <select
+              value={startDate}
+              onChange={handleRecentDateChange}
+              className="flex items-center justify-between gap-12 rounded-md border-2 p-2 px-6"
+            >
+              <option value="">{recentDate}</option>
+              <option value="">{latestDate}</option>
+            </select>
           </div>
 
           <div>
@@ -162,9 +214,9 @@ export default function PerformanceAnalysis() {
           </div>
         </div>
 
-        {testResults && flattenedTests && (
+        {chartData && (
           <BarChart
-            data={chartData}
+            data={filteredChartData || chartData}
             backgroundColor={backgroundColor}
             options={options}
           />

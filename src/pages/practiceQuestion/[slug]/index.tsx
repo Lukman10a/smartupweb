@@ -1,14 +1,19 @@
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { IoNotificationsCircleOutline } from "react-icons/io5";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import TopicContainer from "@/components/topicContainer";
 import { fetchTopic } from "@/components/rightDashboard/utils";
 import Loading from "@/components/loading";
 import { useQuery } from "@tanstack/react-query";
+import { useDispatch } from "react-redux"; // Import useDispatch
+import { setTopicNames } from "@/store/quizSlice"; // Import setTopicNames
 
 export default function Practice() {
   const { query, asPath } = useRouter();
+  const dispatch = useDispatch(); // Initialize dispatch
+
+  const [topicData, setTopicData] = useState<any[]>([]);
 
   console.log({ query, asPath });
 
@@ -25,6 +30,19 @@ export default function Practice() {
     queryKey: ["topics", query.slug],
     queryFn: () => fetchTopic(slug),
   });
+
+  useEffect(() => {
+    if (subjectData) {
+      setTopicData(subjectData);
+      const topicNames = subjectData.map(
+        (item: { id: string; name: string }) => {
+          return { name: item.name, id: item.id };
+        },
+      );
+      console.log({ TOPIC: topicNames });
+      dispatch(setTopicNames(topicNames)); // Dispatch the action to save topic names
+    }
+  }, [subjectData]);
 
   if (subjectPending) return <Loading />;
 

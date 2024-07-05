@@ -15,12 +15,14 @@ interface QuizState {
   quizData: Question[] | null;
   currentQuestionIndex: number;
   selectedAnswers: SelectedAnswer[];
+  topicNames: { name: string; id: string }[]; // Add this line to store topic names
 }
 
 const initialState: QuizState = {
   quizData: null,
   currentQuestionIndex: 0,
   selectedAnswers: [],
+  topicNames: [], // Add this line to initialize topic names
 };
 
 const quizSlice = createSlice({
@@ -31,6 +33,12 @@ const quizSlice = createSlice({
       state.quizData = action.payload;
       state.currentQuestionIndex = 0;
       state.selectedAnswers = [];
+    },
+    setTopicNames: (
+      state,
+      action: PayloadAction<{ name: string; id: string }[]>,
+    ) => {
+      state.topicNames = action.payload; // Add this line to set topic names
     },
     nextQuestion: (state) => {
       if (
@@ -116,6 +124,7 @@ const quizSlice = createSlice({
 
 export const {
   setQuizData,
+  setTopicNames, // Export the new action
   nextQuestion,
   previousQuestion,
   selectAnswer,
