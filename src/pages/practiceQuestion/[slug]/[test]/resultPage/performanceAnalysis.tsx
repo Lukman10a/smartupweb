@@ -36,7 +36,7 @@ export default function PerformanceAnalysis() {
     queryFn: fetchStudentTests,
     select: (tests: Test[]) =>
       tests
-        .slice(0, 20)
+        // .slice(0, 20)
         .filter((item) =>
           topicNames.some((topic) => topic.name === item.topic_name),
         ),
@@ -54,13 +54,13 @@ export default function PerformanceAnalysis() {
       });
 
       setLatestDate(
-        new Date(sortedTests[sortedTests.length - 1].created_at)
-          .toISOString()
+        new Date(sortedTests[sortedTests.length - 1]?.created_at)
+          ?.toISOString()
           .slice(0, 10),
       );
       setRecentDate(
-        new Date(sortedTests[sortedTests.length - 2].created_at)
-          .toISOString()
+        new Date(sortedTests[sortedTests.length - 2]?.created_at)
+          ?.toISOString()
           .slice(0, 10),
       );
     }
