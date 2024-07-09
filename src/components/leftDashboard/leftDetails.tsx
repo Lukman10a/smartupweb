@@ -18,8 +18,8 @@ export const LeftDetails = ({
     <Link
       href={slug}
       className={cn(
-        "text-black flex gap-3 items-center  p-2 px-4 rounded-md w-full",
-        isActive && "bg-[#D32D44] text-white"
+        "flex w-full items-center gap-3 rounded-md p-2 px-4 text-black",
+        isActive && "bg-[#D32D44] text-white",
       )}
     >
       <Image src={icon} alt="" height={18} width={18} />

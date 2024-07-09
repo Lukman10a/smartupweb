@@ -28,10 +28,23 @@ export default function Video() {
       <div>
         <p className="py-4 font-semibold">{query.title}</p>
 
-        <div className="flex rounded-lg bg-white p-4">
-          <LessonVideos title={query.title} episode={query.episode} />
+        <div className="flex items-center gap-4 rounded-lg bg-white p-4">
+          <div className="flex-1">
+            <LessonVideos
+              title={query.title}
+              episode={query.episode}
+              className=""
+            />
+          </div>
 
-          <div></div>
+          <div className="max-h-96 flex-1 space-y-4 overflow-y-auto">
+            <LessonVideos title={query.title} episode={query.episode} />
+            <LessonVideos title={query.title} episode={query.episode} />
+            <LessonVideos title={query.title} episode={query.episode} />
+            <LessonVideos title={query.title} episode={query.episode} />
+            <LessonVideos title={query.title} episode={query.episode} />
+            <LessonVideos title={query.title} episode={query.episode} />
+          </div>
         </div>
       </div>
     </div>

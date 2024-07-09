@@ -1,4 +1,5 @@
 import Header from "@/components/header";
+import ResultButton from "@/components/resultButton";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -87,14 +88,7 @@ export default function ExamYear() {
           placeholder="Search for courses"
           className="rounded-md bg-[#F8F9FB] p-2"
         />
-        <div className="flex">
-          <div className="flex gap-2 rounded-l-md bg-[#D32D4426] p-2">
-            <p className="text-[#D32D44]">Total tests taken:</p>
-            <p>53</p>
-          </div>
-
-          <p className="rounded-md bg-[#D32D44] p-2 text-white">View results</p>
-        </div>
+        <ResultButton test={20} />
       </div>
       <div>
         <p className="py-4">Select an exam for {query.title}.</p>

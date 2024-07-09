@@ -24,7 +24,9 @@ export default function Exam() {
       {/* PROGRESS BAR */}
 
       <div className="mb-4 mt-6 w-full rounded-full bg-[#D32D4426] text-center">
-        <div className="w-full rounded-full bg-[#D32D44] text-sm">1/100</div>
+        <div className="w-full rounded-full bg-[#D32D44] text-sm text-white">
+          1/100
+        </div>
       </div>
     </section>
   );

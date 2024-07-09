@@ -1,5 +1,8 @@
 import { cn } from "@/lib/utils";
 import React from "react";
+import Image from "next/image";
+import previous from "@/../public/assets/previous.svg";
+import next from "@/../public/assets/next.svg";
 
 const paymentData = [
   {
@@ -30,6 +33,20 @@ const paymentData = [
     expiryTime: "03:15 PM",
     expiryDate: "2024-05-07",
   },
+  {
+    id: 5,
+    feeType: "Late Fee",
+    amount: "100,000.00",
+    expiryTime: "03:15 PM",
+    expiryDate: "2024-05-07",
+  },
+  {
+    id: 6,
+    feeType: "Lesson fee",
+    amount: "300,000.00",
+    expiryTime: "10:45 AM",
+    expiryDate: "2024-05-08",
+  },
 ];
 
 const Pendingpayments = () => {
@@ -38,7 +55,7 @@ const Pendingpayments = () => {
   }
   return (
     <div>
-      <table className="border-separate border-spacing-3 rounded-md p-4 text-[#74595D] text-sm w-full table-auto border border-[#E4E4E4]">
+      <table className="w-full table-auto border-separate border-spacing-3 rounded-md border border-[#E4E4E4] p-4 text-sm text-[#74595D]">
         <thead>
           <tr className="">
             <th className="text-left">Id</th>
@@ -51,7 +68,7 @@ const Pendingpayments = () => {
         </thead>
         <tbody className="divide-y">
           {paymentData.map((payment) => (
-            <tr key={payment.id} className="py-3 border-b-3 border-b-gray-400">
+            <tr key={payment.id} className="border-b-3 border-b-gray-400 py-3">
               <td className="">{payment.id}</td>
               <td className="">{payment.feeType}</td>
               <td className="">₦{payment.amount}</td>
@@ -59,54 +76,30 @@ const Pendingpayments = () => {
               <td className="">{payment.expiryDate}</td>
               <td>
                 <button
-                  className="bg-[#D32D4426] p-2 rounded-sm text-[#D32D44]"
+                  className="rounded-sm bg-[#D32D4426] p-2 font-semibold text-[#D32D44]"
                   onClick={() => handleAction(payment.id)}
                 >
-                  View detail
+                  Pay now
                 </button>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
-      <div className="flex items-center gap-5 w-full  mt-6">
-        <button className="flex items-center px-5 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 bg-white border rounded-md gap-x-2 hover:bg-gray-100 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            className="w-5 h-5 rtl:-scale-x-100"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18"
-            />
-          </svg>
-          <span>previous</span>
-        </button>
+      <div className="mt-6 flex w-full items-center justify-between gap-5">
+        <div className="flex gap-4">
+          <button className="flex items-center gap-x-2 rounded-md border bg-white px-5 py-2 text-sm capitalize text-gray-700 transition-colors duration-200 hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-200 dark:hover:bg-gray-800">
+            <Image src={previous} alt="" />
+            <span>previous</span>
+          </button>
 
-        <button className="flex items-center px-5 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 bg-white border rounded-md gap-x-2 hover:bg-gray-100 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800">
-          <span>Next</span>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            className="w-5 h-5 rtl:-scale-x-100"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"
-            />
-          </svg>
-        </button>
+          <button className="flex items-center gap-x-2 rounded-md border bg-white px-5 py-2 text-sm capitalize text-gray-700 transition-colors duration-200 hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-200 dark:hover:bg-gray-800">
+            <span>Next</span>
+            <Image src={next} alt="" />
+          </button>
+        </div>
         <button
-          className="self-end bg-[#D32D44] py-2 px-6 rounded-md text-white"
+          className="self-end rounded-md bg-[#D32D44] px-6 py-2 text-white"
           onClick={() => {}}
         >
           Pay All

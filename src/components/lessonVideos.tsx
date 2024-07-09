@@ -5,11 +5,16 @@ import play from "../../public/assets/play.svg";
 interface LessonVideosProps {
   title: string | string[] | undefined;
   episode: string | string[] | undefined;
+  className?: string;
 }
 
-const LessonVideos: React.FC<LessonVideosProps> = ({ title, episode }) => {
+const LessonVideos: React.FC<LessonVideosProps> = ({
+  title,
+  episode,
+  className,
+}) => {
   return (
-    <div>
+    <div className={className}>
       <div className="flex flex-col items-center justify-center rounded-md border-2 p-4 py-8">
         <Image src={play} alt="Play button" />
         <div className="flex w-full items-center justify-between">
