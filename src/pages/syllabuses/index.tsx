@@ -29,7 +29,7 @@ export default function Syllabuses() {
     queryFn: fetchSyllabusData,
   });
 
-  console.log(syllabusData);
+  console.log({ sylabus: syllabusData });
 
   if (syllabusPending) return <Loading />;
 
