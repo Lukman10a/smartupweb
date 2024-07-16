@@ -7,10 +7,7 @@ import { BsPlayBtn } from "react-icons/bs";
 import { useQuery } from "@tanstack/react-query";
 import Card from "@/components/rightDashboard/card";
 import SummaryContainer from "@/components/rightDashboard/cardContainer";
-import {
-  fetchClassesData,
-  fetchData,
-} from "../../../components/rightDashboard/utils";
+import { fetchClassesData, fetchData } from "../../../components/utils";
 import Loading from "@/components/loading";
 import Image from "next/image";
 import LessonVideos from "@/components/lessonVideos";

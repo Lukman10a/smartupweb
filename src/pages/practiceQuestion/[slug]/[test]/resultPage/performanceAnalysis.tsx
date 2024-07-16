@@ -5,10 +5,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/store";
 import BarChart from "@/components/barChat";
 import Loading from "@/components/loading";
-import {
-  fetchStudentTests,
-  fetchTestResult,
-} from "@/components/rightDashboard/utils";
+import { fetchStudentTests, fetchTestResult } from "@/components/utils";
 import { IoNotificationsCircleOutline } from "react-icons/io5";
 import { Test, TestResult } from "@/type/testResult";
 import DatePicker from "react-datepicker";

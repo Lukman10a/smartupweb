@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { IoNotificationsCircleOutline } from "react-icons/io5";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import TopicContainer from "@/components/topicContainer";
-import { fetchTopic } from "@/components/rightDashboard/utils";
+import { fetchTopic } from "@/components/utils";
 import Loading from "@/components/loading";
 import { useQuery } from "@tanstack/react-query";
 import { useDispatch } from "react-redux"; // Import useDispatch

@@ -24,7 +24,7 @@ import {
   SubmitQuizData,
   SubmitQuizDataParams,
   user_id,
-} from "@/components/rightDashboard/utils";
+} from "@/components/utils";
 import { Question } from "@/type/quiz";
 import Loading from "@/components/loading";
 import { cn } from "@/lib/utils";

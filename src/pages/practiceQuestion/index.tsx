@@ -1,7 +1,7 @@
 import Card from "@/components/rightDashboard/card";
 import React, { useState } from "react";
 import { IoNotificationsCircleOutline } from "react-icons/io5";
-import { fetchSubjectData } from "@/components/rightDashboard/utils";
+import { fetchSubjectData } from "@/components/utils";
 import Loading from "@/components/loading";
 import { useQuery } from "@tanstack/react-query";
 import SubjectCard from "@/components/modal/subjectModal";
@@ -19,7 +19,7 @@ export default function PracticeQuestion() {
     error: subjectError,
     data: subjectData,
   } = useQuery({
-    queryKey: ["classesData"],
+    queryKey: ["subjectData"],
     queryFn: fetchSubjectData,
   });
 
