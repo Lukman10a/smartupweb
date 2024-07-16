@@ -8,6 +8,7 @@ interface TopicContainerProps {
   path: string;
   topicId: string;
   subjectId: string;
+  test: string;
 }
 
 export default function TopicContainer({
@@ -16,6 +17,7 @@ export default function TopicContainer({
   path,
   topicId,
   subjectId,
+  test,
 }: TopicContainerProps) {
   return (
     <div className="my-2 flex items-center justify-between rounded-md bg-[#F8F9FB] p-2">
@@ -33,7 +35,7 @@ export default function TopicContainer({
         as={`${path}/${topic}`}
       >
         <button className="rounded-md bg-[#D32D44] p-2 text-white">
-          Take Test
+          {test}
         </button>
       </Link>
     </div>

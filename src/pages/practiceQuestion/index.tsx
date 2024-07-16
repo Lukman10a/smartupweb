@@ -7,8 +7,10 @@ import { useQuery } from "@tanstack/react-query";
 import SubjectCard from "@/components/modal/subjectModal";
 import Header from "@/components/header";
 import ResultButton from "@/components/resultButton";
+import { useRouter } from "next/router";
 
 export default function PracticeQuestion() {
+  const { query, asPath } = useRouter();
   const [currentCard, setCurrentCard] = useState({
     name: "",
     slug: "",
@@ -36,7 +38,7 @@ export default function PracticeQuestion() {
           placeholder="Search for courses"
           className="rounded-md bg-[#F8F9FB] p-2"
         />
-        <ResultButton test={40} />
+        <ResultButton test={40} link="practiceQuestion/result" />
       </div>
       <div>
         <p className="py-4">Select a course to take the test.</p>

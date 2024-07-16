@@ -190,6 +190,8 @@ export default function PerformanceAnalysis() {
   // }, [selectedTopicName, startDate, endDate]);
 
   useEffect(() => {
+    const fiveMinutesInMillis = 23 * 59 * 59 * 1000;
+
     if (selectedTopicName || (startDate && endDate)) {
       const filteredTests = flattenedTests
         .filter(
@@ -199,8 +201,15 @@ export default function PerformanceAnalysis() {
         .filter(
           (item: { created_at: string | number | Date }) =>
             (!startDate || new Date(item.created_at) >= startDate) &&
-            (!endDate || new Date(item.created_at) <= endDate),
+            // (!endDate || new Date(item.created_at) <= new Date(endDate)),
+            (!endDate || new Date(item.created_at) <= new Date(endDate)),
         );
+
+      // console.log(filteredTests[0].created_at);
+      // console.log(new Date(filteredTests[0].created_at));
+
+      // console.log(startDate);
+      // console.log(endDate?.setTime(endDate?.getTime() + fiveMinutesInMillis));
 
       const filteredChartData = {
         labels: filteredTests.map((item) =>
