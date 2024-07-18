@@ -60,7 +60,7 @@ export default function TopicSubjectResult({
               subject={subjectString}
               path={asPath}
               subjectId={item.course_id}
-              test="Take Test"
+              test={subject === "Subject" ? "analysis" : "Take Test"}
             />
           ),
         )}

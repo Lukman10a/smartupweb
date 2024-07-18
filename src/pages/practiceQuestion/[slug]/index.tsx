@@ -11,7 +11,7 @@ export default function Practice() {
   const { query, asPath } = useRouter();
 
   console.log({ query });
-  const dispatch = useDispatch(); // Initialize dispatch
+  const dispatch = useDispatch();
 
   const [topicData, setTopicData] = useState<any[]>([]);
 

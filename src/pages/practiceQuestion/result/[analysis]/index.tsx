@@ -10,10 +10,10 @@ import { IoNotificationsCircleOutline } from "react-icons/io5";
 import { Test, TestResult } from "@/type/testResult";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { after } from "node:test";
 
-export default function PerformanceAnalysis() {
+export default function Analysis() {
   const { query } = useRouter();
+  // console.log({ query: query });
 
   const [selectedTestId, setSelectedTestId] = useState<string | null>(null);
   const [selectedTopicName, setSelectedTopicName] = useState<string | null>(
@@ -25,7 +25,8 @@ export default function PerformanceAnalysis() {
   ]);
   const [startDate, endDate] = dateRange;
   const [backgroundColor, setBackgroundColor] = useState<string>("#D32D441A");
-  const [filteredChartData, setFilteredChartData] = useState<any>(null); // State to hold filtered chart data
+  const [filteredChartData, setFilteredChartData] = useState<any>(null);
+  const [topicName, setTopicName] = useState();
 
   const topicNames = useSelector((state: RootState) => state.quiz.topicNames);
 
@@ -37,11 +38,7 @@ export default function PerformanceAnalysis() {
     queryKey: ["studentTests"],
     queryFn: fetchStudentTests,
     select: (tests: Test[]) =>
-      tests
-        // .slice(0, 20)
-        .filter((item) =>
-          topicNames.some((topic) => topic.name === item.topic_name),
-        ),
+      tests.filter((item) => query.analysis === item.course_name),
   });
 
   const testResults = useQueries({
@@ -114,82 +111,6 @@ export default function PerformanceAnalysis() {
     );
   }, [flattenedTests]);
 
-  // useEffect(() => {
-  //   console.log({ before: filteredChartData });
-  //   if (startDate && endDate && filteredChartData) {
-  //     console.log({ after: filteredChartData });
-
-  //     const filteredTests = filteredChartData.filter(
-  //       (item: { created_at: string | number | Date }) =>
-  //         new Date(item.created_at) >= startDate &&
-  //         new Date(item.created_at) <= endDate,
-  //     );
-
-  //     const filteredChartDateData = {
-  //       labels: filteredTests.map(
-  //         (item: { created_at: string | number | Date }) =>
-  //           new Date(item.created_at).toLocaleDateString(),
-  //       ),
-  //       datasets: [
-  //         {
-  //           label: "Test Scores (%)",
-  //           data: filteredTests.map(
-  //             (item: {
-  //               score: string;
-  //               test: { question_ids: string | any[] };
-  //             }) =>
-  //               (parseFloat(item?.score) / item?.test?.question_ids?.length) *
-  //               100,
-  //           ),
-  //           backgroundColor: "#D32D44",
-  //           borderColor: "rgba(54, 162, 235, 1)",
-  //           borderWidth: 1,
-  //         },
-  //       ],
-  //     };
-
-  //     setFilteredChartData(filteredChartDateData);
-  //   }
-  // }, [startDate, endDate, flattenedTests, filteredChartData]);
-
-  // useEffect(() => {
-  //   if (selectedTopicName && startDate && endDate) {
-  //     const filteredTests = flattenedTests
-  //       .filter((test) => {
-  //         return test.test.topic_id === selectedTopicName;
-  //       })
-  //       .filter(
-  //         (item: { created_at: string | number | Date }) =>
-  //           new Date(item.created_at) >= startDate &&
-  //           new Date(item.created_at) <= endDate,
-  //       );
-
-  //     const filteredChartData = {
-  //       labels: filteredTests.map((item) =>
-  //         new Date(item.created_at).toLocaleDateString(),
-  //       ),
-  //       datasets: [
-  //         {
-  //           label: "Test Scores (%)",
-  //           data: filteredTests.map(
-  //             (item) =>
-  //               (parseFloat(item?.score) / item?.test?.question_ids?.length) *
-  //               100,
-  //           ),
-  //           backgroundColor: "#D32D44",
-  //           borderColor: "rgba(54, 162, 235, 1)",
-  //           borderWidth: 1,
-  //         },
-  //       ],
-  //     };
-
-  //     setFilteredChartData(filteredChartData);
-  //   } else {
-  //     // Reset filteredChartData when no topic is selected
-  //     setFilteredChartData(null);
-  //   }
-  // }, [selectedTopicName, startDate, endDate]);
-
   useEffect(() => {
     const fiveMinutesInMillis = 23 * 59 * 59 * 1000;
 
@@ -204,12 +125,6 @@ export default function PerformanceAnalysis() {
             (!startDate || new Date(item.created_at) >= startDate) &&
             (!endDate || new Date(item.created_at) <= endDate),
         );
-
-      // console.log(filteredTests[0].created_at);
-      // console.log(new Date(filteredTests[0].created_at));
-
-      // console.log(startDate);
-      // console.log(endDate?.setTime(endDate?.getTime() + fiveMinutesInMillis));
 
       const filteredChartData = {
         labels: filteredTests.map((item) =>
@@ -243,7 +158,7 @@ export default function PerformanceAnalysis() {
   return (
     <div>
       <div className="mb-3 flex items-center justify-between">
-        <p className="font-dm_sans text-2xl font-medium">{query.subject}</p>
+        <p className="font-dm_sans text-2xl font-medium">{query.analysis}</p>
         <div className="flex items-center gap-2">
           <IoNotificationsCircleOutline size={40} />
         </div>
