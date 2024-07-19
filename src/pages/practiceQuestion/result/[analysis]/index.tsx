@@ -26,9 +26,11 @@ export default function Analysis() {
   const [startDate, endDate] = dateRange;
   const [backgroundColor, setBackgroundColor] = useState<string>("#D32D441A");
   const [filteredChartData, setFilteredChartData] = useState<any>(null);
-  const [topicName, setTopicName] = useState();
+  const [topicName, setTopicName] = useState<{ id: string; name: string }[]>(
+    [],
+  );
 
-  const topicNames = useSelector((state: RootState) => state.quiz.topicNames);
+  // const topicNames = useSelector((state: RootState) => state.quiz.topicNames);
 
   const {
     data: studentTests,
@@ -152,6 +154,18 @@ export default function Analysis() {
     }
   }, [selectedTopicName, startDate, endDate, flattenedTests]);
 
+  useEffect(() => {
+    if (studentTests) {
+      const uniqueTopics = Array.from(
+        new Set(studentTests.map((test) => test.topic_name)),
+      ).map((topicName) => ({
+        id: topicName,
+        name: topicName,
+      }));
+      setTopicName(uniqueTopics);
+    }
+  }, [studentTests]);
+
   if (isLoadingTests) return <Loading />;
   if (testsError) return <p>An error has occurred: {testsError.message}</p>;
 
@@ -177,7 +191,7 @@ export default function Analysis() {
               className="flex items-center justify-between gap-12 rounded-md border-2 p-2 px-6"
             >
               <option value="">Select Topic</option>
-              {topicNames.map((name, index) => (
+              {topicName.map((name, index) => (
                 <option key={index} value={name.id}>
                   {name.name}
                 </option>

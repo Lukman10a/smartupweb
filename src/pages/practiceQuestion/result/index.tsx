@@ -7,7 +7,7 @@ import React from "react";
 
 export default function Result() {
   const { query, asPath } = useRouter();
-
+  
   const {
     isPending: subjectPending,
     error: subjectError,

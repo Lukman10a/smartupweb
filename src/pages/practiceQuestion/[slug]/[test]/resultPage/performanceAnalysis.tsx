@@ -261,7 +261,7 @@ export default function PerformanceAnalysis() {
               onChange={handleTestIdChange}
               className="flex items-center justify-between gap-12 rounded-md border-2 p-2 px-6"
             >
-              <option value="">Select Topic</option>
+              <option value="">All Topics</option>
               {topicNames.map((name, index) => (
                 <option key={index} value={name.id}>
                   {name.name}
