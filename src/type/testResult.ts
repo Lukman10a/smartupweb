@@ -1,4 +1,5 @@
 export interface Test {
+  course_name: string | string[] | undefined;
   topic_name: string;
   topic: string;
   id: string;
