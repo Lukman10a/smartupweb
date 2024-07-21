@@ -344,7 +344,8 @@ export default function Analysis() {
       const filteredTests = flattenedTests
         .filter(
           (test) =>
-            !selectedTopicName || test.test.topic_name === selectedTestId,
+            !selectedTopicName ||
+            test.test.name.includes(selectedTestId as string),
         )
         .filter(
           (item: { created_at: string | number | Date }) =>
@@ -352,7 +353,7 @@ export default function Analysis() {
             (!endDate || new Date(item.created_at) <= endDate),
         );
 
-      console.log({ filteredTests });
+      console.log({ filteredTests, flattenedTests });
       const filteredChartData = {
         labels: filteredTests.map((item) =>
           new Date(item.created_at).toLocaleDateString(),
@@ -371,13 +372,12 @@ export default function Analysis() {
           },
         ],
       };
-
+      console.log({ selectedTestId, selectedTopicName });
       setFilteredChartData(filteredChartData);
     } else {
       // Reset filteredChartData when no filters are applied
       setFilteredChartData(null);
     }
-    console.log({ selectedTestId, selectedTopicName });
   }, [selectedTopicName, startDate, endDate, flattenedTests, selectedTestId]);
 
   useEffect(() => {
