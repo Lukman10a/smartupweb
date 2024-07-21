@@ -8,7 +8,7 @@ interface RequestQueueItem {
 async function fetchWithExponentialBackoff<T>(
   url: string,
   options: RequestInit,
-  retries = 5,
+  retries = 7,
   backoff = 300,
 ): Promise<T> {
   try {
