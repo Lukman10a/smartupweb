@@ -27,7 +27,9 @@ async function fetchWithExponentialBackoff<T>(
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
   } catch (error) {
-    throw new Error(error?.message);
+    throw new Error(
+      error instanceof Error ? error.message : "An unknown error occurred",
+    );
   }
 }
 
