@@ -1,4 +1,6 @@
 import { Question } from "@/type/quiz";
+import { TestResult } from "@/type/testResult";
+import { queueRequest } from "./apiManagement";
 
 const base_url = "https://smartup-api.herokuapp.com/api/v2/";
 const smartup_institution_id = "715ddce7-48b1-4243-a329-1140195b06b8";
@@ -246,42 +248,90 @@ export const fetchSyllabusData = async () => {
 };
 
 export const fetchStudentTests = async () => {
-  const response = await fetch(
-    `${base_url}student_all_tests_taken?user_id=${user_id}`,
-    {
-      method: "POST",
-      headers: {
-        authorization: "peTVUyiW25y3PzUVd1hz",
-        "Content-Type": "application/json",
-      },
+  const url = `${base_url}student_all_tests_taken?user_id=${user_id}`;
+  const options = {
+    method: "POST",
+    headers: {
+      authorization: "peTVUyiW25y3PzUVd1hz",
+      "Content-Type": "application/json",
     },
-  );
-
-  if (!response.ok) {
-    throw new Error(`HTTP error! Status: ${response.status}`);
-  }
-
-  return response.json();
+  };
+  return queueRequest(url, options);
 };
 
 export const fetchTestResult = async (test_id: string) => {
-  const response = await fetch(
-    `${base_url}get_test_result?test_id=${test_id}`,
-    {
-      method: "POST",
-      headers: {
-        authorization: "peTVUyiW25y3PzUVd1hz",
-        "Content-Type": "application/json",
-      },
+  const url = `${base_url}get_test_result?test_id=${test_id}`;
+  const options = {
+    method: "POST",
+    headers: {
+      authorization: "peTVUyiW25y3PzUVd1hz",
+      "Content-Type": "application/json",
     },
-  );
-
-  if (!response.ok) {
-    throw new Error(`HTTP error! Status: ${response.status}`);
-  }
-
-  return response.json();
+  };
+  return queueRequest(url, options);
 };
+
+// export const fetchTestResult1 = async (test_id: string): Promise<TestResult> => {
+//   const url = `${base_url}get_test_result?test_id=${test_id}`;
+//   const options: RequestInit = {
+//     method: "POST",
+//     headers: {
+//       authorization: "peTVUyiW25y3PzUVd1hz",
+//       "Content-Type": "application/json",
+//     },
+//   };
+//   return fetchWithExponentialBackoff<TestResult>(url, options);
+// };
+
+// export const fetchTestResult1 = async (test_id: string) => {
+//   const url = `${base_url}get_test_result?test_id=${test_id}`;
+//   const options = {
+//     method: "POST",
+//     headers: {
+//       authorization: "peTVUyiW25y3PzUVd1hz",
+//       "Content-Type": "application/json",
+//     },
+//   };
+//   return fetchWithExponentialBackoff(url, options);
+// };
+
+// export const fetchStudentTests = async () => {
+//   const response = await fetch(
+//     `${base_url}student_all_tests_taken?user_id=${user_id}`,
+//     {
+//       method: "POST",
+//       headers: {
+//         authorization: "peTVUyiW25y3PzUVd1hz",
+//         "Content-Type": "application/json",
+//       },
+//     },
+//   );
+
+//   if (!response.ok) {
+//     throw new Error(`HTTP error! Status: ${response.status}`);
+//   }
+
+//   return response.json();
+// };
+
+// export const fetchTestResult = async (test_id: string) => {
+//   const response = await fetch(
+//     `${base_url}get_test_result?test_id=${test_id}`,
+//     {
+//       method: "POST",
+//       headers: {
+//         authorization: "peTVUyiW25y3PzUVd1hz",
+//         "Content-Type": "application/json",
+//       },
+//     },
+//   );
+
+//   if (!response.ok) {
+//     throw new Error(`HTTP error! Status: ${response.status}`);
+//   }
+
+//   return response.json();
+// };
 
 // export const fetchLoginData = async () => {
 //   try {
