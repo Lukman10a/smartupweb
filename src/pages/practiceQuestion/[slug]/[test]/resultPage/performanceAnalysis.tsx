@@ -235,7 +235,7 @@ export default function PerformanceAnalysis() {
       // Reset filteredChartData when no filters are applied
       setFilteredChartData(null);
     }
-  }, [selectedTopicName, startDate, endDate, flattenedTests]);
+  }, [selectedTopicName, startDate, endDate]);
 
   if (isLoadingTests) return <Loading />;
   if (testsError) return <p>An error has occurred: {testsError.message}</p>;
@@ -269,17 +269,18 @@ export default function PerformanceAnalysis() {
               ))}
             </select>
             <DatePicker
+              placeholderText="Select Date Range"
               selectsRange
               startDate={startDate ?? undefined}
               endDate={endDate ?? undefined}
-              // allowSameDay={false}
+              allowSameDay={false}
               onChange={(update) => {
                 setDateRange(update);
               }}
               isClearable={true}
               minDate={minDate ?? undefined}
               maxDate={maxDate ?? undefined}
-              className="flex items-center justify-between gap-12 rounded-md border-2 p-2 px-6"
+              className="flex items-center justify-between rounded-md border-2 p-2"
             />
           </div>
 
