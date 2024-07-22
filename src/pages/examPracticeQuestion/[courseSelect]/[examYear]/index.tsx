@@ -95,13 +95,14 @@ export default function ExamYear() {
       </div>
 
       <div className="grid grid-cols-4 place-items-center gap-6 rounded-md bg-white p-3 py-6">
-        {YEAR_DATA.map((item) => (
+        {YEAR_DATA.map((item, index) => (
           <Link
             href={{
               pathname: `${path}${item.yearSlug}`,
               query: { title: query.title, year: item.year },
             }}
             as={`${path}${item.yearSlug}`}
+            key={index}
           >
             <button className="rounded-md bg-[#F8F9FB] p-8 px-16" key={item.id}>
               <p className="font-semibold">{item.year}</p>
