@@ -2,8 +2,7 @@ import AllClassCard from "@/components/dashboardComponents/allClassCard";
 import Header from "@/components/header";
 import TableButton from "@/components/table/tableButton";
 import React, { useState } from "react";
-import { RiArrowDropDownLine } from "react-icons/ri";
-import { RiArrowDropUpLine } from "react-icons/ri";
+import { RiArrowDropDownLine, RiArrowDropUpLine } from "react-icons/ri";
 
 interface Class {
   id: number;
@@ -12,20 +11,32 @@ interface Class {
 
 export default function Classes() {
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
-  const [classes, setClasses] = useState<Class[]>([
-    { id: 1, name: "Show 10 0f 60" },
-    { id: 2, name: "Show 20 0f 60" },
-    { id: 3, name: "Show 30 0f 60" },
-    { id: 3, name: "Show all classes" },
+  const [selectedClass, setSelectedClass] = useState<Class | null>(null);
+  const [classes] = useState<Class[]>([
+    { id: 1, name: "Show 10 of 60" },
+    { id: 2, name: "Show 20 of 60" },
+    { id: 3, name: "Show 30 of 60" },
+    { id: 4, name: "Show all classes" },
   ]);
 
   const handlePress = () => {
     setIsDropdownOpen((prev) => !prev);
   };
 
+  const handleClassSelect = (classItem: Class) => {
+    setSelectedClass(classItem);
+    setIsDropdownOpen(false); // Close the dropdown after selection
+  };
+
   return (
     <div>
       <Header title={"Classes"} fromQuery={false} />
+
+      <div className="my-4 rounded-md bg-white p-4">
+        <input type="text" placeholder="Search for a class" />
+        <div></div>
+      </div>
+
       <section className="rounded-md bg-white p-4">
         <div className="flex items-center justify-between pt-4">
           <p className="font-semibold">All Classes</p>
@@ -33,7 +44,7 @@ export default function Classes() {
             className="flex items-center gap-2 rounded-md border-2 p-2"
             onClick={handlePress}
           >
-            <p>Show {isDropdownOpen ? "Less" : "More"}</p>
+            <p>{selectedClass ? selectedClass.name : "Show More"}</p>
             {isDropdownOpen ? (
               <RiArrowDropUpLine size={25} />
             ) : (
@@ -43,11 +54,23 @@ export default function Classes() {
         </div>
 
         {isDropdownOpen && (
-          <div className="absolute mt-2 bg-white">
+          <div className="absolute right-10 mt-2 rounded-md bg-white shadow-lg">
             <ul>
               {classes.map((classItem) => (
-                <li key={classItem.id} className="border-b p-2">
-                  <button>{classItem.name}</button>
+                <li
+                  key={classItem.id}
+                  className={`border-b p-3 px-10 ${
+                    selectedClass?.id === classItem.id
+                      ? "bg-[#D32D441A] text-[#D32D44]"
+                      : ""
+                  }`}
+                >
+                  <button
+                    className="w-full text-left"
+                    onClick={() => handleClassSelect(classItem)}
+                  >
+                    {classItem.name}
+                  </button>
                 </li>
               ))}
             </ul>
