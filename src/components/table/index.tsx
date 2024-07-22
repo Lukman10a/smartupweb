@@ -11,12 +11,12 @@ export default function TableContainer() {
   >("payment_history");
 
   return (
-    <div className="bg-white rounded-md p-3 my-4">
-      <div className="flex gap-4 border-b border-b-gray-300 mb-5 w-fit">
+    <div className="my-4 rounded-md bg-white p-3">
+      <div className="mb-5 flex w-fit gap-4 border-b border-b-gray-300">
         <button
           className={cn(
             "pb-1 font-medium",
-            tabletype === "payment_history" && "border-b-red-500 border-b"
+            tabletype === "payment_history" && "border-b border-b-red-500",
           )}
           onClick={() => setTabletype("payment_history")}
         >
@@ -26,7 +26,7 @@ export default function TableContainer() {
           onClick={() => setTabletype("pending_payments")}
           className={cn(
             "pb-1 font-medium",
-            tabletype === "pending_payments" && "border-b-red-500 border-b"
+            tabletype === "pending_payments" && "border-b border-b-red-500",
           )}
         >
           Pending payments

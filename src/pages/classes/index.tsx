@@ -29,7 +29,7 @@ export default function Classes({ titleFromQuery }: ClassActivitiesProps) {
           placeholder="Search for courses"
           className="rounded-md bg-[#F8F9FB] p-2"
         />
-        <ResultButton test={50} />
+        <ResultButton test={50} link={""} />
       </div>
 
       <div>
