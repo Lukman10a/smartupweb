@@ -88,7 +88,7 @@ export default function ExamYear() {
           placeholder="Search for courses"
           className="rounded-md bg-[#F8F9FB] p-2"
         />
-        <ResultButton test={20} />
+        <ResultButton test={20} link={""} />
       </div>
       <div>
         <p className="py-4">Select an exam for {query.title}.</p>
