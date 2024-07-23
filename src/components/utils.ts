@@ -13,7 +13,7 @@ export const fetchData = async () => {
       {
         method: "POST", // *GET, POST, PUT, DELETE, etc.
         headers: {
-          authorization: "peTVUyiW25y3PzUVd1hz",
+          authorization: "sutSnU2pzm_eSM9DDzr8",
           "Content-Type": "application/json",
         },
       },
@@ -40,7 +40,7 @@ export const fetchClassesData = async () => {
         method: "POST",
         headers: {
           // authorization_key: "teqcYUap3VSx5eCwy8cw",
-          authorization: "peTVUyiW25y3PzUVd1hz",
+          authorization: "sutSnU2pzm_eSM9DDzr8",
           "Content-Type": "application/json",
         },
       },
@@ -67,7 +67,7 @@ export const fetchSubjectData = async () => {
         method: "POST",
         headers: {
           // authorization_key: "teqcYUap3VSx5eCwy8cw",
-          authorization: "peTVUyiW25y3PzUVd1hz",
+          authorization: "sutSnU2pzm_eSM9DDzr8",
           "Content-Type": "application/json",
         },
       },
@@ -92,7 +92,7 @@ export const fetchTopic = async (course_slug: string) => {
       method: "GET",
       headers: {
         // authorization_key: "teqcYUap3VSx5eCwy8cw",
-        authorization: "peTVUyiW25y3PzUVd1hz",
+        authorization: "sutSnU2pzm_eSM9DDzr8",
         "Content-Type": "application/json",
       },
     });
@@ -118,7 +118,7 @@ export const fetchQuizByTopic = async (
     {
       method: "POST",
       headers: {
-        authorization: "peTVUyiW25y3PzUVd1hz",
+        authorization: "sutSnU2pzm_eSM9DDzr8",
         "Content-Type": "application/json",
       },
     },
@@ -142,7 +142,7 @@ export const fetchClasstData = async () => {
         method: "POST",
         headers: {
           // authorization_key: "teqcYUap3VSx5eCwy8cw",
-          authorization: "peTVUyiW25y3PzUVd1hz",
+          authorization: "sutSnU2pzm_eSM9DDzr8",
           "Content-Type": "application/json",
         },
       },
@@ -189,7 +189,7 @@ export const SubmitQuizData = async ({
     const response = await fetch(`${base_url}tests`, {
       method: "POST",
       headers: {
-        authorization: "peTVUyiW25y3PzUVd1hz",
+        authorization: "sutSnU2pzm_eSM9DDzr8",
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
@@ -228,7 +228,7 @@ export const fetchSyllabusData = async () => {
         method: "POST",
         headers: {
           // authorization_key: "teqcYUap3VSx5eCwy8cw",
-          authorization: "peTVUyiW25y3PzUVd1hz",
+          authorization: "sutSnU2pzm_eSM9DDzr8",
           "Content-Type": "application/json",
         },
       },
@@ -252,7 +252,7 @@ export const fetchStudentTests = async () => {
   const options = {
     method: "POST",
     headers: {
-      authorization: "peTVUyiW25y3PzUVd1hz",
+      authorization: "sutSnU2pzm_eSM9DDzr8",
       "Content-Type": "application/json",
     },
   };
@@ -264,7 +264,7 @@ export const fetchTestResult = async (test_id: string) => {
   const options = {
     method: "POST",
     headers: {
-      authorization: "peTVUyiW25y3PzUVd1hz",
+      authorization: "sutSnU2pzm_eSM9DDzr8",
       "Content-Type": "application/json",
     },
   };
@@ -276,7 +276,7 @@ export const fetchTestResult = async (test_id: string) => {
 //   const options: RequestInit = {
 //     method: "POST",
 //     headers: {
-//       authorization: "peTVUyiW25y3PzUVd1hz",
+//       authorization: "sutSnU2pzm_eSM9DDzr8",
 //       "Content-Type": "application/json",
 //     },
 //   };
@@ -288,7 +288,7 @@ export const fetchTestResult = async (test_id: string) => {
 //   const options = {
 //     method: "POST",
 //     headers: {
-//       authorization: "peTVUyiW25y3PzUVd1hz",
+//       authorization: "sutSnU2pzm_eSM9DDzr8",
 //       "Content-Type": "application/json",
 //     },
 //   };
@@ -301,7 +301,7 @@ export const fetchTestResult = async (test_id: string) => {
 //     {
 //       method: "POST",
 //       headers: {
-//         authorization: "peTVUyiW25y3PzUVd1hz",
+//         authorization: "sutSnU2pzm_eSM9DDzr8",
 //         "Content-Type": "application/json",
 //       },
 //     },
@@ -320,7 +320,7 @@ export const fetchTestResult = async (test_id: string) => {
 //     {
 //       method: "POST",
 //       headers: {
-//         authorization: "peTVUyiW25y3PzUVd1hz",
+//         authorization: "sutSnU2pzm_eSM9DDzr8",
 //         "Content-Type": "application/json",
 //       },
 //     },
@@ -340,7 +340,7 @@ export const fetchTestResult = async (test_id: string) => {
 //       {
 //         method: "POST", // *GET, POST, PUT, DELETE, etc.
 //         headers: {
-//           authorization: "peTVUyiW25y3PzUVd1hz",
+//           authorization: "sutSnU2pzm_eSM9DDzr8",
 //           "Content-Type": "application/json",
 //         },
 //       },

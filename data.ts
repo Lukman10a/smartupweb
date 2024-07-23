@@ -32,6 +32,11 @@ export const LEFT_DATA: LeftDataItem[] = [
     logo: "/assets/exam.svg",
     slug: "/institutionPages/student",
   },
+  {
+    title: "Smartup",
+    logo: "/assets/smart-up.svg",
+    slug: "/institutionPages/smartup",
+  },
 ];
 
 interface ClassDataItem {

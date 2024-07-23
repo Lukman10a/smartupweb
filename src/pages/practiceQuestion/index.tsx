@@ -8,6 +8,7 @@ import SubjectCard from "@/components/modal/subjectModal";
 import Header from "@/components/header";
 import ResultButton from "@/components/resultButton";
 import { useRouter } from "next/router";
+import { CiSearch } from "react-icons/ci";
 
 export default function PracticeQuestion() {
   const { query, asPath } = useRouter();
@@ -32,12 +33,18 @@ export default function PracticeQuestion() {
   return (
     <section>
       <Header title="Practice questions" fromQuery={false} />
-      <div className="mx-auto flex items-center justify-between rounded-md bg-white p-3">
-        <input
-          type="text"
-          placeholder="Search for courses"
-          className="rounded-md bg-[#F8F9FB] p-2"
-        />
+      <div className="relative mx-auto flex items-center justify-between rounded-md bg-white p-3">
+        <div>
+          <input
+            type="text"
+            placeholder="Search for a student"
+            className="w-96 rounded-md bg-[#F8F9FB] p-2 pl-10 text-[#815259CC] placeholder-[#815259CC]"
+          />
+          <CiSearch
+            size={25}
+            className="absolute left-6 top-1/2 -translate-y-1/2 transform text-[#815259CC]"
+          />
+        </div>
         <ResultButton test={40} link="practiceQuestion/result" />
       </div>
       <div>
