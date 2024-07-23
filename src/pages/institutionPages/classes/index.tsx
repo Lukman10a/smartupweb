@@ -1,5 +1,8 @@
 import AllClassCard from "@/components/dashboardComponents/allClassCard";
 import Header from "@/components/header";
+import ClassModal from "@/components/modal/institutionModal/classModal";
+import EducatorModal from "@/components/modal/institutionModal/educatorModal";
+import StudentModal from "@/components/modal/institutionModal/studentModal";
 import TableButton from "@/components/table/tableButton";
 import React, { useState } from "react";
 import { RiArrowDropDownLine, RiArrowDropUpLine } from "react-icons/ri";
@@ -32,9 +35,29 @@ export default function Classes() {
     <div>
       <Header title={"Classes"} fromQuery={false} />
 
-      <div className="my-4 rounded-md bg-white p-4">
-        <input type="text" placeholder="Search for a class" />
-        <div></div>
+      <div className="my-4 flex justify-between rounded-md bg-white p-4">
+        <input
+          type="text"
+          placeholder="Search for a class"
+          className="rounded-md bg-[#F8F9FB] p-2"
+        />
+        <div className="space-x-2">
+          <ClassModal name={""} slug={""} path={undefined}>
+            <button className="rounded-md bg-[#D32D441A] p-2 px-4 text-[#D32D44]">
+              Add class
+            </button>
+          </ClassModal>
+          <StudentModal name={""} slug={""} path={undefined}>
+            <button className="rounded-md bg-[#D32D441A] p-2 px-4 text-[#D32D44]">
+              Assign student
+            </button>
+          </StudentModal>
+          <EducatorModal name={""} slug={""} path={undefined}>
+            <button className="rounded-md bg-[#D32D441A] p-2 px-4 text-[#D32D44]">
+              Assign educator
+            </button>
+          </EducatorModal>
+        </div>
       </div>
 
       <section className="rounded-md bg-white p-4">

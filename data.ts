@@ -27,6 +27,11 @@ export const LEFT_DATA: LeftDataItem[] = [
     logo: "/assets/exam.svg",
     slug: "/examPracticeQuestion",
   },
+  {
+    title: "Students",
+    logo: "/assets/exam.svg",
+    slug: "/institutionPages/student",
+  },
 ];
 
 interface ClassDataItem {
