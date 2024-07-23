@@ -33,9 +33,19 @@ export const LEFT_DATA: LeftDataItem[] = [
     slug: "/institutionPages/student",
   },
   {
+    title: "Educator",
+    logo: "/assets/educator.svg",
+    slug: "/institutionPages/educator",
+  },
+  {
     title: "Smartup",
     logo: "/assets/smart-up.svg",
     slug: "/institutionPages/smartup",
+  },
+  {
+    title: "Performance visualization",
+    logo: "/assets/performance.svg",
+    slug: "/institutionPages/performance",
   },
 ];
 

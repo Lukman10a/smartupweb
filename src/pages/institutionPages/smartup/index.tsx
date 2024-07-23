@@ -30,7 +30,7 @@ export default function SmartUp() {
     {
       id: 1,
       title: "J.A.M.B.",
-      slug: "/questions",
+      slug: "/jamb",
       img: jamb,
     },
     {
@@ -42,7 +42,7 @@ export default function SmartUp() {
     {
       id: 3,
       title: "A Levels",
-      slug: "/lesson-videos",
+      slug: "/alevel",
       img: alevel,
     },
   ];
@@ -58,8 +58,8 @@ export default function SmartUp() {
             {SMARTUP.map((item) => (
               <Link
                 href={{
-                  pathname: `${path}${item.slug}`,
-                  query: { type: item.title },
+                  pathname: `smartup/${item.slug}`,
+                  query: { title: item.title },
                 }}
                 className="my-3 flex justify-between rounded-md bg-[#F8F9FB] p-3"
                 key={item.id}
