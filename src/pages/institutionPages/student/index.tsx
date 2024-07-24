@@ -1,4 +1,6 @@
 import Header from "@/components/header";
+import Table from "@/components/institutionComponents/table";
+import Link from "next/link";
 import React from "react";
 import { CiSearch } from "react-icons/ci";
 import { FaPlus } from "react-icons/fa6";
@@ -20,10 +22,15 @@ export default function Student() {
             className="absolute left-6 top-1/2 -translate-y-1/2 transform text-[#815259CC]"
           />
         </div>
-        <button className="flex items-center gap-2 rounded-md bg-[#D32D4426] p-2 px-10 text-[#D32D44]">
-          <FaPlus />
-          <p>Add new student</p>
-        </button>
+        <Link href={"/institutionPages/student/addStudent"}>
+          <button className="flex items-center gap-2 rounded-md bg-[#D32D4426] p-2 px-10 text-[#D32D44]">
+            <FaPlus />
+            <p>Add new student</p>
+          </button>
+        </Link>
+      </div>
+      <div className="container mx-auto px-4">
+        <Table />
       </div>
     </section>
   );
