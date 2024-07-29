@@ -30,7 +30,7 @@ export default function Student() {
         </Link>
       </div>
       <div className="container mx-auto px-4">
-        <Table />
+        <Table title="All Students" />
       </div>
     </section>
   );

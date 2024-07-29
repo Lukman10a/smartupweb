@@ -8,6 +8,7 @@ import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import SelectInput from "@/components/institutionComponents/selectInput";
+import AddStudentModal from "@/components/modal/institutionModal/addStudentModal";
 
 const schema = yup.object().shape({
   firstname: yup.string().required("Firstname is required"),
@@ -346,14 +347,16 @@ export default function AddStudent() {
                   )}
                 </div>
 
-                <div className="col-span-2 flex justify-end">
-                  <button
-                    type="submit"
-                    className="rounded-md bg-[#D32D44] p-2 px-[188px] text-white"
-                  >
-                    Submit
-                  </button>
-                </div>
+                <AddStudentModal name={""} slug={""} path={undefined}>
+                  <div className="col-span-2 flex justify-end">
+                    <button
+                      type="submit"
+                      className="rounded-md bg-[#D32D44] p-2 px-[188px] text-white"
+                    >
+                      Submit
+                    </button>
+                  </div>
+                </AddStudentModal>
               </div>
             </div>
           </form>

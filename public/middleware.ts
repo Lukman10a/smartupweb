@@ -3,8 +3,9 @@ import { getCookie } from "cookies-next";
 
 export const middleware = async (req: NextRequest) => {
   const url = req.nextUrl.clone();
+
   // const userStatus = getCookie("userStatus", { req });
-  const userStatus = "institutionPages";
+  const userStatus = "student";
 
   // Define allowed routes for each user type
   const routes = {
@@ -15,6 +16,12 @@ export const middleware = async (req: NextRequest) => {
     institutionPages: ["/institutionPages"],
   };
 
+  // Exclude login path from the redirect logic to avoid infinite loop
+  if (url.pathname === "/login") {
+    return NextResponse.next();
+  }
+
+  // Check if the current path is allowed for the user status
   const isAllowed = Object.entries(routes).some(([status, paths]) => {
     return (
       userStatus === status &&
@@ -22,7 +29,7 @@ export const middleware = async (req: NextRequest) => {
     );
   });
 
-  // If not allowed, redirect to login or some other page
+  // If not allowed, redirect to login page
   if (!isAllowed) {
     url.pathname = "/login";
     return NextResponse.redirect(url);

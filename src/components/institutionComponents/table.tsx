@@ -11,6 +11,10 @@ interface Class {
   name: string;
 }
 
+interface TableProps {
+  title: string;
+}
+
 const paymentData = [
   {
     id: 1,
@@ -93,7 +97,7 @@ const paymentData = [
   },
 ];
 
-const Table = () => {
+const Table: React.FC<TableProps> = ({ title }) => {
   function handleAction(id: number): void {
     throw new Error("Function not implemented.");
   }
@@ -118,7 +122,8 @@ const Table = () => {
   return (
     <div className="my-4 rounded-md bg-white p-6">
       <div className="flex items-center justify-between py-4">
-        <p className="font-semibold">All students</p>
+        {/* <p className="font-semibold">All students</p> */}
+        <p className="font-semibold">{title}</p>
         <button
           className="flex items-center gap-2 rounded-md border-2 p-2"
           onClick={handlePress}
