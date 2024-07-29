@@ -5,7 +5,7 @@ export const middleware = async (req: NextRequest) => {
   const url = req.nextUrl.clone();
 
   // const userStatus = getCookie("userStatus", { req });
-  const userStatus = "student";
+  const userStatus = "institutionPages";
 
   // Define allowed routes for each user type
   const routes = {
