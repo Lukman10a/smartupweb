@@ -1,6 +1,10 @@
 import { Question } from "@/type/quiz";
 import { TestResult } from "@/type/testResult";
 import { queueRequest } from "./apiManagement";
+import { setCookie } from "cookies-next";
+import { getCookie } from "cookies-next";
+
+const authToken = getCookie("authToken");
 
 const base_url = "https://smartup-api.herokuapp.com/api/v2/";
 const smartup_institution_id = "715ddce7-48b1-4243-a329-1140195b06b8";
@@ -14,6 +18,7 @@ export const fetchData = async () => {
         method: "POST", // *GET, POST, PUT, DELETE, etc.
         headers: {
           authorization: "sutSnU2pzm_eSM9DDzr8",
+          // authorization: authToken,
           "Content-Type": "application/json",
         },
       },
@@ -271,80 +276,15 @@ export const fetchTestResult = async (test_id: string) => {
   return queueRequest(url, options);
 };
 
-// export const fetchTestResult1 = async (test_id: string): Promise<TestResult> => {
-//   const url = `${base_url}get_test_result?test_id=${test_id}`;
-//   const options: RequestInit = {
-//     method: "POST",
-//     headers: {
-//       authorization: "sutSnU2pzm_eSM9DDzr8",
-//       "Content-Type": "application/json",
-//     },
-//   };
-//   return fetchWithExponentialBackoff<TestResult>(url, options);
-// };
-
-// export const fetchTestResult1 = async (test_id: string) => {
-//   const url = `${base_url}get_test_result?test_id=${test_id}`;
-//   const options = {
-//     method: "POST",
-//     headers: {
-//       authorization: "sutSnU2pzm_eSM9DDzr8",
-//       "Content-Type": "application/json",
-//     },
-//   };
-//   return fetchWithExponentialBackoff(url, options);
-// };
-
-// export const fetchStudentTests = async () => {
-//   const response = await fetch(
-//     `${base_url}student_all_tests_taken?user_id=${user_id}`,
-//     {
-//       method: "POST",
-//       headers: {
-//         authorization: "sutSnU2pzm_eSM9DDzr8",
-//         "Content-Type": "application/json",
-//       },
-//     },
-//   );
-
-//   if (!response.ok) {
-//     throw new Error(`HTTP error! Status: ${response.status}`);
-//   }
-
-//   return response.json();
-// };
-
-// export const fetchTestResult = async (test_id: string) => {
-//   const response = await fetch(
-//     `${base_url}get_test_result?test_id=${test_id}`,
-//     {
-//       method: "POST",
-//       headers: {
-//         authorization: "sutSnU2pzm_eSM9DDzr8",
-//         "Content-Type": "application/json",
-//       },
-//     },
-//   );
-
-//   if (!response.ok) {
-//     throw new Error(`HTTP error! Status: ${response.status}`);
-//   }
-
-//   return response.json();
-// };
-
-// export const fetchLoginData = async () => {
+// export const login = async (email: string, password: string) => {
 //   try {
-//     const response = await fetch(
-//       `${base_url}/session?email=info_stu@smartuptech.com&password=1234567890`,
-//       {
-//         method: "POST", // *GET, POST, PUT, DELETE, etc.
-//         headers: {
-//           authorization: "sutSnU2pzm_eSM9DDzr8",
-//           "Content-Type": "application/json",
-//         },
+//     const url = `${base_url}/session?email=${email}&password=${password}`;
+//     const response = await fetch(url, {
+//       method: "POST",
+//       headers: {
+//         "Content-Type": "application/json",
 //       },
-//     );
+//     });
 
 //     if (!response.ok) {
 //       console.log({ response });
@@ -353,9 +293,90 @@ export const fetchTestResult = async (test_id: string) => {
 
 //     const data = await response.json();
 
-//     console.log({ data });
+//     // Assuming `data.user` contains the authentication token
+//     const authToken = data.user.authentication_token;
+
+//     // Store the authentication token in localStorage or cookies
+//     localStorage.setItem("authToken", authToken);
+
 //     return data;
 //   } catch (error: any) {
 //     throw new Error(`Fetch error: ${error.message}`);
 //   }
 // };
+
+// export const login = async (email: string, password: string) => {
+//   try {
+//     const url = `${base_url}/session?email=${email}&password=${password}`;
+//     const response = await fetch(url, {
+//       method: "POST",
+//       headers: {
+//         authorization: "bJRSxDh1QUy1LwyxXg8x",
+//         "Content-Type": "application/json",
+//       },
+//     });
+
+//     if (!response.ok) {
+//       console.log({ response });
+//       throw new Error(`HTTP error! Status: ${response.status}`);
+//     }
+
+//     const data = await response.json();
+
+//     // Store the authentication token and status in cookies
+//     setCookie("authToken", data.user.authentication_token, {
+//       maxAge: 60 * 60 * 24 * 7, // 1 week
+//       path: "/",
+//     });
+//     setCookie("userStatus", data.user.status, {
+//       maxAge: 60 * 60 * 24 * 7, // 1 week
+//       path: "/",
+//     });
+
+//     return data;
+//   } catch (error: any) {
+//     throw new Error(`Fetch error: ${error.message}`);
+//   }
+// };
+
+export const login = async (email: string, password: string) => {
+  try {
+    const url = `${base_url}/session?email=${email}&password=${password}`;
+    console.log("Sending login request to:", url); // Debugging log
+
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    console.log("Response received:", response); // Debugging log
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    console.log("Parsed response data:", data); // Debugging log
+
+    if (data?.user?.authentication_token) {
+      // Store the authentication token and user status in cookies
+      setCookie("authToken", data.user.authentication_token, {
+        maxAge: 60 * 60 * 24 * 7, // 1 week
+        path: "/",
+      });
+      setCookie("userStatus", data.user.status, {
+        maxAge: 60 * 60 * 24 * 7, // 1 week
+        path: "/",
+      });
+
+      return data;
+    } else {
+      throw new Error("No authentication token returned");
+    }
+  } catch (error: any) {
+    console.error("Login failed:", error.message);
+    throw new Error(`Login failed: ${error.message}`);
+  }
+};

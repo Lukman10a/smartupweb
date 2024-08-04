@@ -27,6 +27,9 @@ export const LEFT_DATA: LeftDataItem[] = [
     logo: "/assets/exam.svg",
     slug: "/examPracticeQuestion",
   },
+];
+
+export const INSTITUTION_SIDEBAR = [
   {
     title: "Students",
     logo: "/assets/exam.svg",

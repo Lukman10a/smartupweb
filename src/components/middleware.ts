@@ -3,9 +3,7 @@ import { getCookie } from "cookies-next";
 
 export const middleware = async (req: NextRequest) => {
   const url = req.nextUrl.clone();
-
-  // const userStatus = getCookie("userStatus", { req });
-  const userStatus = "institutionPages";
+  const userStatus = getCookie("userStatus", { req });
 
   // Define allowed routes for each user type
   const routes = {
@@ -16,7 +14,7 @@ export const middleware = async (req: NextRequest) => {
     institutionPages: ["/institutionPages"],
   };
 
-  // Exclude login path from the redirect logic to avoid infinite loop
+  // Exclude login path from the redirect logic to avoid an infinite loop
   if (url.pathname === "/login") {
     return NextResponse.next();
   }
@@ -39,5 +37,5 @@ export const middleware = async (req: NextRequest) => {
 };
 
 export const config = {
-  matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
+  matcher: ["/((?!api|_next/static|_next/image|.*\\.png$).*)"],
 };
