@@ -1,10 +1,17 @@
 import { Question } from "@/type/quiz";
 import { TestResult } from "@/type/testResult";
 import { queueRequest } from "./apiManagement";
-import { setCookie } from "cookies-next";
-import { getCookie } from "cookies-next";
+import { setCookie, getCookie, hasCookie } from "cookies-next";
 
-const authToken = getCookie("authToken");
+let authUser: { status: string; token: string } | undefined;
+
+if (hasCookie("userAuth")) {
+  authUser = JSON.parse(getCookie("userAuth") as string);
+} else {
+  authUser = undefined;
+}
+
+console.log({ authUser });
 
 const base_url = "https://smartup-api.herokuapp.com/api/v2/";
 const smartup_institution_id = "715ddce7-48b1-4243-a329-1140195b06b8";
@@ -13,12 +20,12 @@ export const user_id = "54486a85-cd9f-400d-ab4f-f097ca905903";
 export const fetchData = async () => {
   try {
     const response = await fetch(
-      `${base_url}/show_user_info?user_id=${user_id}`,
+      `${base_url}show_user_info?user_id=${user_id}`,
       {
         method: "POST", // *GET, POST, PUT, DELETE, etc.
         headers: {
-          authorization: "sutSnU2pzm_eSM9DDzr8",
-          // authorization: authToken,
+          // authorization: "sutSnU2pzm_eSM9DDzr8",
+          authorization: authUser ? authUser.token : "",
           "Content-Type": "application/json",
         },
       },
@@ -40,12 +47,12 @@ export const fetchData = async () => {
 export const fetchClassesData = async () => {
   try {
     const response = await fetch(
-      `${base_url}/student_classes_index?institution_id=${smartup_institution_id}&user_id=${user_id}`,
+      `${base_url}student_classes_index?institution_id=${smartup_institution_id}&user_id=${user_id}`,
       {
         method: "POST",
         headers: {
-          // authorization_key: "teqcYUap3VSx5eCwy8cw",
-          authorization: "sutSnU2pzm_eSM9DDzr8",
+          // authorization: "sutSnU2pzm_eSM9DDzr8",
+          authorization: authUser ? authUser.token : "",
           "Content-Type": "application/json",
         },
       },
@@ -67,12 +74,13 @@ export const fetchClassesData = async () => {
 export const fetchSubjectData = async () => {
   try {
     const response = await fetch(
-      `${base_url}/exam_body_courses?institution_id=${smartup_institution_id}`,
+      `${base_url}exam_body_courses?institution_id=${smartup_institution_id}`,
       {
         method: "POST",
         headers: {
           // authorization_key: "teqcYUap3VSx5eCwy8cw",
-          authorization: "sutSnU2pzm_eSM9DDzr8",
+          // authorization: "sutSnU2pzm_eSM9DDzr8",
+          authorization: authUser ? authUser.token : "",
           "Content-Type": "application/json",
         },
       },
@@ -97,7 +105,8 @@ export const fetchTopic = async (course_slug: string) => {
       method: "GET",
       headers: {
         // authorization_key: "teqcYUap3VSx5eCwy8cw",
-        authorization: "sutSnU2pzm_eSM9DDzr8",
+        // authorization: "sutSnU2pzm_eSM9DDzr8",
+        authorization: authUser ? authUser.token : "",
         "Content-Type": "application/json",
       },
     });
@@ -123,7 +132,8 @@ export const fetchQuizByTopic = async (
     {
       method: "POST",
       headers: {
-        authorization: "sutSnU2pzm_eSM9DDzr8",
+        // authorization: "sutSnU2pzm_eSM9DDzr8",
+        authorization: authUser ? authUser.token : "",
         "Content-Type": "application/json",
       },
     },
@@ -147,7 +157,8 @@ export const fetchClasstData = async () => {
         method: "POST",
         headers: {
           // authorization_key: "teqcYUap3VSx5eCwy8cw",
-          authorization: "sutSnU2pzm_eSM9DDzr8",
+          // authorization: "sutSnU2pzm_eSM9DDzr8",
+          authorization: authUser ? authUser.token : "",
           "Content-Type": "application/json",
         },
       },
@@ -194,7 +205,8 @@ export const SubmitQuizData = async ({
     const response = await fetch(`${base_url}tests`, {
       method: "POST",
       headers: {
-        authorization: "sutSnU2pzm_eSM9DDzr8",
+        // authorization: "sutSnU2pzm_eSM9DDzr8",
+        authorization: authUser ? authUser.token : "",
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
@@ -233,7 +245,8 @@ export const fetchSyllabusData = async () => {
         method: "POST",
         headers: {
           // authorization_key: "teqcYUap3VSx5eCwy8cw",
-          authorization: "sutSnU2pzm_eSM9DDzr8",
+          // authorization: "sutSnU2pzm_eSM9DDzr8",
+          authorization: authUser ? authUser.token : "",
           "Content-Type": "application/json",
         },
       },
@@ -257,7 +270,8 @@ export const fetchStudentTests = async () => {
   const options = {
     method: "POST",
     headers: {
-      authorization: "sutSnU2pzm_eSM9DDzr8",
+      // authorization: "sutSnU2pzm_eSM9DDzr8",
+      authorization: authUser ? authUser.token : "",
       "Content-Type": "application/json",
     },
   };
@@ -269,7 +283,8 @@ export const fetchTestResult = async (test_id: string) => {
   const options = {
     method: "POST",
     headers: {
-      authorization: "sutSnU2pzm_eSM9DDzr8",
+      // authorization: "sutSnU2pzm_eSM9DDzr8",
+      authorization: authUser ? authUser.token : "",
       "Content-Type": "application/json",
     },
   };
@@ -294,10 +309,10 @@ export const fetchTestResult = async (test_id: string) => {
 //     const data = await response.json();
 
 //     // Assuming `data.user` contains the authentication token
-//     const authToken = data.user.authentication_token;
+//     const authUser = data.user.authentication_token;
 
 //     // Store the authentication token in localStorage or cookies
-//     localStorage.setItem("authToken", authToken);
+//     localStorage.setItem("authUser", authUser);
 
 //     return data;
 //   } catch (error: any) {
@@ -324,7 +339,7 @@ export const fetchTestResult = async (test_id: string) => {
 //     const data = await response.json();
 
 //     // Store the authentication token and status in cookies
-//     setCookie("authToken", data.user.authentication_token, {
+//     setCookie("authUser", data.user.authentication_token, {
 //       maxAge: 60 * 60 * 24 * 7, // 1 week
 //       path: "/",
 //     });
@@ -362,7 +377,7 @@ export const login = async (email: string, password: string) => {
 
     if (data?.user?.authentication_token) {
       // Store the authentication token and user status in cookies
-      setCookie("authToken", data.user.authentication_token, {
+      setCookie("authUser", data.user.authentication_token, {
         maxAge: 60 * 60 * 24 * 7, // 1 week
         path: "/",
       });
