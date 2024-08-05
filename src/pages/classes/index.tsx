@@ -1,10 +1,5 @@
 import Card from "@/components/rightDashboard/card";
 import React, { useState } from "react";
-import { IoNotificationsCircleOutline } from "react-icons/io5";
-import { fetchSubjectData } from "@/components/utils";
-import Loading from "@/components/loading";
-import { useQuery } from "@tanstack/react-query";
-import SubjectCard from "@/components/modal/subjectModal";
 import Link from "next/link";
 import { CLASS } from "../../../data";
 import Header from "@/components/header";

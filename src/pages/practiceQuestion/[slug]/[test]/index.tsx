@@ -19,13 +19,13 @@ import {
 import { FaCheckCircle } from "react-icons/fa";
 import { GrFormPrevious } from "react-icons/gr";
 import { MdNavigateNext } from "react-icons/md";
-import { fetchQuizByTopic, SubmitQuizData, user_id } from "@/components/utils";
 import { Question } from "@/type/quiz";
 import Loading from "@/components/loading";
 import { cn } from "@/lib/utils";
 import CancelModal from "@/components/modal/cancelModal";
 import { toast } from "react-toastify";
 import { SubmitQuizDataParams } from "@/lib/apiTypes";
+import { fetchQuizByTopic, SubmitQuizData, user_id } from "@/lib/api";
 
 const Test: React.FC = () => {
   const { query, asPath, push } = useRouter();

@@ -6,7 +6,7 @@ import path from "path";
 import React from "react";
 import smart from "../../../public/assets/smart.svg";
 import Loading from "@/components/loading";
-import { fetchSyllabusData } from "@/components/utils";
+import { fetchSyllabusData } from "@/lib/api";
 import { useQuery } from "@tanstack/react-query";
 
 interface syllabus {

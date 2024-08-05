@@ -3,11 +3,11 @@ import { useRouter } from "next/router";
 import { useState, useEffect, useMemo } from "react";
 import BarChart from "@/components/barChat";
 import Loading from "@/components/loading";
-import { fetchStudentTests, fetchTestResult } from "@/components/utils";
 import { IoNotificationsCircleOutline } from "react-icons/io5";
 import { Test, TestResult } from "@/type/testResult";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { fetchStudentTests, fetchTestResult } from "@/lib/api";
 
 export default function Analysis() {
   const { query } = useRouter();

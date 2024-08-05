@@ -1,6 +1,6 @@
 import Loading from "@/components/loading";
 import TopicSubjectResult from "@/components/practiceQuestionComponments/topicSubjectResult";
-import { fetchSubjectData } from "@/components/utils";
+import { fetchSubjectData } from "@/lib/api";
 import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
 import React from "react";

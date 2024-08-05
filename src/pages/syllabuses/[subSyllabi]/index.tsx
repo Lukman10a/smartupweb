@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import { RiArrowDropDownLine, RiArrowDropUpLine } from "react-icons/ri";
 import { FaDotCircle } from "react-icons/fa";
 import Loading from "@/components/loading";
-import { fetchSyllabusData } from "@/components/utils";
+import { fetchSyllabusData } from "@/lib/api";
 import { useQuery } from "@tanstack/react-query";
 
 export default function SubSyllabi() {

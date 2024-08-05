@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { useRouter } from "next/router";
 import { useMutation } from "@tanstack/react-query";
-import { setCookie } from "cookies-next";
-import { login } from "@/components/utils";
 import { UserResponse } from "@/lib/apiTypes";
+import { login } from "@/lib/api";
 
 type FormData = {
   email: string;
