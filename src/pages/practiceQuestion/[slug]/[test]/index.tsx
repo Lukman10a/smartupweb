@@ -19,19 +19,13 @@ import {
 import { FaCheckCircle } from "react-icons/fa";
 import { GrFormPrevious } from "react-icons/gr";
 import { MdNavigateNext } from "react-icons/md";
-import {
-  fetchQuizByTopic,
-  SubmitQuizData,
-  SubmitQuizDataParams,
-  user_id,
-} from "@/components/utils";
+import { fetchQuizByTopic, SubmitQuizData, user_id } from "@/components/utils";
 import { Question } from "@/type/quiz";
 import Loading from "@/components/loading";
 import { cn } from "@/lib/utils";
 import CancelModal from "@/components/modal/cancelModal";
-import Link from "next/link";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
+import { SubmitQuizDataParams } from "@/lib/apiTypes";
 
 const Test: React.FC = () => {
   const { query, asPath, push } = useRouter();
@@ -285,7 +279,6 @@ const Test: React.FC = () => {
               <p> {mutation.isPending ? "Submitting" : "All set, submit"} </p>
               {/* </Link> */}
             </button>
-            <ToastContainer />
           </section>
         </div>
       )}

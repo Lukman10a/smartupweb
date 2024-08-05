@@ -1,304 +1,62 @@
+import axios, { AxiosRequestConfig } from "axios";
 import { Question } from "@/type/quiz";
 import { TestResult } from "@/type/testResult";
 import { queueRequest } from "./apiManagement";
 import { setCookie, getCookie, hasCookie } from "cookies-next";
+import { SubmitQuizDataParams, UserResponse } from "@/lib/apiTypes";
 
+// Retrieve user authentication info from cookies
 let authUser: { status: string; token: string } | undefined;
-
-if (hasCookie("userAuth")) {
-  authUser = JSON.parse(getCookie("userAuth") as string);
-} else {
-  authUser = undefined;
-}
-
-console.log({ authUser });
 
 const base_url = "https://smartup-api.herokuapp.com/api/v2/";
 const smartup_institution_id = "715ddce7-48b1-4243-a329-1140195b06b8";
 export const user_id = "54486a85-cd9f-400d-ab4f-f097ca905903";
 
-export const fetchData = async () => {
-  try {
-    const response = await fetch(
-      `${base_url}show_user_info?user_id=${user_id}`,
-      {
-        method: "POST", // *GET, POST, PUT, DELETE, etc.
-        headers: {
-          authorization: authUser ? authUser.token : "",
-          "Content-Type": "application/json",
-        },
-      },
-    );
+// Create an Axios instance with default config
+const axiosInstance = axios.create({
+  baseURL: base_url,
+  headers: {
+    Authorization: authUser ? authUser.token : "",
+    "Content-Type": "application/json",
+  },
+});
 
-    if (!response.ok) {
-      console.log({ response });
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
+// Add a request interceptor to include the authorization token from the cookie
+axiosInstance.interceptors.request.use(
+  (config) => {
+    // let authUser: { status: string; token: string } | undefined;
 
-    const data = await response.json();
-
-    return data;
-  } catch (error: any) {
-    throw new Error(`Fetch error: ${error.message}`);
-  }
-};
-
-export const fetchClassesData = async () => {
-  try {
-    const response = await fetch(
-      `${base_url}student_classes_index?institution_id=${smartup_institution_id}&user_id=${user_id}`,
-      {
-        method: "POST",
-        headers: {
-          authorization: authUser ? authUser.token : "",
-          "Content-Type": "application/json",
-        },
-      },
-    );
-
-    if (!response.ok) {
-      console.log({ response });
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-
-    const data = await response.json();
-
-    return data;
-  } catch (error: any) {
-    throw new Error(`Fetch error: ${error.message}`);
-  }
-};
-
-export const fetchSubjectData = async () => {
-  try {
-    const response = await fetch(
-      `${base_url}exam_body_courses?institution_id=${smartup_institution_id}`,
-      {
-        method: "POST",
-        headers: {
-          authorization: authUser ? authUser.token : "",
-          "Content-Type": "application/json",
-        },
-      },
-    );
-
-    if (!response.ok) {
-      console.log({ response });
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-
-    const data = await response.json();
-
-    return data;
-  } catch (error: any) {
-    throw new Error(`Fetch error: ${error.message}`);
-  }
-};
-
-export const fetchTopic = async (course_slug: string) => {
-  try {
-    const response = await fetch(`${base_url}courses/${course_slug}/topics`, {
-      method: "GET",
-      headers: {
-        authorization: authUser ? authUser.token : "",
-        "Content-Type": "application/json",
-      },
-    });
-
-    if (!response.ok) {
-      // console.log({ response });
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-
-    const data = await response.json();
-
-    return data;
-  } catch (error: any) {
-    throw new Error(`Fetch error: ${error.message}`);
-  }
-};
-
-export const fetchQuizByTopic = async (
-  topic_id: string,
-): Promise<Question[]> => {
-  const response = await fetch(
-    `${base_url}topic_questions?topic_id=${topic_id}`,
-    {
-      method: "POST",
-      headers: {
-        authorization: authUser ? authUser.token : "",
-        "Content-Type": "application/json",
-      },
-    },
-  );
-
-  if (!response.ok) {
-    console.log(response);
-    throw new Error(`HTTP error! Status: ${response.status}`);
-  }
-
-  return response.json();
-};
-
-// FETCH DATA FOR THE CLASS SIDE BAR
-
-export const fetchClasstData = async () => {
-  try {
-    const response = await fetch(
-      `${base_url}student_classes_index?institution_id=${smartup_institution_id}&user_id=${user_id}`,
-      {
-        method: "POST",
-        headers: {
-          authorization: authUser ? authUser.token : "",
-          "Content-Type": "application/json",
-        },
-      },
-    );
-
-    if (!response.ok) {
-      console.log({ response });
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-
-    const data = await response.json();
-
-    return data;
-  } catch (error: any) {
-    throw new Error(`Fetch error: ${error.message}`);
-  }
-};
-
-// SUBMIT QUIZ FETCH
-interface QuestionAndOption {
-  question_id: string;
-  answer_option_id: string;
-  correct_answer_option_id: string;
-}
-
-export interface SubmitQuizDataParams {
-  topic_id: string;
-  course_id: string;
-  institution_id: string;
-  user_id: string;
-  question_and_options: QuestionAndOption[];
-  score: number;
-}
-
-export const SubmitQuizData = async ({
-  topic_id,
-  course_id,
-  institution_id,
-  user_id,
-  question_and_options,
-  score,
-}: SubmitQuizDataParams) => {
-  try {
-    const response = await fetch(`${base_url}tests`, {
-      method: "POST",
-      headers: {
-        authorization: authUser ? authUser.token : "",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        test: {
-          topic_id,
-          course_id,
-          institution_id,
-          user_id,
-          question_and_options,
-          score,
-        },
-      }),
-    });
-
-    if (!response.ok) {
-      console.error({ response });
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    if (error instanceof Error) {
-      throw new Error(`Fetch error: ${error.message}`);
+    if (hasCookie("userAuth")) {
+      authUser = JSON.parse(getCookie("userAuth") as string);
     } else {
-      throw new Error("An unknown error occurred");
+      authUser = undefined;
     }
-  }
-};
-
-export const fetchSyllabusData = async () => {
-  try {
-    const response = await fetch(
-      `${base_url}class_syllable_info?study_group_id=a260380e-a6b1-4916-b01b-043a2ae57350`,
-      {
-        method: "POST",
-        headers: {
-          authorization: authUser ? authUser.token : "",
-          "Content-Type": "application/json",
-        },
-      },
-    );
-
-    if (!response.ok) {
-      console.log({ response });
-      throw new Error(`HTTP error! Status: ${response.status}`);
+    console.log({ authUser });
+    if (authUser && authUser.token) {
+      config.headers["Authorization"] = authUser.token;
     }
 
-    const data = await response.json();
+    return config;
+  },
+  (error) => {
+    // Handle request error
+    return Promise.reject(error);
+  },
+);
 
-    return data;
-  } catch (error: any) {
-    throw new Error(`Fetch error: ${error.message}`);
-  }
-};
-
-export const fetchStudentTests = async () => {
-  const url = `${base_url}student_all_tests_taken?user_id=${user_id}`;
-  const options = {
-    method: "POST",
-    headers: {
-      authorization: authUser ? authUser.token : "",
-      "Content-Type": "application/json",
-    },
-  };
-  return queueRequest(url, options);
-};
-
-export const fetchTestResult = async (test_id: string) => {
-  const url = `${base_url}get_test_result?test_id=${test_id}`;
-  const options = {
-    method: "POST",
-    headers: {
-      authorization: authUser ? authUser.token : "",
-      "Content-Type": "application/json",
-    },
-  };
-  return queueRequest(url, options);
-};
-
-export const login = async (email: string, password: string) => {
+// Login function
+export const login = async (
+  email: string,
+  password: string,
+): Promise<UserResponse> => {
   try {
-    const url = `${base_url}/session?email=${email}&password=${password}`;
-    console.log("Sending login request to:", url); // Debugging log
-
-    const response = await fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
+    const response = await axiosInstance.post<UserResponse>("session", null, {
+      params: { email, password },
     });
 
-    console.log("Response received:", response); // Debugging log
+    const data = response.data;
 
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-
-    const data = await response.json();
-    console.log("Parsed response data:", data); // Debugging log
-
-    if (data?.user?.authentication_token) {
+    if (data?.user?.authentication_token && data.institutions) {
       // Store the authentication token and user status in cookies
       setCookie(
         "userAuth",
@@ -306,7 +64,7 @@ export const login = async (email: string, password: string) => {
           token: data.user.authentication_token,
           status: data.user.status,
           user_id: data.user.id,
-          institution_id: data.user.institution,
+          institution_id: data.institutions[0].id,
         }),
         {
           path: "/",
@@ -321,5 +79,140 @@ export const login = async (email: string, password: string) => {
   } catch (error: any) {
     console.error("Login failed:", error.message);
     throw new Error(`Login failed: ${error.message}`);
+  }
+};
+
+// Fetch user data
+export const fetchData = async () => {
+  try {
+    const response = await axiosInstance.post("show_user_info", {
+      user_id,
+    });
+    return response.data;
+  } catch (error: any) {
+    throw new Error(`Fetch error: ${error.message}`);
+  }
+};
+
+// Fetch classes data
+export const fetchClassesData = async () => {
+  try {
+    const response = await axiosInstance.post("student_classes_index", {
+      institution_id: smartup_institution_id,
+      user_id,
+    });
+    return response.data;
+  } catch (error: any) {
+    throw new Error(`Fetch error: ${error.message}`);
+  }
+};
+
+// Fetch subject data
+export const fetchSubjectData = async () => {
+  try {
+    const response = await axiosInstance.post("exam_body_courses", {
+      institution_id: smartup_institution_id,
+    });
+    return response.data;
+  } catch (error: any) {
+    throw new Error(`Fetch error: ${error.message}`);
+  }
+};
+
+// Fetch topic data by course slug
+export const fetchTopic = async (course_slug: string) => {
+  try {
+    const response = await axiosInstance.get(`courses/${course_slug}/topics`);
+    return response.data;
+  } catch (error: any) {
+    throw new Error(`Fetch error: ${error.message}`);
+  }
+};
+
+// Fetch quiz questions by topic
+export const fetchQuizByTopic = async (
+  topic_id: string,
+): Promise<Question[]> => {
+  try {
+    const response = await axiosInstance.post("topic_questions", {
+      topic_id,
+    });
+    return response.data;
+  } catch (error: any) {
+    throw new Error(`Fetch error: ${error.message}`);
+  }
+};
+
+// Fetch class sidebar data
+export const fetchClasstData = async () => {
+  try {
+    const response = await axiosInstance.post("student_classes_index", {
+      institution_id: smartup_institution_id,
+      user_id,
+    });
+    return response.data;
+  } catch (error: any) {
+    throw new Error(`Fetch error: ${error.message}`);
+  }
+};
+
+export const SubmitQuizData = async (params: SubmitQuizDataParams) => {
+  try {
+    const response = await axiosInstance.post("tests", {
+      test: params,
+    });
+    return response.data;
+  } catch (error: any) {
+    throw new Error(`Fetch error: ${error.message}`);
+  }
+};
+
+// Fetch syllabus data
+export const fetchSyllabusData = async () => {
+  try {
+    const response = await axiosInstance.post("class_syllable_info", {
+      study_group_id: "a260380e-a6b1-4916-b01b-043a2ae57350",
+    });
+    return response.data;
+  } catch (error: any) {
+    throw new Error(`Fetch error: ${error.message}`);
+  }
+};
+
+// Fetch student tests
+export const fetchStudentTests = async () => {
+  try {
+    const response = await queueRequest(
+      `${base_url}student_all_tests_taken?user_id=${user_id}`,
+      {
+        method: "POST",
+        headers: {
+          Authorization: authUser ? authUser.token : "",
+          "Content-Type": "application/json",
+        },
+      },
+    );
+    return response.data;
+  } catch (error: any) {
+    throw new Error(`Fetch error: ${error.message}`);
+  }
+};
+
+// Fetch test result
+export const fetchTestResult = async (test_id: string) => {
+  try {
+    const response = await queueRequest(
+      `${base_url}get_test_result?test_id=${test_id}`,
+      {
+        method: "POST",
+        headers: {
+          Authorization: authUser ? authUser.token : "",
+          "Content-Type": "application/json",
+        },
+      },
+    );
+    return response.data;
+  } catch (error: any) {
+    throw new Error(`Fetch error: ${error.message}`);
   }
 };

@@ -3,16 +3,7 @@ import { useRouter } from "next/router";
 import { useMutation } from "@tanstack/react-query";
 import { setCookie } from "cookies-next";
 import { login } from "@/components/utils";
-
-// Assuming login function returns a Promise with this shape
-export type UserResponse = {
-  user: {
-    authentication_token: string;
-    status: string;
-    id: string;
-    institution: string;
-  };
-};
+import { UserResponse } from "@/lib/apiTypes";
 
 type FormData = {
   email: string;
