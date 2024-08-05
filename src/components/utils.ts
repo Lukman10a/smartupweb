@@ -24,7 +24,6 @@ export const fetchData = async () => {
       {
         method: "POST", // *GET, POST, PUT, DELETE, etc.
         headers: {
-          // authorization: "sutSnU2pzm_eSM9DDzr8",
           authorization: authUser ? authUser.token : "",
           "Content-Type": "application/json",
         },
@@ -51,7 +50,6 @@ export const fetchClassesData = async () => {
       {
         method: "POST",
         headers: {
-          // authorization: "sutSnU2pzm_eSM9DDzr8",
           authorization: authUser ? authUser.token : "",
           "Content-Type": "application/json",
         },
@@ -78,8 +76,6 @@ export const fetchSubjectData = async () => {
       {
         method: "POST",
         headers: {
-          // authorization_key: "teqcYUap3VSx5eCwy8cw",
-          // authorization: "sutSnU2pzm_eSM9DDzr8",
           authorization: authUser ? authUser.token : "",
           "Content-Type": "application/json",
         },
@@ -104,8 +100,6 @@ export const fetchTopic = async (course_slug: string) => {
     const response = await fetch(`${base_url}courses/${course_slug}/topics`, {
       method: "GET",
       headers: {
-        // authorization_key: "teqcYUap3VSx5eCwy8cw",
-        // authorization: "sutSnU2pzm_eSM9DDzr8",
         authorization: authUser ? authUser.token : "",
         "Content-Type": "application/json",
       },
@@ -132,7 +126,6 @@ export const fetchQuizByTopic = async (
     {
       method: "POST",
       headers: {
-        // authorization: "sutSnU2pzm_eSM9DDzr8",
         authorization: authUser ? authUser.token : "",
         "Content-Type": "application/json",
       },
@@ -156,8 +149,6 @@ export const fetchClasstData = async () => {
       {
         method: "POST",
         headers: {
-          // authorization_key: "teqcYUap3VSx5eCwy8cw",
-          // authorization: "sutSnU2pzm_eSM9DDzr8",
           authorization: authUser ? authUser.token : "",
           "Content-Type": "application/json",
         },
@@ -205,7 +196,6 @@ export const SubmitQuizData = async ({
     const response = await fetch(`${base_url}tests`, {
       method: "POST",
       headers: {
-        // authorization: "sutSnU2pzm_eSM9DDzr8",
         authorization: authUser ? authUser.token : "",
         "Content-Type": "application/json",
       },
@@ -244,8 +234,6 @@ export const fetchSyllabusData = async () => {
       {
         method: "POST",
         headers: {
-          // authorization_key: "teqcYUap3VSx5eCwy8cw",
-          // authorization: "sutSnU2pzm_eSM9DDzr8",
           authorization: authUser ? authUser.token : "",
           "Content-Type": "application/json",
         },
@@ -270,7 +258,6 @@ export const fetchStudentTests = async () => {
   const options = {
     method: "POST",
     headers: {
-      // authorization: "sutSnU2pzm_eSM9DDzr8",
       authorization: authUser ? authUser.token : "",
       "Content-Type": "application/json",
     },
@@ -283,76 +270,12 @@ export const fetchTestResult = async (test_id: string) => {
   const options = {
     method: "POST",
     headers: {
-      // authorization: "sutSnU2pzm_eSM9DDzr8",
       authorization: authUser ? authUser.token : "",
       "Content-Type": "application/json",
     },
   };
   return queueRequest(url, options);
 };
-
-// export const login = async (email: string, password: string) => {
-//   try {
-//     const url = `${base_url}/session?email=${email}&password=${password}`;
-//     const response = await fetch(url, {
-//       method: "POST",
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//     });
-
-//     if (!response.ok) {
-//       console.log({ response });
-//       throw new Error(`HTTP error! Status: ${response.status}`);
-//     }
-
-//     const data = await response.json();
-
-//     // Assuming `data.user` contains the authentication token
-//     const authUser = data.user.authentication_token;
-
-//     // Store the authentication token in localStorage or cookies
-//     localStorage.setItem("authUser", authUser);
-
-//     return data;
-//   } catch (error: any) {
-//     throw new Error(`Fetch error: ${error.message}`);
-//   }
-// };
-
-// export const login = async (email: string, password: string) => {
-//   try {
-//     const url = `${base_url}/session?email=${email}&password=${password}`;
-//     const response = await fetch(url, {
-//       method: "POST",
-//       headers: {
-//         authorization: "bJRSxDh1QUy1LwyxXg8x",
-//         "Content-Type": "application/json",
-//       },
-//     });
-
-//     if (!response.ok) {
-//       console.log({ response });
-//       throw new Error(`HTTP error! Status: ${response.status}`);
-//     }
-
-//     const data = await response.json();
-
-//     // Store the authentication token and status in cookies
-//     setCookie("authUser", data.user.authentication_token, {
-//       maxAge: 60 * 60 * 24 * 7, // 1 week
-//       path: "/",
-//     });
-//     setCookie("userStatus", data.user.status, {
-//       maxAge: 60 * 60 * 24 * 7, // 1 week
-//       path: "/",
-//     });
-
-//     return data;
-//   } catch (error: any) {
-//     throw new Error(`Fetch error: ${error.message}`);
-//   }
-// };
 
 export const login = async (email: string, password: string) => {
   try {
@@ -377,14 +300,19 @@ export const login = async (email: string, password: string) => {
 
     if (data?.user?.authentication_token) {
       // Store the authentication token and user status in cookies
-      setCookie("authUser", data.user.authentication_token, {
-        maxAge: 60 * 60 * 24 * 7, // 1 week
-        path: "/",
-      });
-      setCookie("userStatus", data.user.status, {
-        maxAge: 60 * 60 * 24 * 7, // 1 week
-        path: "/",
-      });
+      setCookie(
+        "userAuth",
+        JSON.stringify({
+          token: data.user.authentication_token,
+          status: data.user.status,
+          user_id: data.user.id,
+          institution_id: data.user.institution,
+        }),
+        {
+          path: "/",
+          maxAge: 60 * 60 * 24 * 7, // 1 week
+        },
+      );
 
       return data;
     } else {

@@ -1,15 +1,46 @@
-import { useRouter } from "next/router";
 import React, { useState } from "react";
-import { login } from "@../../../src/components/utils";
+import { useRouter } from "next/router";
+import { useMutation } from "@tanstack/react-query";
 import { setCookie } from "cookies-next";
+import { login } from "@/components/utils";
+
+// Assuming login function returns a Promise with this shape
+export type UserResponse = {
+  user: {
+    authentication_token: string;
+    status: string;
+    id: string;
+    institution: string;
+  };
+};
+
+type FormData = {
+  email: string;
+  password: string;
+};
 
 export default function LoginPage() {
-  const [formData, setFormData] = useState({
+  const router = useRouter();
+  const [formData, setFormData] = useState<FormData>({
     email: "",
     password: "",
   });
 
-  const router = useRouter();
+  const mutation = useMutation({
+    mutationFn: ({ email, password }: FormData) =>
+      login(email, password) as Promise<UserResponse>,
+    onSuccess: (response) => {
+      if (response?.user) {
+        router.push("/dashboard");
+      } else {
+        alert("Login failed, please try again.");
+      }
+    },
+    onError: (error: unknown) => {
+      console.error("Login failed:", error);
+      alert("Login failed, please try again.");
+    },
+  });
 
   const handleData = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -19,25 +50,9 @@ export default function LoginPage() {
     }));
   };
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    try {
-      const response = await login(formData.email, formData.password);
-      if (response?.user) {
-        // Store the user's authentication token and status in cookies
-        setCookie("userAuth", {
-          token: response.user.authentication_token,
-          status: response.user.status,
-        });
-
-        console.log(response);
-      } else {
-        throw new Error("Login failed");
-      }
-    } catch (error) {
-      console.error("Login failed:", error);
-      alert("Login failed, please try again.");
-    }
+    mutation.mutate({ email: formData.email, password: formData.password });
   };
 
   return (
@@ -63,9 +78,14 @@ export default function LoginPage() {
           />
           <button
             type="submit"
-            className="w-full rounded-md bg-blue-500 p-2 text-white transition duration-300 hover:bg-blue-600"
+            className={`w-full rounded-md p-2 text-white transition duration-300 ${
+              mutation.isPending
+                ? "bg-gray-500"
+                : "bg-blue-500 hover:bg-blue-600"
+            }`}
+            disabled={mutation.isPending}
           >
-            Login
+            {mutation.isPending ? "Logging in..." : "Login"}
           </button>
         </form>
       </div>
