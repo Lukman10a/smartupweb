@@ -1,7 +1,5 @@
 import Header from "@/components/header";
 import CancelExamModal from "@/components/modal/cancelExamModal";
-import CancelModal from "@/components/modal/cancelModal";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
 

@@ -1,7 +1,7 @@
 import Card from "@/components/rightDashboard/card";
 import React, { useState } from "react";
 import Link from "next/link";
-import { MOCK } from "../../../data";
+import { MOCK } from "../../../../data";
 import Header from "@/components/header";
 import ResultButton from "@/components/resultButton";
 

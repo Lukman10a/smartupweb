@@ -8,7 +8,6 @@ import { useQuery } from "@tanstack/react-query";
 import Card from "@/components/rightDashboard/card";
 import SummaryContainer from "@/components/rightDashboard/cardContainer";
 import Loading from "@/components/loading";
-import Image from "next/image";
 import LessonVideos from "@/components/lessonVideos";
 import Link from "next/link";
 import { fetchClassesData, fetchData } from "@/lib/api";

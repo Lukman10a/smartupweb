@@ -1,9 +1,9 @@
 import Card from "@/components/rightDashboard/card";
 import React, { useState } from "react";
 import Link from "next/link";
-import { CLASS } from "../../../data";
 import Header from "@/components/header";
 import ResultButton from "@/components/resultButton";
+import { CLASS } from "../../../../data";
 
 type ClassActivitiesProps = {
   titleFromQuery?: boolean;

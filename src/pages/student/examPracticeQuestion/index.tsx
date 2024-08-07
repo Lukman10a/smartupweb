@@ -1,8 +1,8 @@
 import Header from "@/components/header";
 import Image from "next/image";
 import React from "react";
-import alevel from "../../../public/assets/alevel.svg";
-import waec from "../../../public/assets/waec.svg";
+import alevel from "../../../../public/assets/alevel.svg";
+import waec from "../../../../public/assets/waec.svg";
 import Link from "next/link";
 
 type ExamPracticeQuestionProps = {

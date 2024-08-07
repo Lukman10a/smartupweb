@@ -1,6 +1,5 @@
 import Header from "@/components/header";
 import ResultButton from "@/components/resultButton";
-import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import path from "path";

@@ -7,25 +7,33 @@ interface LeftDataItem {
 }
 
 export const LEFT_DATA: LeftDataItem[] = [
-  { title: "Dashboard", logo: "/assets/dashboard.svg", slug: "/dashboard" },
-  { title: "Profile", logo: "/assets/profile.svg", slug: "/profile" },
-  { title: "Classes", logo: "/assets/class.svg", slug: "/classes" },
-  { title: "Mock", logo: "/assets/mock.svg", slug: "/mock" },
-  { title: "Lesson videos", logo: "/assets/video.svg", slug: "/lessonVideos" },
+  {
+    title: "Dashboard",
+    logo: "/assets/dashboard.svg",
+    slug: "/student/dashboard",
+  },
+  { title: "Profile", logo: "/assets/profile.svg", slug: "/student/profile" },
+  { title: "Classes", logo: "/assets/class.svg", slug: "/student/classes" },
+  { title: "Mock", logo: "/assets/mock.svg", slug: "/student/mock" },
+  {
+    title: "Lesson videos",
+    logo: "/assets/video.svg",
+    slug: "/student/lessonVideos",
+  },
   {
     title: "SmartUp syllabus",
     logo: "/assets/smartup.svg",
-    slug: "/syllabuses",
+    slug: "/student/syllabuses",
   },
   {
     title: "Practice questions",
     logo: "/assets/practice.svg",
-    slug: "/practiceQuestion",
+    slug: "/student/practiceQuestion",
   },
   {
     title: "Exam practice questions",
     logo: "/assets/exam.svg",
-    slug: "/examPracticeQuestion",
+    slug: "/student/examPracticeQuestion",
   },
 ];
 
@@ -33,22 +41,22 @@ export const INSTITUTION_SIDEBAR = [
   {
     title: "Students",
     logo: "/assets/exam.svg",
-    slug: "/institutionPages/student",
+    slug: "/institution/student",
   },
   {
     title: "Educator",
     logo: "/assets/educator.svg",
-    slug: "/institutionPages/educator",
+    slug: "/institution/educator",
   },
   {
     title: "Smartup",
     logo: "/assets/smart-up.svg",
-    slug: "/institutionPages/smartup",
+    slug: "/institution/smartup",
   },
   {
     title: "Performance visualization",
     logo: "/assets/performance.svg",
-    slug: "/institutionPages/performance",
+    slug: "/institution/performance",
   },
 ];
 

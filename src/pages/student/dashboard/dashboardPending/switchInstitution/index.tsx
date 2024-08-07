@@ -1,15 +1,10 @@
-import { title } from "process";
 import React, { useState } from "react";
-import {
-  IoChevronBackCircleOutline,
-  IoNotificationsCircleOutline,
-} from "react-icons/io5";
+import { IoChevronBackCircleOutline } from "react-icons/io5";
 import { FiPlus, FiRefreshCw } from "react-icons/fi";
 import alevel from "@/../../public/assets/alevel.svg";
 import smartmedal from "@/../../public/assets/smartmedal.svg";
 import waec from "@/../../public/assets/waec.svg";
 import Image from "next/image";
-import Link from "next/link";
 
 export default function SwitchInstitution() {
   const INSTITUTION = [

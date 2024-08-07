@@ -1,11 +1,11 @@
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
-import { fetchTopic } from "@/components/utils";
 import Loading from "@/components/loading";
 import { useQuery } from "@tanstack/react-query";
 import { useDispatch } from "react-redux"; // Import useDispatch
 import { setTopicNames } from "@/store/quizSlice"; // Import setTopicNames
 import TopicSubjectResult from "@/components/practiceQuestionComponments/topicSubjectResult";
+import { fetchTopic } from "@/lib/api";
 
 export default function Practice() {
   const { query, asPath } = useRouter();

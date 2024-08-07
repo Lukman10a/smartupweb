@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import path from "path";
 import React from "react";
-import smart from "../../../public/assets/smart.svg";
+import smart from "../../../../public/assets/smart.svg";
 import Loading from "@/components/loading";
 import { fetchSyllabusData } from "@/lib/api";
 import { useQuery } from "@tanstack/react-query";

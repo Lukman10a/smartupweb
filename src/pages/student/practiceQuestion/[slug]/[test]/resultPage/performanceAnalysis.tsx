@@ -5,12 +5,12 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/store";
 import BarChart from "@/components/barChat";
 import Loading from "@/components/loading";
-import { fetchStudentTests, fetchTestResult } from "@/components/utils";
 import { IoNotificationsCircleOutline } from "react-icons/io5";
 import { Test, TestResult } from "@/type/testResult";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { after } from "node:test";
+import { fetchStudentTests, fetchTestResult } from "@/lib/api";
 
 export default function PerformanceAnalysis() {
   const { query } = useRouter();
