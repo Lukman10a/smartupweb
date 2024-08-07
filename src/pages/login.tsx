@@ -21,7 +21,7 @@ export default function LoginPage() {
       login(email, password) as Promise<UserResponse>,
     onSuccess: (response) => {
       if (response?.user) {
-        router.push("/dashboard");
+        // router.push("/dashboard");
       } else {
         alert("Login failed, please try again.");
       }
