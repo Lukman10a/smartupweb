@@ -21,7 +21,17 @@ export default function LoginPage() {
       login(email, password) as Promise<UserResponse>,
     onSuccess: (response) => {
       if (response?.user) {
-        // router.push("/dashboard");
+        // Determine the route based on the user's status
+        const { status } = response.user;
+
+        if (status === "student") {
+          router.push("/student/dashboard");
+        } else if (status === "institution") {
+          router.push("/institution/dashboard");
+        } else {
+          // Handle other statuses or default route
+          router.push("/");
+        }
       } else {
         alert("Login failed, please try again.");
       }

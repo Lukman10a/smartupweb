@@ -21,7 +21,6 @@ export const middleware = (req: NextRequest) => {
     institution: ["/institution"],
     educator: ["/educator"],
     guardians: ["/guardians"],
-    institutionPages: ["/institutionPages"],
   };
 
   // Check if the current path is allowed for the user status
