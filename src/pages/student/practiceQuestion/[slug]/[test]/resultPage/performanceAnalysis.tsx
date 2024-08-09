@@ -44,6 +44,8 @@ export default function PerformanceAnalysis() {
         ),
   });
 
+  console.log({ studentTests });
+
   const testResults = useQueries({
     queries: studentTests
       ? studentTests.map((test: Test) => ({

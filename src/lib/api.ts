@@ -1,4 +1,4 @@
-import axios, { AxiosRequestConfig } from "axios";
+import axios, { AxiosError, AxiosRequestConfig } from "axios";
 import { Question } from "@/type/quiz";
 import { TestResult } from "@/type/testResult";
 import { setCookie, getCookie, hasCookie } from "cookies-next";
@@ -193,8 +193,14 @@ export const fetchStudentTests = async () => {
       },
     );
     return response.data;
-  } catch (error: any) {
-    throw new Error(`Fetch error: ${error.message}`);
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      console.error("Error fetching student tests:", error.message);
+      // Optionally, return a default value or rethrow the error after logging
+      return [];
+    } else {
+      throw error; // Rethrow if the error is not an instance of AxiosError
+    }
   }
 };
 

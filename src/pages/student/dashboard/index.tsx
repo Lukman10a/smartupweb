@@ -38,7 +38,7 @@ export default function Dashboard() {
       <div className="flex items-center justify-between">
         <Link
           href={{
-            pathname: `dashboard/dashboardPending`,
+            pathname: `/student/dashboard/dashboardPending`,
           }}
         >
           <p className="text-2xl font-medium">Dashboard</p>

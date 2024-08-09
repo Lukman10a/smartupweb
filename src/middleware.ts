@@ -17,40 +17,50 @@ export const middleware = (req: NextRequest) => {
 
   // Define allowed routes for each user type
   const routes = {
-    student: ["/dashboard", "/student"],
+    student: ["/student"],
     institution: ["/institution"],
-    educator: ["/educator"],
-    guardians: ["/guardians"],
   };
 
-  // Check if the current path is allowed for the user status
-  const isAllowed = Object.entries(routes).some(([status, paths]) => {
-    return (
-      authUser?.status === status &&
-      paths.some((path) => url.pathname.startsWith(path))
-    );
-  });
-
-  // Exclude login path from the redirect logic to avoid an infinite loop
+  // Allow access to the login page
   if (url.pathname === "/login") {
-    if (isAllowed) {
-      // Redirect to dashboard if authenticated and trying to access login
-      return NextResponse.redirect(new URL("/dashboard", req.url));
-    } else {
-      return NextResponse.next(); // Allow access to login
-    }
+    return NextResponse.next(); // Let the request proceed to /login
   }
-  console.log({ isAllowed, userAuth });
 
-  // If not allowed, redirect to login page
-  if (!isAllowed) {
-    url.pathname = "/login";
-    return NextResponse.redirect(url);
+  // Redirect authenticated users trying to access the home page to their dashboard
+  if (url.pathname === "/" && authUser) {
+    const redirectPath =
+      authUser.status === "student"
+        ? "/student/dashboard"
+        : "/institution/dashboard";
+    return NextResponse.redirect(new URL(redirectPath, req.url));
+  }
+
+  // Check if the current path is allowed for the user's status
+  const isAllowed =
+    authUser &&
+    routes[authUser.status]?.some((path: string) =>
+      url.pathname.startsWith(path),
+    );
+
+  // Redirect to the appropriate dashboard if the route is not allowed
+  if (!isAllowed && authUser) {
+    const redirectPath =
+      authUser.status === "student"
+        ? "/student/dashboard"
+        : "/institution/dashboard";
+    return NextResponse.redirect(new URL(redirectPath, req.url));
+  }
+
+  // Redirect unauthenticated users trying to access protected routes back to home
+  if (!authUser && url.pathname !== "/") {
+    return NextResponse.redirect(new URL("/", req.url));
   }
 
   return NextResponse.next();
 };
 
 export const config = {
-  matcher: ["/((?!api|_next/static|_next/image|.*\\.png$).*)"],
+  matcher: [
+    "/((?!api|_next/static|_next/image|.*\\.png$|.*\\.jpg$|.*\\.jpeg$|.*\\.gif$|.*\\.webp$|.*\\.svg$).*)",
+  ],
 };

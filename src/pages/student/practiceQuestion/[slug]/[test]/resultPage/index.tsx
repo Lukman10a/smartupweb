@@ -60,7 +60,7 @@ export default function ResultPage() {
               <button className="rounded-md bg-[#D32D4426] p-2 text-[#D32D44]">
                 <p>View course video</p>
               </button>
-              <Link href={`/practiceQuestion`}>
+              <Link href={`/student/practiceQuestion`}>
                 <button className="rounded-md bg-[#D32D44] p-2 text-white">
                   <p>Take another test</p>
                 </button>

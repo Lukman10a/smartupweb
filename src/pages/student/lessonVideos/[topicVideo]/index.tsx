@@ -2,7 +2,7 @@ import Header from "@/components/header";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import React from "react";
-import play from "../../../../public/assets/play.svg";
+import play from "../../../../../public/assets/play.svg";
 import Link from "next/link";
 
 export default function TopicVideos() {
@@ -49,14 +49,14 @@ export default function TopicVideos() {
             <Link
               key={video.id}
               href={{
-                pathname: `/lessonVideos/${query.subject}/${video.id}`,
+                pathname: `/student/lessonVideos/${query.subject}/${video.id}`,
                 query: {
                   subject: query.subject,
                   title: video.title,
                   episode: video.episodes,
                 },
               }}
-              as={`/lessonVideos/${query.subject}/${video.id}`}
+              as={`/student/lessonVideos/${query.subject}/${video.id}`}
             >
               <div className="flex flex-col items-center justify-center rounded-md border-2 p-4">
                 <Image src={play} alt={video.title} />

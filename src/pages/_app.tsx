@@ -16,7 +16,7 @@ export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
 
   // List of paths where you don't want to use the Layout
-  const noLayoutPaths = ["/login"];
+  const noLayoutPaths = ["/", "/login"];
 
   const isNoLayoutPath = noLayoutPaths.includes(router.pathname);
 

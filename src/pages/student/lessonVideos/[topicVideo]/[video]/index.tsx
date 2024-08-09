@@ -1,8 +1,6 @@
 import Header from "@/components/header";
 import { useRouter } from "next/router";
 import React from "react";
-import play from "../../../../../public/assets/play.svg";
-import Image from "next/image";
 import LessonVideos from "@/components/lessonVideos";
 
 export default function Video() {

@@ -24,7 +24,10 @@ export default function Others() {
           </p>
         </div>
         <div className="flex items-center gap-2">
-          <Image src={require("../../../../public/assets/cancel.svg")} alt="" />
+          <Image
+            src={require("../../../../../public/assets/cancel.svg")}
+            alt=""
+          />
         </div>
       </div>
 

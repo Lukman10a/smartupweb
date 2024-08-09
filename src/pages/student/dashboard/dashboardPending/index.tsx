@@ -40,7 +40,7 @@ export default function Dashboard() {
             <Link
               // href="dashboard/dashboardPending/switchInstitution"
               href={{
-                pathname: `/dashboard/dashboardPending/switchInstitution`,
+                pathname: `/student/dashboard/dashboardPending/switchInstitution`,
               }}
               className="flex items-center gap-2"
             >

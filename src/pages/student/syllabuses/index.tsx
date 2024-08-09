@@ -58,10 +58,10 @@ export default function Syllabuses() {
         <div className="grid grid-cols-4 place-items-center gap-6 rounded-md bg-white p-3 py-6">
           <Link
             href={{
-              pathname: `/syllabuses/${syllabusData.id}`,
+              pathname: `/student/syllabuses/${syllabusData.id}`,
               query: { subject: syllabusData.summary },
             }}
-            as={`/syllabuses/${syllabusData.id}`}
+            as={`/student/syllabuses/${syllabusData.id}`}
           >
             <button
               className="rounded-md bg-[#F8F9FB] p-6"

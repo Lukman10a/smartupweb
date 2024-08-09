@@ -32,7 +32,7 @@ export default function ClassActivity() {
         <div>
           <div className="flex items-center gap-2 rounded-md bg-[#D32D4426] p-2">
             <Image
-              src={require("../../../../public/assets/people.svg")}
+              src={require("../../../../../public/assets/people.svg")}
               alt=""
             />
             <p className="text-[#D32D44]">10 participants</p>

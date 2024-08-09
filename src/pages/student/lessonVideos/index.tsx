@@ -61,7 +61,7 @@ export default function Classes() {
             {LESSON_VIDEO.map((item) => (
               <Link
                 href={{
-                  pathname: `/lessonVideos/${item.id}`,
+                  pathname: `/student/lessonVideos/${item.id}`,
                   query: { subject: item.subject },
                 }}
                 key={item.id}

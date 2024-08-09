@@ -36,14 +36,14 @@ export default function Classes({ titleFromQuery }: ClassActivitiesProps) {
             {CLASS.map((item) => (
               <Link
                 href={{
-                  pathname: `/classes/[classActivities]`,
+                  pathname: `/student/classes/[classActivities]`,
                   query: {
                     classActivities: item.title,
                     class: item.title,
                     title: "title",
                   },
                 }}
-                as={`/classes/${item.title}`}
+                as={`/student/classes/${item.title}`}
                 key={item.id}
               >
                 <Card

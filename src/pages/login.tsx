@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { useMutation } from "@tanstack/react-query";
 import { UserResponse } from "@/lib/apiTypes";
 import { login } from "@/lib/api";
+import Link from "next/link";
 
 type FormData = {
   email: string;
@@ -89,6 +90,11 @@ export default function LoginPage() {
           </button>
         </form>
       </div>
+      <Link href={"/"} className="py-4">
+        <button className="rounded-md bg-[#D32D44] p-2 text-white">
+          <p className="text-xl font-bold">Return to Home page</p>
+        </button>
+      </Link>
     </div>
   );
 }

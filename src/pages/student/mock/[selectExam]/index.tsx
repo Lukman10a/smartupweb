@@ -1,5 +1,6 @@
 import Header from "@/components/header";
 import ExamCard from "@/components/mockComponents/examCard";
+import ResultButton from "@/components/resultButton";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
@@ -50,14 +51,7 @@ export default function SelectExam() {
           placeholder="Search for courses"
           className="rounded-md bg-[#F8F9FB] p-2"
         />
-        <div className="flex">
-          <div className="flex gap-2 rounded-l-md bg-[#D32D4426] p-2">
-            <p className="text-[#D32D44]">Total tests taken:</p>
-            <p>53</p>
-          </div>
-
-          <p className="rounded-md bg-[#D32D44] p-2 text-white">View results</p>
-        </div>
+        <ResultButton test={50} link={""} />
       </div>
       <div>
         <p className="py-4">Select an exam for {query.selectExam}.</p>
@@ -67,7 +61,7 @@ export default function SelectExam() {
           <Link
             key={item.id}
             href={{
-              pathname: `/mock/[selectExam]${item.slug}`,
+              pathname: `/student/mock/[selectExam]${item.slug}`,
               query: { type: item.title, title: item.title },
             }}
           >

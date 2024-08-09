@@ -40,8 +40,8 @@ const SubjectCard: React.FC<DialogDemoProps> = ({
           </Dialog.Close>
           <Dialog.Close asChild>
             <Link
-              href={`/practiceQuestion/${slug}?subject=${name}`}
-              as={`/practiceQuestion/${slug}`}
+              href={`/student/practiceQuestion/${slug}?subject=${name}`}
+              as={`/student/practiceQuestion/${slug}`}
             >
               <div className="flex flex-col items-center gap-2 rounded-md bg-[#D32D44] p-2 text-white">
                 <Image

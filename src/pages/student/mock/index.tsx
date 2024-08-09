@@ -49,14 +49,14 @@ export default function Classes({ titleFromQuery }: ClassesProps) {
             {MOCK.map((item) => (
               <Link
                 href={{
-                  pathname: `/mock/[selectExam]`,
+                  pathname: `/student/mock/[selectExam]`,
                   query: {
                     selectExam: item.subject,
                     exam: item.subject,
                     // topic:
                   },
                 }}
-                as={`/mock/${item.subject}`}
+                as={`/student/mock/${item.subject}`}
                 key={item.id}
               >
                 <Card
