@@ -1,4 +1,3 @@
-import RightDashboard from "@/components/rightDashboard";
 import Link from "next/link";
 
 export default function Home() {
