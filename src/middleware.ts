@@ -21,9 +21,13 @@ export const middleware = (req: NextRequest) => {
     institution: ["/institution"],
   };
 
-  // Allow access to the login page
-  if (url.pathname === "/login") {
-    return NextResponse.next(); // Let the request proceed to /login
+  // Redirect authenticated users trying to access the login page to their dashboard
+  if (url.pathname === "/login" && authUser) {
+    const redirectPath =
+      authUser.status === "student"
+        ? "/student/dashboard"
+        : "/institution/dashboard";
+    return NextResponse.redirect(new URL(redirectPath, req.url));
   }
 
   // Redirect authenticated users trying to access the home page to their dashboard
@@ -44,6 +48,7 @@ export const middleware = (req: NextRequest) => {
     (isStudentStatus ? routes["student"] : routes["institution"])?.some(
       (path: string) => url.pathname.startsWith(path),
     );
+
   // Redirect to the appropriate dashboard if the route is not allowed
   if (!isAllowed && authUser) {
     const redirectPath =
