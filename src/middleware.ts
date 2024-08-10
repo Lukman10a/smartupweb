@@ -36,12 +36,14 @@ export const middleware = (req: NextRequest) => {
   }
 
   // Check if the current path is allowed for the user's status
+  const isStudentStatus = authUser?.status === "student";
+  const isInstitutionStatus = authUser?.status === "institution";
+
   const isAllowed =
     authUser &&
-    routes[authUser.status]?.some((path: string) =>
-      url.pathname.startsWith(path),
+    (isStudentStatus ? routes["student"] : routes["institution"])?.some(
+      (path: string) => url.pathname.startsWith(path),
     );
-
   // Redirect to the appropriate dashboard if the route is not allowed
   if (!isAllowed && authUser) {
     const redirectPath =
