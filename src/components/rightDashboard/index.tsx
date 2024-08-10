@@ -121,13 +121,13 @@
 //   );
 // }
 
-import Dashboard from "@/pages/dashboard";
-import React from "react";
+// import Dashboard from "@/pages/student/dashboard";
+// import React from "react";
 
-export default function RightDashboard() {
-  return (
-    <div>
-      <Dashboard />
-    </div>
-  );
-}
+// export default function RightDashboard() {
+//   return (
+//     <div>
+//       <Dashboard />
+//     </div>
+//   );
+// }

@@ -20,73 +20,73 @@ export default function CourseSelect() {
       id: 1,
       title: "Mathematics",
       slug: "/mathematics",
-      image: require("../../../../public/assets/jamb.svg"),
+      image: require("../../../../../public/assets/jamb.svg"),
     },
     {
       id: 2,
       title: "English Language",
       slug: "/english",
-      image: require("../../../../public/assets/jamb.svg"),
+      image: require("../../../../../public/assets/jamb.svg"),
     },
     {
       id: 3,
       title: "Chemistry",
       slug: "/chemistry",
-      image: require("../../../../public/assets/jamb.svg"),
+      image: require("../../../../../public/assets/jamb.svg"),
     },
     {
       id: 4,
       title: "Economics",
       slug: "/economics",
-      image: require("../../../../public/assets/jamb.svg"),
+      image: require("../../../../../public/assets/jamb.svg"),
     },
     {
       id: 5,
       title: "Government",
       slug: "/government",
-      image: require("../../../../public/assets/jamb.svg"),
+      image: require("../../../../../public/assets/jamb.svg"),
     },
     {
       id: 6,
       title: "Literature in English",
       slug: "/literature",
-      image: require("../../../../public/assets/jamb.svg"),
+      image: require("../../../../../public/assets/jamb.svg"),
     },
     {
       id: 7,
       title: "Geography",
       slug: "/geography",
-      image: require("../../../../public/assets/jamb.svg"),
+      image: require("../../../../../public/assets/jamb.svg"),
     },
     {
       id: 8,
       title: "Commerce",
       slug: "/commerce",
-      image: require("../../../../public/assets/jamb.svg"),
+      image: require("../../../../../public/assets/jamb.svg"),
     },
     {
       id: 9,
       title: "Financial Account",
       slug: "/finance",
-      image: require("../../../../public/assets/jamb.svg"),
+      image: require("../../../../../public/assets/jamb.svg"),
     },
     {
       id: 10,
       title: "Account",
       slug: "/account",
-      image: require("../../../../public/assets/jamb.svg"),
+      image: require("../../../../../public/assets/jamb.svg"),
     },
     {
       id: 11,
       title: "Physiology",
       slug: "/physiology",
-      image: require("../../../../public/assets/jamb.svg"),
+      image: require("../../../../../public/assets/jamb.svg"),
     },
     {
       id: 12,
       title: "Further Mathematics",
       slug: "/further-mathematics",
-      image: require("../../../../public/assets/jamb.svg"),
+      image: require("../../../../../public/assets/jamb.svg"),
     },
   ];
 
@@ -128,7 +128,7 @@ export default function CourseSelect() {
                 }
               >
                 <Image
-                  src={require("../../../../public/assets/jamb.svg")}
+                  src={require("../../../../../public/assets/jamb.svg")}
                   alt=""
                 />
                 <p className="font-semibold">{item.title}</p>

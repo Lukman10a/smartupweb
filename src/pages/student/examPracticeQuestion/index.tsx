@@ -51,7 +51,7 @@ export default function ExamPracticeQuestion({
             </div>
             <Link
               href={{
-                pathname: `/examPracticeQuestion/${item.title}`,
+                pathname: `/student/examPracticeQuestion/${item.title}`,
                 // query: { title: item.title },
               }}
             >

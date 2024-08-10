@@ -39,12 +39,12 @@ const ExamPracticeModal: React.FC<DialogDemoProps> = ({
           <Dialog.Close asChild>
             <Link
               href={{
-                pathname: `/examPracticeQuestion/${path}${slug}`,
+                pathname: `/student/examPracticeQuestion/${path}${slug}`,
                 query: { title: name, id: 100 },
               }}
               // in case i want the id to show in the url
               // as={`/examPracticeQuestion/${path}${slug}?id=${100}`}
-              as={`/examPracticeQuestion/${path}${slug}`}
+              as={`/student/examPracticeQuestion/${path}${slug}`}
             >
               <div className="flex flex-col items-center gap-2 rounded-md bg-[#D32D44] p-2 text-white">
                 <Image
