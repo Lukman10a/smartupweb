@@ -21,6 +21,18 @@ export const middleware = (req: NextRequest) => {
     institution: ["/institution"],
   };
 
+  // Allow unauthenticated users to access the login page
+  if (url.pathname === "/login") {
+    if (authUser) {
+      const redirectPath =
+        authUser.status === "student"
+          ? "/student/dashboard"
+          : "/institution/dashboard";
+      return NextResponse.redirect(new URL(redirectPath, req.url));
+    }
+    return NextResponse.next();
+  }
+
   // Redirect authenticated users trying to access the login page to their dashboard
   if (url.pathname === "/login" && authUser) {
     const redirectPath =

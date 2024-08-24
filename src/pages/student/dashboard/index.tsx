@@ -50,7 +50,9 @@ export default function Dashboard() {
               Switch Institution
             </p>
           </div>
-          <IoNotificationsCircleOutline size={40} />
+          <Link href={"/student/notification"}>
+            <IoNotificationsCircleOutline size={40} />
+          </Link>
         </div>
       </div>
 
