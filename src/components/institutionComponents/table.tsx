@@ -119,6 +119,7 @@ const Table: React.FC<TableProps> = ({ title }) => {
     setSelectedClass(classItem);
     setIsDropdownOpen(false); // Close the dropdown after selection
   };
+
   return (
     <div className="my-4 rounded-md bg-white p-6">
       <div className="flex items-center justify-between py-4">

@@ -124,3 +124,121 @@ export const MOCK: MockDataItem[] = [
   { subject: "Engineering", noOfExams: "20 participants", id: 7 },
   { subject: "Health Science", noOfExams: "20 participants", id: 8 },
 ];
+
+export const PROFILE = [
+  {
+    id: 1,
+    name: "Adams Benjamin",
+    profileImage: "https://randomuser.me/api/portraits/men/31.jpg",
+    content:
+      "Good afternoon sir, I’m texting to notify you that I have not ...",
+    time: "30 mins ago",
+  },
+  {
+    id: 2,
+    name: "Adams Benjamin",
+    profileImage: "https://randomuser.me/api/portraits/men/31.jpg",
+    content:
+      "Good afternoon sir, I’m texting to notify you that I have not ...",
+    time: "30 hours ago",
+  },
+  {
+    id: 3,
+    name: "Adams Benjamin",
+    profileImage: "https://randomuser.me/api/portraits/men/31.jpg",
+    content:
+      "Good afternoon sir, I’m texting to notify you that I have not ...",
+    time: "04:22 PM",
+  },
+  {
+    id: 4,
+    name: "Veronica Thomas",
+    profileImage: "https://randomuser.me/api/portraits/men/31.jpg",
+    content:
+      "Good afternoon sir, I’m texting to notify you that I have not ...",
+    time: "2 days ago",
+  },
+  {
+    id: 5,
+    name: "Adams Benjamin",
+    profileImage: "https://randomuser.me/api/portraits/men/31.jpg",
+    content:
+      "Good afternoon sir, I’m texting to notify you that I have not ...",
+    time: "5 days ago",
+  },
+  {
+    id: 6,
+    name: "Adams Benjamin",
+    profileImage: "https://randomuser.me/api/portraits/men/31.jpg",
+    content:
+      "Good afternoon sir, I’m texting to notify you that I have not ...",
+    time: "5 days ago",
+  },
+  {
+    id: 7,
+    name: "Veronica Thomas",
+    profileImage: "https://randomuser.me/api/portraits/men/31.jpg",
+    content:
+      "Good afternoon sir, I’m texting to notify you that I have not ...",
+    time: "2 days ago",
+  },
+  {
+    id: 8,
+    name: "Adams Benjamin",
+    profileImage: "https://randomuser.me/api/portraits/men/31.jpg",
+    content:
+      "Good afternoon sir, I’m texting to notify you that I have not ...",
+    time: "30 hours ago",
+  },
+];
+
+export const ANNOUNCEMENTS = [
+  {
+    id: 1,
+    title:
+      "Lorem Ipsum has been the industry's standard dummy text since the 1500s.",
+    description:
+      "It is a long established fact that a reader will be distracted by the of letters, as opposed to using 'Content here, content here', making it look like readable letters, as opposed to using English.",
+    date: "30 mins ago | 24-05-2024",
+  },
+  {
+    id: 1,
+    title:
+      "Lorem Ipsum has been the industry's standard dummy text since the 1500s.",
+    description:
+      "It is a long established fact that a reader will be distracted by the of letters, as opposed to using 'Content here, content here', making it look like readable letters, as opposed to using English.",
+    date: "30 mins ago | 24-05-2024",
+  },
+  {
+    id: 1,
+    title:
+      "Lorem Ipsum has been the industry's standard dummy text since the 1500s.",
+    description:
+      "It is a long established fact that a reader will be distracted by the of letters, as opposed to using 'Content here, content here', making it look like readable letters, as opposed to using English.",
+    date: "30 mins ago | 24-05-2024",
+  },
+  {
+    id: 1,
+    title:
+      "Lorem Ipsum has been the industry's standard dummy text since the 1500s.",
+    description:
+      "It is a long established fact that a reader will be distracted by the of letters, as opposed to using 'Content here, content here', making it look like readable letters, as opposed to using English.",
+    date: "30 mins ago | 24-05-2024",
+  },
+  {
+    id: 1,
+    title:
+      "Lorem Ipsum has been the industry's standard dummy text since the 1500s.",
+    description:
+      "It is a long established fact that a reader will be distracted by the of letters, as opposed to using 'Content here, content here', making it look like readable letters, as opposed to using English.",
+    date: "30 mins ago | 24-05-2024",
+  },
+  {
+    id: 1,
+    title:
+      "Lorem Ipsum has been the industry's standard dummy text since the 1500s.",
+    description:
+      "It is a long established fact that a reader will be distracted by the of letters, as opposed to using 'Content here, content here', making it look like readable letters, as opposed to using English.",
+    date: "30 mins ago | 24-05-2024",
+  },
+];
