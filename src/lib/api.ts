@@ -55,6 +55,7 @@ export const login = async (
     });
 
     const data = response.data;
+    console.log({ data });
 
     if (data?.user?.authentication_token && data.institutions) {
       // Store the authentication token and user status in cookies

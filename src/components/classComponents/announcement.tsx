@@ -11,7 +11,34 @@ export default function Announcement() {
       title:
         "Lorem Ipsum has been the industry's standard dummy text since the 1500s.",
       description:
-        "It is a long established fact that a reader will be distracted by the of letters, as opposed to using 'Content here, content here', making it look like readable letters, as opposed to using English.",
+        "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like). It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+      time: "30 mins ago ",
+      date: "30-01-2024",
+    },
+    {
+      id: 1,
+      title:
+        "Lorem Ipsum has been the industry's standard dummy text since the 1500s.",
+      description:
+        "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like). It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+      time: "12 mins ago ",
+      date: "24-05-2024",
+    },
+    {
+      id: 1,
+      title:
+        "Lorem Ipsum has been the industry's standard dummy text since the 1500s.",
+      description:
+        "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like). It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+      time: "50 mins ago ",
+      date: "14-08-2021",
+    },
+    {
+      id: 1,
+      title:
+        "Lorem Ipsum has been the industry's standard dummy text since the 1500s.",
+      description:
+        "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like). It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
       time: "30 mins ago ",
       date: "24-05-2024",
     },
@@ -20,7 +47,7 @@ export default function Announcement() {
       title:
         "Lorem Ipsum has been the industry's standard dummy text since the 1500s.",
       description:
-        "It is a long established fact that a reader will be distracted by the of letters, as opposed to using 'Content here, content here', making it look like readable letters, as opposed to using English.",
+        "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like). It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
       time: "30 mins ago ",
       date: "24-05-2024",
     },
@@ -29,36 +56,9 @@ export default function Announcement() {
       title:
         "Lorem Ipsum has been the industry's standard dummy text since the 1500s.",
       description:
-        "It is a long established fact that a reader will be distracted by the of letters, as opposed to using 'Content here, content here', making it look like readable letters, as opposed to using English.",
-      time: "30 mins ago ",
-      date: "24-05-2024",
-    },
-    {
-      id: 1,
-      title:
-        "Lorem Ipsum has been the industry's standard dummy text since the 1500s.",
-      description:
-        "It is a long established fact that a reader will be distracted by the of letters, as opposed to using 'Content here, content here', making it look like readable letters, as opposed to using English.",
-      time: "30 mins ago ",
-      date: "24-05-2024",
-    },
-    {
-      id: 1,
-      title:
-        "Lorem Ipsum has been the industry's standard dummy text since the 1500s.",
-      description:
-        "It is a long established fact that a reader will be distracted by the of letters, as opposed to using 'Content here, content here', making it look like readable letters, as opposed to using English.",
-      time: "30 mins ago ",
-      date: "24-05-2024",
-    },
-    {
-      id: 1,
-      title:
-        "Lorem Ipsum has been the industry's standard dummy text since the 1500s.",
-      description:
-        "It is a long established fact that a reader will be distracted by the of letters, as opposed to using 'Content here, content here', making it look like readable letters, as opposed to using English.",
-      time: "30 mins ago ",
-      date: " 24-05-2024",
+        "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like). It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+      time: "10 mins ago ",
+      date: " 20-08-2022",
     },
   ];
 
@@ -76,9 +76,11 @@ export default function Announcement() {
                 {announcement.title}
               </h2>
             </div>
-            <p className="text-sm text-[#815259]">{announcement.description}</p>
+            <p className="line-clamp-3 text-sm text-[#815259]">
+              {announcement.description}
+            </p>
             <div className="flex items-center justify-between">
-              <div className="text-[#4B4A4FE5]">
+              <div className="space-x-2 text-[#4B4A4FE5]">
                 <span> {announcement.time}</span>
                 <span>|</span>
                 <span>{announcement.date}</span>
@@ -86,7 +88,12 @@ export default function Announcement() {
               <Link
                 href={{
                   pathname: `/student/notification/${announcement.id}`,
-                  // query: { subject: item.subject },
+                  query: {
+                    title: announcement.title,
+                    description: announcement.description,
+                    date: announcement.date,
+                    time: announcement.time,
+                  },
                 }}
               >
                 <button className="text-[#D32D44]">Read more</button>

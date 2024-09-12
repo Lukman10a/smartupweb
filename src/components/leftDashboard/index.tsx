@@ -1,7 +1,11 @@
 import Image from "next/image";
 import { LeftDetails } from "./leftDetails";
 import LogoutButton from "../logoutButton";
-import { LEFT_DATA, INSTITUTION_SIDEBAR } from "../../../data";
+import {
+  LEFT_DATA,
+  INSTITUTION_SIDEBAR,
+  EDUCATOR_SIDEBAR,
+} from "../../../data";
 import { useRouter } from "next/router";
 import { getCookie, hasCookie, setCookie } from "cookies-next";
 import { useEffect, useState } from "react";
@@ -27,6 +31,10 @@ export default function LeftDashboard() {
 
       case "institutionPages":
         setSideBar(INSTITUTION_SIDEBAR);
+        break;
+
+      case "guardian":
+        setSideBar(EDUCATOR_SIDEBAR);
         break;
 
       default:

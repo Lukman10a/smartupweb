@@ -29,6 +29,8 @@ export default function LoginPage() {
           router.push("/student/dashboard");
         } else if (status === "institution") {
           router.push("/institution/dashboard");
+        } else if (status === "guardian") {
+          router.push("/guardian/dashboard");
         } else {
           // Handle other statuses or default route
           router.push("/");

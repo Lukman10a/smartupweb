@@ -35,6 +35,11 @@ export const LEFT_DATA: LeftDataItem[] = [
     logo: "/assets/exam.svg",
     slug: "/student/examPracticeQuestion",
   },
+  {
+    title: "Settings",
+    logo: "/assets/exam.svg",
+    slug: "/student/settings",
+  },
 ];
 
 export const INSTITUTION_SIDEBAR = [
@@ -57,6 +62,36 @@ export const INSTITUTION_SIDEBAR = [
     title: "Performance visualization",
     logo: "/assets/performance.svg",
     slug: "/institution/performance",
+  },
+];
+
+export const EDUCATOR_SIDEBAR: LeftDataItem[] = [
+  {
+    title: "Dashboard",
+    logo: "/assets/dashboard.svg",
+    slug: "/student/dashboard",
+  },
+  { title: "Classes", logo: "/assets/class.svg", slug: "/student/classes" },
+  { title: "Mock", logo: "/assets/mock.svg", slug: "/student/mock" },
+  {
+    title: "Test questions",
+    logo: "/assets/test.svg",
+    slug: "/student/testQuestions",
+  },
+  {
+    title: "Training videos",
+    logo: "/assets/training.svg",
+    slug: "/student/trainingVideos",
+  },
+  {
+    title: "Exam questions",
+    logo: "/assets/exam.svg",
+    slug: "/student/syllabuses",
+  },
+  {
+    title: "Performance history",
+    logo: "/assets/exam.svg",
+    slug: "/student/performance",
   },
 ];
 
