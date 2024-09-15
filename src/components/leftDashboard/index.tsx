@@ -33,7 +33,7 @@ export default function LeftDashboard() {
         setSideBar(INSTITUTION_SIDEBAR);
         break;
 
-      case "guardian":
+      case "educator":
         setSideBar(EDUCATOR_SIDEBAR);
         break;
 

@@ -8,9 +8,14 @@ import { useRouter } from "next/router";
 interface HeaderProps {
   title: string | string[] | undefined;
   fromQuery: boolean;
+  showNotificationIcon?: boolean;
 }
 
-const Header: React.FC<HeaderProps> = ({ title, fromQuery }) => {
+const Header: React.FC<HeaderProps> = ({
+  title,
+  fromQuery,
+  showNotificationIcon,
+}) => {
   return (
     <div className="mb-3 flex items-center justify-between">
       <div className="flex items-center gap-2">
@@ -18,7 +23,7 @@ const Header: React.FC<HeaderProps> = ({ title, fromQuery }) => {
         <p className="font-dm_sans text-2xl font-medium">{title}</p>
       </div>
       <div className="flex items-center gap-2">
-        <IoNotificationsCircleOutline size={40} />
+        {showNotificationIcon && <IoNotificationsCircleOutline size={40} />}
       </div>
     </div>
   );

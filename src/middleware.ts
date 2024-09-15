@@ -85,6 +85,21 @@
 //   ],
 // };
 
+// Define a type for the routes object
+type RouteMap = {
+  student: string[];
+  institution: string[];
+  educator: string[];
+  guardian: string[];
+};
+
+const routes: RouteMap = {
+  student: ["/student"],
+  institution: ["/institution"],
+  educator: ["/educator"],
+  guardian: ["/guardian"],
+};
+
 import { NextRequest, NextResponse } from "next/server";
 
 export const middleware = (req: NextRequest) => {

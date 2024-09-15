@@ -1,5 +1,3 @@
-import { title } from "process";
-
 interface LeftDataItem {
   title: string;
   logo: string;
@@ -69,29 +67,29 @@ export const EDUCATOR_SIDEBAR: LeftDataItem[] = [
   {
     title: "Dashboard",
     logo: "/assets/dashboard.svg",
-    slug: "/student/dashboard",
+    slug: "/educator/dashboard",
   },
-  { title: "Classes", logo: "/assets/class.svg", slug: "/student/classes" },
-  { title: "Mock", logo: "/assets/mock.svg", slug: "/student/mock" },
+  { title: "Classes", logo: "/assets/class.svg", slug: "/educator/classes" },
+  { title: "Mock", logo: "/assets/mock.svg", slug: "/educator/mock" },
   {
     title: "Test questions",
     logo: "/assets/test.svg",
-    slug: "/student/testQuestions",
+    slug: "/educator/testQuestions",
   },
   {
     title: "Training videos",
     logo: "/assets/training.svg",
-    slug: "/student/trainingVideos",
+    slug: "/educator/trainingVideos",
   },
   {
     title: "Exam questions",
     logo: "/assets/exam.svg",
-    slug: "/student/syllabuses",
+    slug: "/educator/syllabuses",
   },
   {
     title: "Performance history",
     logo: "/assets/exam.svg",
-    slug: "/student/performance",
+    slug: "/educator/performance",
   },
 ];
 
