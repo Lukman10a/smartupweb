@@ -53,6 +53,7 @@ export default function Detail() {
                 pathname: `${asPath}/${item.slug}`,
                 query: { session: item.session },
               }}
+              as={`${asPath}/${item.slug}`}
             >
               <button className="rounded-md bg-[#D32D441A] p-2 px-6 text-[#D32D44]">
                 View detail
