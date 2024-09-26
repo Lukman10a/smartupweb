@@ -1,10 +1,22 @@
 import Header from "@/components/header";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import smart from "../../../../public/assets/logo.svg";
 import Link from "next/link";
+import EditInfoModal from "@/components/modal/institutionModal/editInfoModal";
 
 export default function Settings() {
+  // State to store school information
+  const [schoolInfo, setSchoolInfo] = useState({
+    name: "Joy-Marvy School",
+    address: "122 Joel Ogunnaike Street, Marriott Hotel Lekki, Lagos State.",
+  });
+
+  // Function to update school information from the modal
+  const handleUpdateSchoolInfo = (newName: string, newAddress: string) => {
+    setSchoolInfo({ name: newName, address: newAddress });
+  };
+
   const SETTINGS_DETAILS = [
     { slug: "/sessions", title: "Sessions", button: "Edit sessions" },
     {
@@ -26,14 +38,20 @@ export default function Settings() {
       <div className="my-6 flex items-center justify-between rounded-md bg-white p-3">
         <div className="flex items-center gap-3">
           <Image src={smart} alt="smartup-logo" />
-          <p className="text-xl font-semibold">Joy-Marvy School</p>
+          <p className="text-xl font-semibold">{schoolInfo.name}</p>
         </div>
-        <p className="text-[#815259]">
-          122 Joel Ogunnaike Street, Marriott Hotel Lekki, Lagos State.
-        </p>
-        <button className="rounded-md bg-[#D32D441A] p-2 px-8 text-[#D32D44]">
-          Edit school information
-        </button>
+        <p className="text-[#815259]">{schoolInfo.address}</p>
+        {/* Pass the update function to the modal */}
+        <EditInfoModal
+          name={schoolInfo.name}
+          slug={""}
+          path={undefined}
+          onUpdate={handleUpdateSchoolInfo}
+        >
+          <button className="rounded-md bg-[#D32D441A] p-2 px-8 text-[#D32D44]">
+            Edit school information
+          </button>
+        </EditInfoModal>
       </div>
 
       <div className="space-y-2 rounded-md bg-white p-4">

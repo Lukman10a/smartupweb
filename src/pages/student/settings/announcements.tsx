@@ -3,14 +3,14 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { IoCloseCircle } from "react-icons/io5";
-import upload from "../../../../public/assets/upload.svg";
 import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import "react-toastify/dist/ReactToastify.css"; // Import toastify CSS
+import upload from "../../../../public/assets/upload.svg";
 
 export default function Announcements() {
   const { query } = useRouter();
 
-  // State to store the form data, specifying images as an array of File
+  // State to store the form data
   const [formData, setFormData] = useState<{
     topic: string;
     detail: string;
@@ -32,19 +32,25 @@ export default function Announcements() {
     if (e.target.files) {
       const uploadedImages = Array.from(e.target.files);
       if (uploadedImages.length + formData.images.length > 1) {
-        alert("Maximum number of 1 image only");
+        toast.error("Maximum number of 1 image only");
         return;
       }
       setFormData({
         ...formData,
         images: [...formData.images, ...uploadedImages],
       });
+      toast.success("Image(s) uploaded successfully!");
     }
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (!formData.topic || !formData.detail) {
+      toast.error("Please fill in all required fields.");
+      return;
+    }
     // Logic for submitting the form data
+    toast.success("Announcement submitted successfully!");
     console.log(formData);
   };
 
@@ -163,6 +169,9 @@ export default function Announcements() {
             </button>
           </div>
         </form>
+
+        {/* Toast container */}
+        <ToastContainer position="top-right" autoClose={3000} />
       </section>
     </div>
   );

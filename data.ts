@@ -38,6 +38,16 @@ export const LEFT_DATA: LeftDataItem[] = [
     logo: "/assets/exam.svg",
     slug: "/student/settings",
   },
+  {
+    title: "Performance Visualization",
+    logo: "/assets/visuals.svg",
+    slug: "/student/performanceVisualization",
+  },
+  {
+    title: "Report Card",
+    logo: "/assets/award.svg",
+    slug: "/student/reportCard",
+  },
 ];
 
 export const INSTITUTION_SIDEBAR = [

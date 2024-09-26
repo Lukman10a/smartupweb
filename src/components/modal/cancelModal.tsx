@@ -21,8 +21,9 @@ const CancelModal: React.FC<CancelModalProps> = ({
   <Dialog.Root>
     <Dialog.Trigger asChild>{children}</Dialog.Trigger>
     <Dialog.Portal>
-      <Dialog.Overlay className="bg-blackA6 data-[state=open]:animate-overlayShow fixed inset-0 backdrop-blur" />
-      <Dialog.Content className="data-[state=open]:animate-contentShow fixed left-[50%] top-[50%] max-h-[85vh] w-[90vw] max-w-[450px] translate-x-[-50%] translate-y-[-50%] rounded-[6px] bg-white p-[25px] shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] focus:outline-none">
+      <Dialog.Overlay className="fixed inset-0 bg-black opacity-40 backdrop-blur-md" />
+      <Dialog.Content className="fixed left-[50%] top-[50%] w-[95vw] max-w-[500px] translate-x-[-50%] translate-y-[-50%] rounded-lg bg-white p-6 shadow-lg focus:outline-none">
+        {/* Close button */}
         <Dialog.Title className="text-[18px] font-bold">
           Are you sure, You want to cancel the test?{" "}
         </Dialog.Title>
