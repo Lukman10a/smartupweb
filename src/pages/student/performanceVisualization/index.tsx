@@ -7,11 +7,6 @@ import { IoSearch } from "react-icons/io5";
 export default function PerformanceVisualization() {
   const [selectedTab, setSelectedTab] = useState("Continuous Assessment");
 
-  //   const Visual = [
-  //     {
-  //       title: "Performance visuals",
-  //     },
-  //   ];
   // Sample data for each section
   const continuousAssessmentData = [
     { id: 1, name: "Adetoro Richard", class: "Basic 4", grade: "B", score: 34 },

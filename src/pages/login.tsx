@@ -21,15 +21,17 @@ export default function LoginPage() {
     mutationFn: ({ email, password }: FormData) =>
       login(email, password) as Promise<UserResponse>,
     onSuccess: (response) => {
-      if (response?.user) {
+      if (response) {
         // Determine the route based on the user's status
-        const { status } = response.user;
+        console.log({ response });
+        // const { status } = response.user;
+        // console.log(response.status);
 
-        if (status === "student") {
+        if (response?.user?.status === "student") {
           router.push("/student/dashboard");
-        } else if (status === "institution") {
+        } else if (response?.user?.status === "institution") {
           router.push("/institution/dashboard");
-        } else if (status === "guardian") {
+        } else if (response?.status === "guardian") {
           router.push("/guardian/dashboard");
         } else {
           // Handle other statuses or default route

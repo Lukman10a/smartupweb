@@ -57,7 +57,12 @@ export const login = async (
     const data = response.data;
     console.log({ data });
 
-    if (data?.user?.authentication_token && data.institutions) {
+    const stu_or_ed: boolean = data.institutions ? true : false;
+
+    if (
+      data?.user?.authentication_token &&
+      (data.institutions || data.institution)
+    ) {
       // Store the authentication token and user status in cookies
       setCookie(
         "userAuth",
@@ -65,7 +70,27 @@ export const login = async (
           token: data.user.authentication_token,
           status: data.user.status,
           user_id: data.user.id,
-          institution_id: data.institutions[0].id,
+          // institution_id: data.institutions[0].id || data?.institution?.id,
+          institution_id: stu_or_ed
+            ? data.institutions[0].id
+            : data?.institution?.id,
+        }),
+        {
+          path: "/",
+          maxAge: 60 * 60 * 24 * 7, // 1 week
+        },
+      );
+
+      return data;
+    } else if (data?.status && data?.status === "guardian") {
+      console.log("Checking", { data });
+      setCookie(
+        "userAuth",
+        JSON.stringify({
+          token: data.authentication_token,
+          status: data.status,
+          user_id: data.id,
+          institution_id: null,
         }),
         {
           path: "/",

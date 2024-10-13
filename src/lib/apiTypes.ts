@@ -100,6 +100,7 @@ export interface User {
 export interface UserResponse {
   institutions: Institution[];
   user: User;
+  institution?: Institution;
 }
 
 // Submit quiz data
