@@ -61,7 +61,7 @@ export const login = async (
 
     if (
       data?.user?.authentication_token &&
-      (data.institutions || data.institution)
+      (data?.institutions || data?.institution)
     ) {
       // Store the authentication token and user status in cookies
       setCookie(

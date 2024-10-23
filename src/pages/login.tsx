@@ -23,7 +23,7 @@ export default function LoginPage() {
     onSuccess: (response) => {
       if (response) {
         // Determine the route based on the user's status
-        console.log({ response });
+        console.log({ response, user: response?.user });
         // const { status } = response.user;
         // console.log(response.status);
 
