@@ -27,7 +27,7 @@ const BarChart: React.FC<BarChartProps> = ({ data, title }) => {
   const options = {
     responsive: true,
     plugins: {
-      legend: { position: "top" },
+      legend: { position: "top" as const },
       title: { display: true, text: title },
     },
     scales: {

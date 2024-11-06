@@ -73,7 +73,7 @@ export default function Visuals() {
     plugins: {
       legend: {
         display: true,
-        position: "bottom",
+        position: "bottom" as const,
       },
     },
   };

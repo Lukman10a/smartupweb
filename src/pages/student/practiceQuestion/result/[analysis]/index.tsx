@@ -147,7 +147,7 @@ export default function Analysis() {
       // Reset filteredChartData when no filters are applied
       setFilteredChartData(null);
     }
-  }, [selectedTopicName, startDate, endDate]);
+  }, [selectedTopicName, startDate, endDate, flattenedTests]);
 
   useEffect(() => {
     if (studentTests) {

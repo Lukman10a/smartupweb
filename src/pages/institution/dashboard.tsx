@@ -31,9 +31,9 @@ export default function Dashboard() {
           />
           <Card
             titlePoints={"72"}
-            subtitle="Total videos"
+            subtitle="Total courses"
             subTitleIcon={<TfiCup />}
-            subscript="Videos"
+            subscript="Courses"
           />
         </div>
       </SummaryContainer>

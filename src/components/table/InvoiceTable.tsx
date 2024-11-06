@@ -1,8 +1,9 @@
+import Image from "next/image";
 import React from "react";
 
 const InvoiceTable = () => {
   return (
-    <section className="container px-4 mx-auto">
+    <section className="container mx-auto px-4">
       <div className="flex flex-col">
         <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
@@ -12,12 +13,12 @@ const InvoiceTable = () => {
                   <tr>
                     <th
                       scope="col"
-                      className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
+                      className="px-4 py-3.5 text-left text-sm font-normal text-gray-500 dark:text-gray-400 rtl:text-right"
                     >
                       <div className="flex items-center gap-x-3">
                         <input
                           type="checkbox"
-                          className="text-blue-500 border-gray-300 rounded dark:bg-gray-900 dark:ring-offset-gray-900 dark:border-gray-700"
+                          className="rounded border-gray-300 text-blue-500 dark:border-gray-700 dark:bg-gray-900 dark:ring-offset-gray-900"
                         />
                         <button className="flex items-center gap-x-2">
                           <span>Invoice</span>
@@ -53,54 +54,54 @@ const InvoiceTable = () => {
 
                     <th
                       scope="col"
-                      className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
+                      className="px-4 py-3.5 text-left text-sm font-normal text-gray-500 dark:text-gray-400 rtl:text-right"
                     >
                       Date
                     </th>
 
                     <th
                       scope="col"
-                      className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
+                      className="px-4 py-3.5 text-left text-sm font-normal text-gray-500 dark:text-gray-400 rtl:text-right"
                     >
                       Status
                     </th>
 
                     <th
                       scope="col"
-                      className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
+                      className="px-4 py-3.5 text-left text-sm font-normal text-gray-500 dark:text-gray-400 rtl:text-right"
                     >
                       Customer
                     </th>
 
                     <th
                       scope="col"
-                      className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
+                      className="px-4 py-3.5 text-left text-sm font-normal text-gray-500 dark:text-gray-400 rtl:text-right"
                     >
                       Purchase
                     </th>
 
-                    <th scope="col" className="relative py-3.5 px-4">
+                    <th scope="col" className="relative px-4 py-3.5">
                       <span className="sr-only">Actions</span>
                     </th>
                   </tr>
                 </thead>
-                <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
+                <tbody className="divide-y divide-gray-200 bg-white dark:divide-gray-700 dark:bg-gray-900">
                   <tr>
-                    <td className="px-4 py-4 text-sm font-medium text-gray-700 dark:text-gray-200 whitespace-nowrap">
+                    <td className="whitespace-nowrap px-4 py-4 text-sm font-medium text-gray-700 dark:text-gray-200">
                       <div className="inline-flex items-center gap-x-3">
                         <input
                           type="checkbox"
-                          className="text-blue-500 border-gray-300 rounded dark:bg-gray-900 dark:ring-offset-gray-900 dark:border-gray-700"
+                          className="rounded border-gray-300 text-blue-500 dark:border-gray-700 dark:bg-gray-900 dark:ring-offset-gray-900"
                         />
 
                         <span>#3066</span>
                       </div>
                     </td>
-                    <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
+                    <td className="whitespace-nowrap px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
                       Jan 6, 2022
                     </td>
-                    <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                      <div className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 text-emerald-500 bg-emerald-100/60 dark:bg-gray-800">
+                    <td className="whitespace-nowrap px-4 py-4 text-sm font-medium text-gray-700">
+                      <div className="inline-flex items-center gap-x-2 rounded-full bg-emerald-100/60 px-3 py-1 text-emerald-500 dark:bg-gray-800">
                         <svg
                           width="12"
                           height="12"
@@ -120,15 +121,15 @@ const InvoiceTable = () => {
                         <h2 className="text-sm font-normal">Paid</h2>
                       </div>
                     </td>
-                    <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
+                    <td className="whitespace-nowrap px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
                       <div className="flex items-center gap-x-2">
-                        <img
-                          className="object-cover w-8 h-8 rounded-full"
+                        <Image
+                          className="h-8 w-8 rounded-full object-cover"
                           src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
                           alt=""
                         />
                         <div>
-                          <h2 className="text-sm font-medium text-gray-800 dark:text-white ">
+                          <h2 className="text-sm font-medium text-gray-800 dark:text-white">
                             Arthur Melo
                           </h2>
                           <p className="text-xs font-normal text-gray-600 dark:text-gray-400">
@@ -137,12 +138,12 @@ const InvoiceTable = () => {
                         </div>
                       </div>
                     </td>
-                    <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
+                    <td className="whitespace-nowrap px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
                       Monthly subscription
                     </td>
-                    <td className="px-4 py-4 text-sm whitespace-nowrap">
+                    <td className="whitespace-nowrap px-4 py-4 text-sm">
                       <div className="flex items-center gap-x-6">
-                        <button className="text-gray-500 transition-colors duration-200 dark:hover:text-indigo-500 dark:text-gray-300 hover:text-indigo-500 focus:outline-none">
+                        <button className="text-gray-500 transition-colors duration-200 hover:text-indigo-500 focus:outline-none dark:text-gray-300 dark:hover:text-indigo-500">
                           Archive
                         </button>
 
@@ -154,21 +155,21 @@ const InvoiceTable = () => {
                   </tr>
 
                   <tr>
-                    <td className="px-4 py-4 text-sm font-medium text-gray-700 dark:text-gray-200 whitespace-nowrap">
+                    <td className="whitespace-nowrap px-4 py-4 text-sm font-medium text-gray-700 dark:text-gray-200">
                       <div className="inline-flex items-center gap-x-3">
                         <input
                           type="checkbox"
-                          className="text-blue-500 border-gray-300 rounded dark:bg-gray-900 dark:ring-offset-gray-900 dark:border-gray-700"
+                          className="rounded border-gray-300 text-blue-500 dark:border-gray-700 dark:bg-gray-900 dark:ring-offset-gray-900"
                         />
 
                         <span>#3065</span>
                       </div>
                     </td>
-                    <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
+                    <td className="whitespace-nowrap px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
                       Jan 5, 2022
                     </td>
-                    <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                      <div className="inline-flex items-center px-3 py-1 text-red-500 rounded-full gap-x-2 bg-red-100/60 dark:bg-gray-800">
+                    <td className="whitespace-nowrap px-4 py-4 text-sm font-medium text-gray-700">
+                      <div className="inline-flex items-center gap-x-2 rounded-full bg-red-100/60 px-3 py-1 text-red-500 dark:bg-gray-800">
                         <svg
                           width="12"
                           height="12"
@@ -188,15 +189,15 @@ const InvoiceTable = () => {
                         <h2 className="text-sm font-normal">Cancelled</h2>
                       </div>
                     </td>
-                    <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
+                    <td className="whitespace-nowrap px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
                       <div className="flex items-center gap-x-2">
-                        <img
-                          className="object-cover w-8 h-8 rounded-full"
+                        <Image
+                          className="h-8 w-8 rounded-full object-cover"
                           src="https://images.unsplash.com/photo-1531590878845-12627191e687?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80"
                           alt=""
                         />
                         <div>
-                          <h2 className="text-sm font-medium text-gray-800 dark:text-white ">
+                          <h2 className="text-sm font-medium text-gray-800 dark:text-white">
                             Andi Lane
                           </h2>
                           <p className="text-xs font-normal text-gray-600 dark:text-gray-400">
@@ -205,12 +206,12 @@ const InvoiceTable = () => {
                         </div>
                       </div>
                     </td>
-                    <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
+                    <td className="whitespace-nowrap px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
                       Monthly subscription
                     </td>
-                    <td className="px-4 py-4 text-sm whitespace-nowrap">
+                    <td className="whitespace-nowrap px-4 py-4 text-sm">
                       <div className="flex items-center gap-x-6">
-                        <button className="text-gray-500 transition-colors duration-200 dark:hover:text-indigo-500 dark:text-gray-300 hover:text-indigo-500 focus:outline-none">
+                        <button className="text-gray-500 transition-colors duration-200 hover:text-indigo-500 focus:outline-none dark:text-gray-300 dark:hover:text-indigo-500">
                           Archive
                         </button>
 
@@ -222,21 +223,21 @@ const InvoiceTable = () => {
                   </tr>
 
                   <tr>
-                    <td className="px-4 py-4 text-sm font-medium text-gray-700 dark:text-gray-200 whitespace-nowrap">
+                    <td className="whitespace-nowrap px-4 py-4 text-sm font-medium text-gray-700 dark:text-gray-200">
                       <div className="inline-flex items-center gap-x-3">
                         <input
                           type="checkbox"
-                          className="text-blue-500 border-gray-300 rounded dark:bg-gray-900 dark:ring-offset-gray-900 dark:border-gray-700"
+                          className="rounded border-gray-300 text-blue-500 dark:border-gray-700 dark:bg-gray-900 dark:ring-offset-gray-900"
                         />
 
                         <span>#3064</span>
                       </div>
                     </td>
-                    <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
+                    <td className="whitespace-nowrap px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
                       Jan 5, 2022
                     </td>
-                    <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                      <div className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 text-emerald-500 bg-emerald-100/60 dark:bg-gray-800">
+                    <td className="whitespace-nowrap px-4 py-4 text-sm font-medium text-gray-700">
+                      <div className="inline-flex items-center gap-x-2 rounded-full bg-emerald-100/60 px-3 py-1 text-emerald-500 dark:bg-gray-800">
                         <svg
                           width="12"
                           height="12"
@@ -256,15 +257,15 @@ const InvoiceTable = () => {
                         <h2 className="text-sm font-normal">Paid</h2>
                       </div>
                     </td>
-                    <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
+                    <td className="whitespace-nowrap px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
                       <div className="flex items-center gap-x-2">
-                        <img
-                          className="object-cover w-8 h-8 rounded-full"
+                        <Image
+                          className="h-8 w-8 rounded-full object-cover"
                           src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=761&q=80"
                           alt=""
                         />
                         <div>
-                          <h2 className="text-sm font-medium text-gray-800 dark:text-white ">
+                          <h2 className="text-sm font-medium text-gray-800 dark:text-white">
                             Kate Morrison
                           </h2>
                           <p className="text-xs font-normal text-gray-600 dark:text-gray-400">
@@ -273,12 +274,12 @@ const InvoiceTable = () => {
                         </div>
                       </div>
                     </td>
-                    <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
+                    <td className="whitespace-nowrap px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
                       Monthly subscription
                     </td>
-                    <td className="px-4 py-4 text-sm whitespace-nowrap">
+                    <td className="whitespace-nowrap px-4 py-4 text-sm">
                       <div className="flex items-center gap-x-6">
-                        <button className="text-gray-500 transition-colors duration-200 dark:hover:text-indigo-500 dark:text-gray-300 hover:text-indigo-500 focus:outline-none">
+                        <button className="text-gray-500 transition-colors duration-200 hover:text-indigo-500 focus:outline-none dark:text-gray-300 dark:hover:text-indigo-500">
                           Archive
                         </button>
 
@@ -290,21 +291,21 @@ const InvoiceTable = () => {
                   </tr>
 
                   <tr>
-                    <td className="px-4 py-4 text-sm font-medium text-gray-700 dark:text-gray-200 whitespace-nowrap">
+                    <td className="whitespace-nowrap px-4 py-4 text-sm font-medium text-gray-700 dark:text-gray-200">
                       <div className="inline-flex items-center gap-x-3">
                         <input
                           type="checkbox"
-                          className="text-blue-500 border-gray-300 rounded dark:bg-gray-900 dark:ring-offset-gray-900 dark:border-gray-700"
+                          className="rounded border-gray-300 text-blue-500 dark:border-gray-700 dark:bg-gray-900 dark:ring-offset-gray-900"
                         />
 
                         <span>#3063</span>
                       </div>
                     </td>
-                    <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
+                    <td className="whitespace-nowrap px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
                       Jan 4, 2022
                     </td>
-                    <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                      <div className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 text-emerald-500 bg-emerald-100/60 dark:bg-gray-800">
+                    <td className="whitespace-nowrap px-4 py-4 text-sm font-medium text-gray-700">
+                      <div className="inline-flex items-center gap-x-2 rounded-full bg-emerald-100/60 px-3 py-1 text-emerald-500 dark:bg-gray-800">
                         <svg
                           width="12"
                           height="12"
@@ -324,15 +325,15 @@ const InvoiceTable = () => {
                         <h2 className="text-sm font-normal">Paid</h2>
                       </div>
                     </td>
-                    <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
+                    <td className="whitespace-nowrap px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
                       <div className="flex items-center gap-x-2">
-                        <img
-                          className="object-cover w-8 h-8 rounded-full"
+                        <Image
+                          className="h-8 w-8 rounded-full object-cover"
                           src="https://images.unsplash.com/photo-1506863530036-1efeddceb993?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1344&q=80"
                           alt=""
                         />
                         <div>
-                          <h2 className="text-sm font-medium text-gray-800 dark:text-white ">
+                          <h2 className="text-sm font-medium text-gray-800 dark:text-white">
                             Candice Wu
                           </h2>
                           <p className="text-xs font-normal text-gray-600 dark:text-gray-400">
@@ -341,12 +342,12 @@ const InvoiceTable = () => {
                         </div>
                       </div>
                     </td>
-                    <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
+                    <td className="whitespace-nowrap px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
                       Monthly subscription
                     </td>
-                    <td className="px-4 py-4 text-sm whitespace-nowrap">
+                    <td className="whitespace-nowrap px-4 py-4 text-sm">
                       <div className="flex items-center gap-x-6">
-                        <button className="text-gray-500 transition-colors duration-200 dark:hover:text-indigo-500 dark:text-gray-300 hover:text-indigo-500 focus:outline-none">
+                        <button className="text-gray-500 transition-colors duration-200 hover:text-indigo-500 focus:outline-none dark:text-gray-300 dark:hover:text-indigo-500">
                           Archive
                         </button>
 
@@ -358,21 +359,21 @@ const InvoiceTable = () => {
                   </tr>
 
                   <tr>
-                    <td className="px-4 py-4 text-sm font-medium text-gray-700 dark:text-gray-200 whitespace-nowrap">
+                    <td className="whitespace-nowrap px-4 py-4 text-sm font-medium text-gray-700 dark:text-gray-200">
                       <div className="inline-flex items-center gap-x-3">
                         <input
                           type="checkbox"
-                          className="text-blue-500 border-gray-300 rounded dark:bg-gray-900 dark:ring-offset-gray-900 dark:border-gray-700"
+                          className="rounded border-gray-300 text-blue-500 dark:border-gray-700 dark:bg-gray-900 dark:ring-offset-gray-900"
                         />
 
                         <span>#3062</span>
                       </div>
                     </td>
-                    <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
+                    <td className="whitespace-nowrap px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
                       Jan 4, 2022
                     </td>
-                    <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-                      <div className="inline-flex items-center px-3 py-1 text-gray-500 rounded-full gap-x-2 bg-gray-100/60 dark:bg-gray-800">
+                    <td className="whitespace-nowrap px-4 py-4 text-sm font-medium text-gray-700">
+                      <div className="inline-flex items-center gap-x-2 rounded-full bg-gray-100/60 px-3 py-1 text-gray-500 dark:bg-gray-800">
                         <svg
                           width="12"
                           height="12"
@@ -392,15 +393,15 @@ const InvoiceTable = () => {
                         <h2 className="text-sm font-normal">Refunded</h2>
                       </div>
                     </td>
-                    <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
+                    <td className="whitespace-nowrap px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
                       <div className="flex items-center gap-x-2">
-                        <img
-                          className="object-cover w-8 h-8 rounded-full"
+                        <Image
+                          className="h-8 w-8 rounded-full object-cover"
                           src="https://images.unsplash.com/photo-1528892952291-009c663ce843?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=644&q=80"
                           alt=""
                         />
                         <div>
-                          <h2 className="text-sm font-medium text-gray-800 dark:text-white ">
+                          <h2 className="text-sm font-medium text-gray-800 dark:text-white">
                             Orlando Diggs
                           </h2>
                           <p className="text-xs font-normal text-gray-600 dark:text-gray-400">
@@ -409,12 +410,12 @@ const InvoiceTable = () => {
                         </div>
                       </div>
                     </td>
-                    <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
+                    <td className="whitespace-nowrap px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
                       Monthly subscription
                     </td>
-                    <td className="px-4 py-4 text-sm whitespace-nowrap">
+                    <td className="whitespace-nowrap px-4 py-4 text-sm">
                       <div className="flex items-center gap-x-6">
-                        <button className="text-gray-500 transition-colors duration-200 dark:hover:text-indigo-500 dark:text-gray-300 hover:text-indigo-500 focus:outline-none">
+                        <button className="text-gray-500 transition-colors duration-200 hover:text-indigo-500 focus:outline-none dark:text-gray-300 dark:hover:text-indigo-500">
                           Archive
                         </button>
 
@@ -431,10 +432,10 @@ const InvoiceTable = () => {
         </div>
       </div>
 
-      <div className="flex items-center justify-between mt-6">
+      <div className="mt-6 flex items-center justify-between">
         <a
           href="#"
-          className="flex items-center px-5 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 bg-white border rounded-md gap-x-2 hover:bg-gray-100 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800"
+          className="flex items-center gap-x-2 rounded-md border bg-white px-5 py-2 text-sm capitalize text-gray-700 transition-colors duration-200 hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-200 dark:hover:bg-gray-800"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -442,7 +443,7 @@ const InvoiceTable = () => {
             viewBox="0 0 24 24"
             stroke-width="1.5"
             stroke="currentColor"
-            className="w-5 h-5 rtl:-scale-x-100"
+            className="h-5 w-5 rtl:-scale-x-100"
           >
             <path
               stroke-linecap="round"
@@ -454,46 +455,46 @@ const InvoiceTable = () => {
           <span>previous</span>
         </a>
 
-        <div className="items-center hidden md:flex gap-x-3">
+        <div className="hidden items-center gap-x-3 md:flex">
           <a
             href="#"
-            className="px-2 py-1 text-sm text-blue-500 rounded-md dark:bg-gray-800 bg-blue-100/60"
+            className="rounded-md bg-blue-100/60 px-2 py-1 text-sm text-blue-500 dark:bg-gray-800"
           >
             1
           </a>
           <a
             href="#"
-            className="px-2 py-1 text-sm text-gray-500 rounded-md dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100"
+            className="rounded-md px-2 py-1 text-sm text-gray-500 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800"
           >
             2
           </a>
           <a
             href="#"
-            className="px-2 py-1 text-sm text-gray-500 rounded-md dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100"
+            className="rounded-md px-2 py-1 text-sm text-gray-500 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800"
           >
             3
           </a>
           <a
             href="#"
-            className="px-2 py-1 text-sm text-gray-500 rounded-md dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100"
+            className="rounded-md px-2 py-1 text-sm text-gray-500 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800"
           >
             ...
           </a>
           <a
             href="#"
-            className="px-2 py-1 text-sm text-gray-500 rounded-md dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100"
+            className="rounded-md px-2 py-1 text-sm text-gray-500 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800"
           >
             12
           </a>
           <a
             href="#"
-            className="px-2 py-1 text-sm text-gray-500 rounded-md dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100"
+            className="rounded-md px-2 py-1 text-sm text-gray-500 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800"
           >
             13
           </a>
           <a
             href="#"
-            className="px-2 py-1 text-sm text-gray-500 rounded-md dark:hover:bg-gray-800 dark:text-gray-300 hover:bg-gray-100"
+            className="rounded-md px-2 py-1 text-sm text-gray-500 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800"
           >
             14
           </a>
@@ -501,7 +502,7 @@ const InvoiceTable = () => {
 
         <a
           href="#"
-          className="flex items-center px-5 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 bg-white border rounded-md gap-x-2 hover:bg-gray-100 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800"
+          className="flex items-center gap-x-2 rounded-md border bg-white px-5 py-2 text-sm capitalize text-gray-700 transition-colors duration-200 hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-200 dark:hover:bg-gray-800"
         >
           <span>Next</span>
 
@@ -511,7 +512,7 @@ const InvoiceTable = () => {
             viewBox="0 0 24 24"
             stroke-width="1.5"
             stroke="currentColor"
-            className="w-5 h-5 rtl:-scale-x-100"
+            className="h-5 w-5 rtl:-scale-x-100"
           >
             <path
               stroke-linecap="round"

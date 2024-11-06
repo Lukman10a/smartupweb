@@ -135,7 +135,7 @@ const Test: React.FC = () => {
     };
 
     handleNavigation();
-  }, [mutation.isSuccess]);
+  }, [mutation.isSuccess, asPath, query.subject, query.topic, query.topicId]);
 
   if (isLoading) return <Loading />;
   if (error) return <div>An error has occurred: {error.message}</div>;

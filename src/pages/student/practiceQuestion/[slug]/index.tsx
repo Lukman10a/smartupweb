@@ -42,7 +42,7 @@ export default function Practice() {
       console.log({ TOPIC: topicNames });
       dispatch(setTopicNames(topicNames)); // Dispatch the action to save topic names
     }
-  }, [subjectData]);
+  }, [subjectData, dispatch]);
 
   if (subjectPending) return <Loading />;
 

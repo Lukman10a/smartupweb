@@ -3,11 +3,15 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const PieChart = ({ data, title }) => {
+interface PieChartProps {
+  data: any;
+  title: string;
+}
+const PieChart: React.FC<PieChartProps> = ({ data, title }) => {
   const options = {
     responsive: true,
     plugins: {
-      legend: { position: "top" },
+      legend: { position: "top" as const },
       title: { display: true, text: title },
     },
   };

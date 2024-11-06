@@ -236,7 +236,7 @@ export default function PerformanceAnalysis() {
       // Reset filteredChartData when no filters are applied
       setFilteredChartData(null);
     }
-  }, [selectedTopicName, startDate, endDate]);
+  }, [selectedTopicName, startDate, endDate, flattenedTests]);
 
   if (isLoadingTests) return <Loading />;
   if (testsError) return <p>An error has occurred: {testsError.message}</p>;
