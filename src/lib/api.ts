@@ -9,6 +9,7 @@ import { queueRequest } from "./apiManagement";
 let authUser: { status: string; token: string } | undefined;
 
 const base_url = "https://smartup-api.herokuapp.com/api/v2/";
+const base_url3 = "https://smartup-api.herokuapp.com/api/v3/";
 const smartup_institution_id = "715ddce7-48b1-4243-a329-1140195b06b8";
 export const user_id = "54486a85-cd9f-400d-ab4f-f097ca905903";
 
@@ -87,9 +88,9 @@ export const login = async (
       setCookie(
         "userAuth",
         JSON.stringify({
-          token: data.authentication_token,
+          token: data.user.authentication_token,
           status: data.status,
-          user_id: data.id,
+          user_id: data.user.id,
           institution_id: null,
         }),
         {

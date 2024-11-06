@@ -9,6 +9,11 @@ import {
   Legend,
 } from "chart.js";
 
+interface BarChartProps {
+  data: any;
+  title: string;
+}
+
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -18,7 +23,7 @@ ChartJS.register(
   Legend,
 );
 
-const BarChart = ({ data, title }) => {
+const BarChart: React.FC<BarChartProps> = ({ data, title }) => {
   const options = {
     responsive: true,
     plugins: {
