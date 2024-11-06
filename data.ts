@@ -52,6 +52,21 @@ export const LEFT_DATA: LeftDataItem[] = [
 
 export const INSTITUTION_SIDEBAR = [
   {
+    title: "Dashboard",
+    logo: "/assets/dashboard.svg",
+    slug: "/institution/dashboard",
+  },
+  {
+    title: "Classes",
+    logo: "/assets/class.svg",
+    slug: "/institution/classes",
+  },
+  {
+    title: "Smartup",
+    logo: "/assets/smart-up.svg",
+    slug: "/institution/smartup",
+  },
+  {
     title: "Students",
     logo: "/assets/exam.svg",
     slug: "/institution/student",
@@ -60,11 +75,6 @@ export const INSTITUTION_SIDEBAR = [
     title: "Educator",
     logo: "/assets/educator.svg",
     slug: "/institution/educator",
-  },
-  {
-    title: "Smartup",
-    logo: "/assets/smart-up.svg",
-    slug: "/institution/smartup",
   },
   {
     title: "Performance visualization",

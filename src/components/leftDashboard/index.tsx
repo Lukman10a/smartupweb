@@ -29,7 +29,7 @@ export default function LeftDashboard() {
         setSideBar(LEFT_DATA);
         break;
 
-      case "institutionPages":
+      case "institution":
         setSideBar(INSTITUTION_SIDEBAR);
         break;
 
