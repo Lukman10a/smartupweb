@@ -110,7 +110,7 @@ export default function SwitchInstitution() {
                     {item.logo_url && (
                       <Image
                         src={item.logo_url}
-                        alt={item.name}
+                        alt={""}
                         width={50}
                         height={50}
                         className="size-100"
