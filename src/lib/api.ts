@@ -1,6 +1,6 @@
 import axios, { AxiosError, AxiosRequestConfig } from "axios";
 import { Question } from "@/type/quiz";
-import { TestResult } from "@/type/testResult";
+// import { TestResult } from "@/type/testResult";
 import { setCookie, getCookie, hasCookie } from "cookies-next";
 import { SubmitQuizDataParams, UserResponse } from "@/lib/apiTypes";
 import { queueRequest } from "./apiManagement";
@@ -252,10 +252,22 @@ export const fetchTestResult = async (test_id: string) => {
   }
 };
 
-// Fetch test result
+// fetch Institution List
 export const fetchInstitutionList = async () => {
   try {
     const response = await axiosInstance.post("user_institutions", {
+      user_id,
+    });
+    return response.data;
+  } catch (error: any) {
+    throw new Error(`Fetch error: ${error.message}`);
+  }
+};
+
+// fetch Profile Info
+export const fetchProfileData = async () => {
+  try {
+    const response = await axiosInstance.post("show_user_info", {
       user_id,
     });
     return response.data;
