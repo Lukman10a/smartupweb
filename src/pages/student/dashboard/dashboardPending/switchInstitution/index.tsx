@@ -5,36 +5,55 @@ import alevel from "@/../../public/assets/alevel.svg";
 import smartmedal from "@/../../public/assets/smartmedal.svg";
 import waec from "@/../../public/assets/waec.svg";
 import Image from "next/image";
+import { useQuery } from "@tanstack/react-query";
+import Loading from "@/components/loading";
+import { fetchInstitutionList } from "@/lib/api";
+import { StaticImport } from "next/dist/shared/lib/get-img-props";
 
 export default function SwitchInstitution() {
-  const INSTITUTION = [
-    {
-      id: 1,
-      title: "SmartUp Tech",
-      img: smartmedal,
-    },
-    {
-      id: 2,
-      title: "A Levels",
-      img: alevel,
-    },
-    {
-      id: 3,
-      title: "W.A.E.C",
-      img: alevel,
-    },
-    {
-      id: 4,
-      title: "J.A.M.B",
-      img: waec,
-    },
-  ];
-
   const [addingInstitution, setAddingInstitution] = useState(false); // State to toggle input field
 
   const handleAddInstitution = () => {
     setAddingInstitution(true); // Show input field on button click
   };
+
+  const {
+    isPending: institutionListPending,
+    error: institutionListError,
+    data: institutionListData,
+  } = useQuery({
+    queryKey: ["InstitutionList"],
+    queryFn: fetchInstitutionList,
+  });
+
+  if (institutionListPending) return <Loading />;
+
+  if (institutionListError)
+    return "An error has occurred: " + institutionListError?.message;
+
+  console.log({ institutionListData });
+  // const INSTITUTION = [
+  //   {
+  //     id: 1,
+  //     title: "SmartUp Tech",
+  //     img: smartmedal,
+  //   },
+  //   {
+  //     id: 2,
+  //     title: "A Levels",
+  //     img: alevel,
+  //   },
+  //   {
+  //     id: 3,
+  //     title: "W.A.E.C",
+  //     img: alevel,
+  //   },
+  //   {
+  //     id: 4,
+  //     title: "J.A.M.B",
+  //     img: waec,
+  //   },
+  // ];
 
   return (
     <section>
@@ -64,22 +83,49 @@ export default function SwitchInstitution() {
         </div>
         {!addingInstitution && (
           <div className="space-y-2">
-            {INSTITUTION.map((item) => (
-              <div
-                className="flex items-center justify-between rounded-md bg-[#F8F9FB] p-4"
-                key={item.title}
-              >
-                <div className="flex items-center gap-2">
-                  <Image src={item.img} alt="" />
-                  <p>{item.title}</p>
-                </div>
+            {institutionListData?.map(
+              (item: {
+                id: React.Key | null | undefined;
+                logo_url: string | StaticImport;
+                name:
+                  | string
+                  | number
+                  | bigint
+                  | boolean
+                  | React.ReactElement<
+                      any,
+                      string | React.JSXElementConstructor<any>
+                    >
+                  | Iterable<React.ReactNode>
+                  | React.ReactPortal
+                  | Promise<React.AwaitedReactNode>
+                  | null
+                  | undefined;
+              }) => (
+                <div
+                  className="flex items-center justify-between rounded-md bg-[#F8F9FB] p-4"
+                  key={item.id}
+                >
+                  <div className="flex items-center gap-2">
+                    {item.logo_url && (
+                      <Image
+                        src={item.logo_url}
+                        alt={item.name}
+                        width={50}
+                        height={50}
+                        className="size-100"
+                      />
+                    )}
+                    <p>{item.name}</p>
+                  </div>
 
-                <div className="flex items-center gap-2 rounded-md bg-[#D32D4426] p-2 px-4 text-[#D32D44]">
-                  <FiRefreshCw />
-                  <p className="text-sm font-medium">Switch Institution</p>
+                  <div className="flex items-center gap-2 rounded-md bg-[#D32D4426] p-2 px-4 text-[#D32D44]">
+                    <FiRefreshCw />
+                    <p className="text-sm font-medium">Switch Institution</p>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ),
+            )}
           </div>
         )}
 

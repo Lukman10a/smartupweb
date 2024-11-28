@@ -54,6 +54,8 @@ export default function PerformanceAnalysis() {
       : [],
   });
 
+  console.log({ testResults });
+
   const flattenedTests: TestResult[] = testResults
     .flatMap((result) => result.data)
     .filter(Boolean);

@@ -219,7 +219,8 @@ export const fetchStudentTests = async () => {
         },
       },
     );
-    return response.data;
+    // return response.data;
+    return response;
   } catch (error) {
     if (error instanceof AxiosError) {
       console.error("Error fetching student tests:", error.message);
@@ -244,6 +245,19 @@ export const fetchTestResult = async (test_id: string) => {
         },
       },
     );
+    // return response.data;
+    return response;
+  } catch (error: any) {
+    throw new Error(`Fetch error: ${error.message}`);
+  }
+};
+
+// Fetch test result
+export const fetchInstitutionList = async () => {
+  try {
+    const response = await axiosInstance.post("user_institutions", {
+      user_id,
+    });
     return response.data;
   } catch (error: any) {
     throw new Error(`Fetch error: ${error.message}`);
