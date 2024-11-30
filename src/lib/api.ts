@@ -110,7 +110,7 @@ export const login = async (
 };
 
 // Fetch user data
-export const fetchData = async () => {
+export const fetchDashboardData = async () => {
   try {
     const response = await axiosInstance.post("show_user_info", {
       user_id,
@@ -270,6 +270,16 @@ export const fetchProfileData = async () => {
     const response = await axiosInstance.post("show_user_info", {
       user_id,
     });
+    return response.data;
+  } catch (error: any) {
+    throw new Error(`Fetch error: ${error.message}`);
+  }
+};
+
+// fetch lesson videos
+export const fetchLessonVideosData = async () => {
+  try {
+    const response = await axiosInstance.get("smartup_courses");
     return response.data;
   } catch (error: any) {
     throw new Error(`Fetch error: ${error.message}`);

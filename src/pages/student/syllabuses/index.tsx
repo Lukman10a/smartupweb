@@ -55,7 +55,7 @@ export default function Syllabuses() {
 
       <div>
         <p className="py-6 font-semibold"> Search for topics here...</p>
-        <div className="grid grid-cols-4 place-items-center gap-6 rounded-md bg-white p-3 py-6">
+        <div className="rounded-md bg-white p-3 py-6">
           <Link
             href={{
               pathname: `/student/syllabuses/${syllabusData.id}`,

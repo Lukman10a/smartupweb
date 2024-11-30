@@ -12,26 +12,23 @@ import SummaryContainer from "@/components/rightDashboard/cardContainer";
 import Loading from "@/components/loading";
 import LessonVideos from "@/components/lessonVideos";
 import Link from "next/link";
-import { fetchClassesData, fetchData } from "@/lib/api";
+import { fetchDashboardData } from "@/lib/api";
+import { link } from "fs";
 
 export default function Dashboard() {
-  const { isPending, error, data } = useQuery({
-    queryKey: ["userData"],
-    queryFn: fetchData,
-  });
   const {
-    isPending: classesPending,
-    error: classesError,
-    data: classesData,
+    isPending: dasboardDataPending,
+    error: dasboardDataError,
+    data: dasboardData,
   } = useQuery({
-    queryKey: ["classesData"],
-    queryFn: fetchClassesData,
+    queryKey: ["userData"],
+    queryFn: fetchDashboardData,
   });
 
-  if (isPending || classesPending) return <Loading />;
+  if (dasboardDataPending) return <Loading />;
 
-  if (error) return "An error has occurred: " + error?.message;
-  if (classesError) return "An error has occurred: " + classesError?.message;
+  if (dasboardDataError)
+    return "An error has occurred: " + dasboardDataError?.message;
 
   return (
     <section>
@@ -60,14 +57,14 @@ export default function Dashboard() {
         <div className="flex items-center gap-3">
           <CgProfile size={30} />
           <p className="text-[18px] font-medium text-[#0F0204]">
-            {data.full_name}
+            {dasboardData.full_name}
           </p>
         </div>
         <p className="text-[18px] font-medium capitalize text-[#0F0204]">
-          {data.sex}
+          {dasboardData.sex}
         </p>
         <p className="text-[18px] font-medium uppercase text-[#0F0204]">
-          {data.level}
+          {dasboardData.level}
         </p>
         <p className="text-[18px] font-medium text-[#0F0204]">
           Science department
@@ -87,25 +84,25 @@ export default function Dashboard() {
         >
           <div className="grid grid-cols-4 justify-between gap-4">
             <Card
-              titlePoints={data.best_score}
+              titlePoints={dasboardData.best_score}
               subtitle="Best score"
               subTitleIcon={<TfiCup />}
               subscript="Points"
             />
             <Card
-              titlePoints={data.average_score}
+              titlePoints={dasboardData.average_score}
               subtitle="Average score"
               subTitleIcon={<BsPlayBtn />}
               subscript="Points"
             />
             <Card
-              titlePoints={data.videos_watched}
+              titlePoints={dasboardData.videos_watched}
               subTitleIcon={<TfiCup />}
               subscript="Videos"
               subtitle="Videos Watched"
             />
             <Card
-              titlePoints={data.tests_taken}
+              titlePoints={dasboardData.tests_taken}
               subtitle="Test Taken"
               subTitleIcon={<TfiCup />}
               subscript="Tests"
@@ -114,23 +111,17 @@ export default function Dashboard() {
         </SummaryContainer>
 
         <SummaryContainer
-          sectionTitle="Classes"
-          summaryAction="See all classes"
+          sectionTitle="Announcements"
+          summaryAction="All Announcements"
+          link="/student/classes"
         >
-          <div className="grid grid-cols-4 justify-between gap-4">
-            {classesData.map((classData: any) => (
-              <Card
-                key={classData.id}
-                titlePoints={classData.name}
-                subtitle={`${classData.students_list_count} attendants`}
-              />
-            ))}
-          </div>
+          <div className="">Announcements goes in here</div>
         </SummaryContainer>
 
         <SummaryContainer
           sectionTitle={"See all videos"}
           summaryAction={"Lesson videos"}
+          link="/student/lessonVideos"
         >
           <div className="grid grid-cols-3 justify-between gap-4">
             <LessonVideos title={"title"} episode={"episode"} />

@@ -4,6 +4,9 @@ import Link from "next/link";
 import Header from "@/components/header";
 import ResultButton from "@/components/resultButton";
 import { CLASS } from "../../../../data";
+import Loading from "@/components/loading";
+import { fetchClassesData } from "@/lib/api";
+import { useQuery } from "@tanstack/react-query";
 
 type ClassActivitiesProps = {
   titleFromQuery?: boolean;
@@ -14,6 +17,20 @@ export default function Classes({ titleFromQuery }: ClassActivitiesProps) {
     name: "",
     slug: "",
   });
+
+  const {
+    isPending: classDataPending,
+    error: classDataError,
+    data: classDataData,
+  } = useQuery({
+    queryKey: ["classdata"],
+    queryFn: fetchClassesData,
+  });
+
+  if (classDataPending) return <Loading />;
+
+  if (classDataError)
+    return "An error has occurred: " + classDataError?.message;
 
   return (
     <section>
@@ -31,31 +48,37 @@ export default function Classes({ titleFromQuery }: ClassActivitiesProps) {
         <p className="py-4">Select a class to continue.</p>
       </div>
       <section>
-        <div className="grid grid-rows-3 justify-between space-y-4">
+        <div className="space-y-4">
           <div className="grid cursor-pointer grid-cols-4 gap-12 rounded-md bg-white p-3 px-5">
-            {CLASS.map((item) => (
-              <Link
-                href={{
-                  pathname: `/student/classes/[classActivities]`,
-                  query: {
-                    classActivities: item.title,
-                    class: item.title,
-                    title: "title",
-                  },
-                }}
-                as={`/student/classes/${item.title}`}
-                key={item.id}
-              >
-                <Card
+            {classDataData.map(
+              (item: {
+                students_list_count: string | number;
+                name: string;
+                id: React.Key | null | undefined;
+              }) => (
+                <Link
+                  href={{
+                    pathname: `/student/classes/[classActivities]`,
+                    query: {
+                      classActivities: item.name,
+                      class: item.name,
+                      name: "name",
+                    },
+                  }}
+                  as={`/student/classes/${item.name}`}
                   key={item.id}
-                  subtitle={item.subTitle}
-                  titlePoints={item.title}
-                  onClick={() =>
-                    setCurrentCard({ name: item.title, slug: item.title })
-                  }
-                />
-              </Link>
-            ))}
+                >
+                  <Card
+                    key={item.id}
+                    subtitle={`${item.students_list_count} participants`}
+                    titlePoints={item.name}
+                    onClick={() =>
+                      setCurrentCard({ name: item.name, slug: item.name })
+                    }
+                  />
+                </Link>
+              ),
+            )}
           </div>
         </div>
       </section>
@@ -66,13 +89,12 @@ export default function Classes({ titleFromQuery }: ClassActivitiesProps) {
 // import Card from "@/components/rightDashboard/card";
 // import React, { useState } from "react";
 // import { IoNotificationsCircleOutline } from "react-icons/io5";
-// import { fetchClasstData } from "@/components/rightDashboard/utils";
 // import Loading from "@/components/loading";
 // import { useQuery } from "@tanstack/react-query";
 // import SubjectCard from "@/components/modal/subjectModal";
 // import Link from "next/link";
-// import { CLASS } from "../../../data";
 // import Header from "@/components/header";
+// import { fetchClasstData } from "@/lib/api";
 
 // type ClassActivitiesProps = {
 //   titleFromQuery?: boolean;
@@ -140,6 +162,7 @@ export default function Classes({ titleFromQuery }: ClassActivitiesProps) {
 //                     },
 //                   }}
 //                   as={`/classes/${item.name}`}
+//                   key={item.id}
 //                 >
 //                   <Card
 //                     key={item.id}

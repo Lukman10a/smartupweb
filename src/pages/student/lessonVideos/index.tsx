@@ -3,6 +3,10 @@ import React, { useState } from "react";
 import Link from "next/link";
 import Header from "@/components/header";
 import ResultButton from "@/components/resultButton";
+import Loading from "@/components/loading";
+import { useQuery } from "@tanstack/react-query";
+import { fetchLessonVideosData } from "@/lib/api";
+import { Course } from "@/lib/apiTypes";
 
 interface LessonVideoDataItem {
   subject: string;
@@ -16,29 +20,32 @@ export default function Classes() {
     slug: "",
   });
 
-  const LESSON_VIDEO: LessonVideoDataItem[] = [
-    { subject: "Math's - JSS1", noOfTopics: "25 topics", id: 1 },
-    { subject: "English - JSS1", noOfTopics: "17 topics", id: 2 },
-    { subject: "B. Tech - JSS1", noOfTopics: "20 topics", id: 3 },
-    { subject: "Chemistry", noOfTopics: "20 participants", id: 4 },
-    { subject: "Economics", noOfTopics: "20 participants", id: 5 },
-    { subject: "Agic", noOfTopics: "20 participants", id: 6 },
-    { subject: "Engineering", noOfTopics: "20 participants", id: 7 },
-    { subject: "Health Science", noOfTopics: "20 participants", id: 8 },
-  ];
+  // const LESSON_VIDEO: LessonVideoDataItem[] = [
+  //   { subject: "Math's - JSS1", noOfTopics: "25 topics", id: 1 },
+  //   { subject: "English - JSS1", noOfTopics: "17 topics", id: 2 },
+  //   { subject: "B. Tech - JSS1", noOfTopics: "20 topics", id: 3 },
+  //   { subject: "Chemistry", noOfTopics: "20 participants", id: 4 },
+  //   { subject: "Economics", noOfTopics: "20 participants", id: 5 },
+  //   { subject: "Agic", noOfTopics: "20 participants", id: 6 },
+  //   { subject: "Engineering", noOfTopics: "20 participants", id: 7 },
+  //   { subject: "Health Science", noOfTopics: "20 participants", id: 8 },
+  // ];
 
-  // const {
-  //   isPending: subjectPending,
-  //   error: subjectError,
-  //   data: subjectData,
-  // } = useQuery({
-  //   queryKey: ["classesData"],
-  //   queryFn: fetchSubjectData,
-  // });
+  const {
+    isPending: lessonVideosPending,
+    error: lessonVideosError,
+    data: lessonVideosData,
+  } = useQuery({
+    queryKey: ["lessonVideo"],
+    queryFn: fetchLessonVideosData,
+  });
 
-  // if (subjectPending) return <Loading />;
+  if (lessonVideosPending) return <Loading />;
 
-  // if (subjectError) return "An error has occurred: " + subjectError?.message;
+  if (lessonVideosError)
+    return "An error has occurred: " + lessonVideosError?.message;
+
+  console.log({ lessonVideosData });
 
   return (
     <section>
@@ -56,22 +63,22 @@ export default function Classes() {
         <p className="py-4">Select a course to watch video.</p>
       </div>
       <section>
-        <div className="grid grid-rows-3 justify-between space-y-4">
+        <div className="space-y-4">
           <div className="grid cursor-pointer grid-cols-4 gap-12 rounded-md bg-white p-3 px-5">
-            {LESSON_VIDEO.map((item) => (
+            {lessonVideosData.map((item: Course) => (
               <Link
                 href={{
                   pathname: `/student/lessonVideos/${item.id}`,
-                  query: { subject: item.subject },
+                  query: { name: item.name },
                 }}
                 key={item.id}
               >
                 <Card
                   key={item.id}
-                  subtitle={item.noOfTopics}
-                  titlePoints={item.subject}
+                  subtitle={`${item?.topics.length + 1} topics`}
+                  titlePoints={item.name}
                   onClick={() =>
-                    setCurrentCard({ name: item.subject, slug: item.subject })
+                    setCurrentCard({ name: item.name, slug: item.name })
                   }
                 />
               </Link>

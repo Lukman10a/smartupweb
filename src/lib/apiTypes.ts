@@ -119,3 +119,114 @@ export interface SubmitQuizDataParams {
   question_and_options: QuestionAndOption[];
   score: number;
 }
+
+// Lesson Video Types
+
+export type Logo = {
+  url: string | null;
+  thumb: {
+    url: string | null;
+  };
+};
+
+export type LessonVideoInstitution = {
+  id: string;
+  name: string;
+  motto: string;
+  logo: Logo;
+  email: string;
+  phone: string;
+  slug: string;
+  owner_id: string;
+  created_at: string;
+  updated_at: string;
+  exam_body: boolean;
+  address: string;
+  institution_type: string;
+};
+
+export type Image = {
+  url: string | null;
+  thumb: {
+    url: string | null;
+  };
+};
+
+export type Creator = {
+  id: string;
+  email: string;
+  authentication_token: string;
+  string: string | null;
+  status: string;
+  admin: boolean;
+  created_at: string;
+  updated_at: string;
+  first_name: string | null;
+  surname: string | null;
+  address: string | null;
+  phone: string | null;
+  image: Image;
+  state: string | null;
+  completed_at: string | null;
+  sex: string | null;
+  date_of_birth: string | null;
+  level: string;
+  username: string;
+  guardian_one: string;
+  guardian_two: string;
+  qualification: string;
+  cv: {
+    url: string | null;
+  };
+  state_id: string | null;
+  lga_id: string | null;
+  sid: string;
+  base_level_id: string | null;
+  sub_base_level_id: string | null;
+  category: string | null;
+  cleared: boolean;
+  jamb_year_id: string | null;
+  reg_no: string | null;
+  utme_subjects: string[];
+  student_id: string | null;
+};
+
+export type Topic = {
+  id: string;
+  name: string;
+  course_id: string;
+  rank: string | null;
+  active: boolean;
+  description: string;
+  created_at: string;
+  updated_at: string;
+  lecture_type: string;
+  video_url: string;
+  topic_image: Image;
+  level: string | null;
+  questions_count: number;
+  videos_count: number;
+  plan_ids: string[];
+};
+
+export type Course = {
+  id: string;
+  created_at: string;
+  updated_at: string;
+  errors: Record<string, unknown>;
+  slug: string;
+  questions_count: number;
+  plan_ids: string[];
+  plans: string[];
+  videos_count: number;
+  name: string;
+  category: string;
+  rank: string;
+  course_image_url: string | null;
+  description: string;
+  institution: LessonVideoInstitution;
+  active: boolean;
+  creator: Creator;
+  topics: Topic[];
+  years: string[];
+};
