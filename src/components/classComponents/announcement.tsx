@@ -66,40 +66,7 @@ export default function Announcement() {
     <article className="rounded-md bg-white p-5">
       <div className="grid grid-cols-2 gap-4 space-y-2">
         {ANNOUNCEMENTS.map((announcement) => (
-          <div
-            className="space-y-4 rounded-lg bg-[#F8F9FB] p-6"
-            key={announcement.id}
-          >
-            <div className="flex items-center gap-3">
-              <Image src={map} alt="" className="h-12 w-20" />
-              <h2 className="text-lg font-semibold text-[#0F0204]">
-                {announcement.title}
-              </h2>
-            </div>
-            <p className="line-clamp-3 text-sm text-[#815259]">
-              {announcement.description}
-            </p>
-            <div className="flex items-center justify-between">
-              <div className="space-x-2 text-[#4B4A4FE5]">
-                <span> {announcement.time}</span>
-                <span>|</span>
-                <span>{announcement.date}</span>
-              </div>
-              <Link
-                href={{
-                  pathname: `/student/notification/${announcement.id}`,
-                  query: {
-                    title: announcement.title,
-                    description: announcement.description,
-                    date: announcement.date,
-                    time: announcement.time,
-                  },
-                }}
-              >
-                <button className="text-[#D32D44]">Read more</button>
-              </Link>
-            </div>
-          </div>
+          <AnnouncementCard key={announcement.id} {...announcement} />
         ))}
       </div>
       <div className="flex items-center justify-between py-6">
@@ -109,5 +76,50 @@ export default function Announcement() {
         </button>
       </div>
     </article>
+  );
+}
+
+export function AnnouncementCard(announcement: {
+  id: number;
+  title: string;
+  description: string;
+  time: string;
+  date: string;
+}): React.JSX.Element {
+  return (
+    <div
+      className="space-y-4 rounded-lg bg-[#F8F9FB] p-6"
+      key={announcement.id}
+    >
+      <div className="flex items-center gap-3">
+        <Image src={map} alt="" className="h-12 w-20" />
+        <h2 className="text-lg font-semibold text-[#0F0204]">
+          {announcement.title}
+        </h2>
+      </div>
+      <p className="line-clamp-3 text-sm text-[#815259]">
+        {announcement.description}
+      </p>
+      <div className="flex items-center justify-between">
+        <div className="space-x-2 text-[#4B4A4FE5]">
+          <span> {announcement.time}</span>
+          <span>|</span>
+          <span>{announcement.date}</span>
+        </div>
+        <Link
+          href={{
+            pathname: `/student/notification/${announcement.id}`,
+            query: {
+              title: announcement.title,
+              description: announcement.description,
+              date: announcement.date,
+              time: announcement.time,
+            },
+          }}
+        >
+          <button className="text-[#D32D44]">Read more</button>
+        </Link>
+      </div>
+    </div>
   );
 }
